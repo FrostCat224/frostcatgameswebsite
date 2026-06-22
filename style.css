@@ -45,17 +45,13 @@ main {
 }
 
 .game-box {
-    background: rgba(0,0,0,0.75);
+    background: rgba(255, 215, 0, 0.75);
     color: white;
     text-decoration: none;
-    border-radius: 12px;
     overflow: hidden;
     transition: transform 0.2s;
 }
 
-.game-box:hover {
-    transform: translateY(-5px);
-}
 
 .game-box img {
     width: 100%;
