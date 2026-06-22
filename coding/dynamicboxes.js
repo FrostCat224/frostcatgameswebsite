@@ -2,7 +2,7 @@
 const items = [
     {
         title: "Moechat",
-        image: "img/breadseller.png",
+        image: "img/moechat.png",
         url: "https://frostcat224.github.io/moechat",
         size: "wide"
     },
