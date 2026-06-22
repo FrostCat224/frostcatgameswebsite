@@ -1,9 +1,24 @@
 body {
-            margin: 0;
-            background-image: url("img/bg.png");
-            background-repeat: repeat;
-            background-attachment: fixed;
-            background-position: top left;
-            color: black;
-            font-family: Verdana;
-        }
+    margin: 0;
+    background-image: url("https://frostcat224.github.io/frostcatgameswebsite/img/bg.png");
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-position: top left;
+    color: black;
+    font-family: Verdana;
+}
+
+header {
+    background: rgba(0, 0, 0, 0.85);
+    border-bottom: 4px solid #2e2e2e;
+    padding: 12px 20px;
+}
+
+header img {
+    height: 50px;
+    display: block;
+}
+
+main {
+    padding: 20px;
+}
