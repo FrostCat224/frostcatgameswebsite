@@ -1,0 +1,9 @@
+body {
+            margin: 0;
+            background-image: url("img/bg.png");
+            background-repeat: repeat;
+            background-attachment: fixed;
+            background-position: top left;
+            color: black;
+            font-family: Verdana;
+        }
