@@ -4,7 +4,7 @@ const items = [
         title: "Find the Breadsellers",
         image: "https://frostcat224.github.io/frostcatgameswebsite/img/breadseller.png",
         url: "https://frostcat224.github.io/frostcatgameswebsite/ftbs",
-        size: "wide"
+        size: "square"
     },
 ];
 
