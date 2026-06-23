@@ -6,6 +6,12 @@ const items = [
         url: "https://frostcat224.github.io/moechat",
         size: "wide"
     },
+    {
+        title: "Find the Breadsellers",
+        image: "https://frostcat224.github.io/frostcatgameswebsite/img/breadseller.png",
+        url: "https://frostcat224.github.io/frostcatgameswebsite/ftbs",
+        size: "square"
+    },
 ];
 
 const container = document.getElementById("dynamicBoxes");
