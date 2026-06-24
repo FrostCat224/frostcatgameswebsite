@@ -1,11 +1,11 @@
 
 const items = [
     {
-        title: "Find the Breadsellers",
-        image: "https://frostcat224.github.io/frostcatgameswebsite/img/breadseller.png",
-        url: "https://frostcat224.github.io/frostcatgameswebsite/ftbs",
+        title: "kiki pijl en boog appel schieter",
+        image: "https://frostcat224.github.io/frostcatgameswebsite/img/unknown.png",
+        url: "https://frostcat224.github.io/frostcatgameswebsite/archive/kikipijlenboogappelschieter.html",
         size: "square"
-    },
+    }
 ];
 
 const container = document.getElementById("dynamicBoxes");
