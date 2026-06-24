@@ -18,6 +18,12 @@ const items = [
         url: "https://turbowarp.org/886364357",
         size: "square"
     },
+    {
+        title: "Illegal Minecraft World",
+        image: "https://frostcat224.github.io/frostcatgameswebsite/img/netherportalblock.png",
+        url: "https://frostcat224.github.io/frostcatgameswebsite/minecraft/illegalworld.html",
+        size: "square"
+    },
 ];
 
 const container = document.getElementById("dynamicBoxes");
