@@ -24,6 +24,12 @@ const items = [
         url: "https://frostcat224.github.io/frostcatgameswebsite/minecraft/illegalworld.html",
         size: "square"
     },
+    {
+        title: "File Tools",
+        image: "https://frostcat224.github.io/frostcatgameswebsite/img/unknown.png",
+        url: "https://frostcat224.github.io/frostcatgameswebsite/filetools/",
+        size: "square"
+    },
 ];
 
 const container = document.getElementById("dynamicBoxes");
