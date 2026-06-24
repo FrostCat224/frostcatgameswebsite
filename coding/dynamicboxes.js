@@ -14,7 +14,7 @@ const items = [
     },
     {
         title: "Zoek de Bo's",
-        image: "https://frostcat224.github.io/frostcatgameswebsite/img/unknown.png",
+        image: "https://frostcat224.github.io/frostcatgameswebsite/img/zoekdebos.png",
         url: "https://turbowarp.org/886364357",
         size: "square"
     },
