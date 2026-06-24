@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrostCatGames</title>
+    <link href="https://frostcat224.github.io/frostcatgameswebsite/style.css" rel="stylesheet" type="text/css" media="all">
+
+    <style>
+    </style>
+</head>
+    
+<body>
+    <header>
+    <img src="https://frostcat224.github.io/frostcatgameswebsite/img/textlogo.png" alt="FrostCatGames">
+
+    <nav>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/">Home</a>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/stuff">Stuff</a>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/archive">Archive</a>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/info">Info</a>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/search">Search</a>
+    </nav>
+    </header>
+
+    
+<main>
+    <h1>GIF Maker</h1>
+
+    <input type="file" id="imageInput" accept="image/*" multiple><br><br>
+
+    <label>FPS:</label>
+    <input type="number" id="fps" value="2" min="1" max="30"><br><br>
+
+    <button onclick="startPreview()">Preview GIF</button>
+    <button onclick="generateGIF()">Download GIF</button>
+
+    <h3>Frames</h3>
+    <div id="frames"></div>
+
+    <h3>Preview</h3>
+    <canvas id="previewCanvas"></canvas>
+
+    <br><br>
+    <a id="downloadLink" style="display:none;">Download GIF</a>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/gif.js.optimized/dist/gif.js"></script>
+
+<script>
+let images = [];
+let interval = null;
+
+document.getElementById("imageInput").addEventListener("change", function (e) {
+    images = [];
+
+    const files = Array.from(e.target.files);
+
+    files.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = function (ev) {
+            const img = new Image();
+            img.src = ev.target.result;
+            img.onload = () => {
+                images.push(img);
+                renderFrames();
+            };
+        };
+        reader.readAsDataURL(file);
+    });
+});
+
+function renderFrames() {
+    const container = document.getElementById("frames");
+    container.innerHTML = "";
+
+    images.forEach((img, index) => {
+        const wrapper = document.createElement("div");
+        wrapper.style.marginBottom = "10px";
+
+        const thumb = document.createElement("img");
+        thumb.src = img.src;
+        thumb.width = 80;
+
+        const up = document.createElement("button");
+        up.innerText = "⬆";
+        up.onclick = () => move(index, -1);
+
+        const down = document.createElement("button");
+        down.innerText = "⬇";
+        down.onclick = () => move(index, 1);
+
+        wrapper.appendChild(thumb);
+        wrapper.appendChild(up);
+        wrapper.appendChild(down);
+
+        container.appendChild(wrapper);
+    });
+}
+
+function move(index, dir) {
+    const newIndex = index + dir;
+    if (newIndex < 0 || newIndex >= images.length) return;
+
+    [images[index], images[newIndex]] = [images[newIndex], images[index]];
+    renderFrames();
+}
+
+function startPreview() {
+    if (images.length === 0) return;
+
+    const canvas = document.getElementById("previewCanvas");
+    const ctx = canvas.getContext("2d");
+
+    const fps = parseInt(document.getElementById("fps").value);
+    let i = 0;
+
+    canvas.width = images[0].width;
+    canvas.height = images[0].height;
+
+    if (interval) clearInterval(interval);
+
+    interval = setInterval(() => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(images[i], 0, 0);
+        i = (i + 1) % images.length;
+    }, 1000 / fps);
+}
+
+function generateGIF() {
+    if (images.length === 0) return;
+
+    const fps = parseInt(document.getElementById("fps").value);
+
+    const gif = new GIF({
+        workers: 2,
+        quality: 10,
+        width: images[0].width,
+        height: images[0].height
+    });
+
+    images.forEach(img => {
+        const canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+
+        gif.addFrame(canvas, { delay: 1000 / fps });
+    });
+
+    gif.on("finished", function (blob) {
+        const url = URL.createObjectURL(blob);
+
+        const link = document.getElementById("downloadLink");
+        link.href = url;
+        link.download = "animation.gif";
+        link.style.display = "inline";
+        link.innerText = "Download GIF";
+    });
+
+    gif.render();
+}
+</script>
+
+</body>
+</html>
