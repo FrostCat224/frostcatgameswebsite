@@ -63,6 +63,20 @@ function searchItems(){
     .filter(i=>
         i.name.toLowerCase().includes(q)
     )
+    .sort((a,b)=>{
+
+        let aName=a.name.toLowerCase();
+        let bName=b.name.toLowerCase();
+
+        let aStarts=aName.startsWith(q);
+        let bStarts=bName.startsWith(q);
+
+        if(aStarts && !bStarts) return -1;
+        if(!aStarts && bStarts) return 1;
+
+        return aName.indexOf(q)-bName.indexOf(q);
+
+    })
     .forEach(i=>{
 
         let a=document.createElement("a");
@@ -71,6 +85,9 @@ function searchItems(){
         a.href=i.link;
 
         a.textContent=i.name;
+
+        a.style.display="block";
+        a.style.marginBottom="10px";
 
         results.appendChild(a);
 
