@@ -33,7 +33,7 @@
     <input type="number" id="fps" value="2" min="1" max="30"><br><br>
 
     <button onclick="startPreview()">Preview GIF</button>
-    <button onclick="generateGIF()">Download GIF</button>
+    <button id="downloadBtn" onclick="generateGIF()">Download GIF</button>
 
     <h3>Frames</h3>
     <div id="frames"></div>
@@ -151,14 +151,24 @@ function generateGIF() {
     });
 
     gif.on("finished", function (blob) {
-        const url = URL.createObjectURL(blob);
+    const url = URL.createObjectURL(blob);
 
-        const link = document.getElementById("downloadLink");
-        link.href = url;
-        link.download = "animation.gif";
-        link.style.display = "inline";
-        link.innerText = "Download GIF";
-    });
+    const btn = document.getElementById("downloadBtn");
+
+    btn.onclick = function () {
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "animation.gif";
+
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+    };
+
+    btn.innerText = "Click again to download";
+});
 
     gif.render();
 }
