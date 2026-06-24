@@ -12,6 +12,12 @@ const items = [
         url: "https://frostcat224.github.io/frostcatgameswebsite/ftbs",
         size: "square"
     },
+    {
+        title: "Zoek de Bo's",
+        image: "https://frostcat224.github.io/frostcatgameswebsite/img/unknown.png",
+        url: "https://turbowarp.org/886364357",
+        size: "square"
+    },
 ];
 
 const container = document.getElementById("dynamicBoxes");
