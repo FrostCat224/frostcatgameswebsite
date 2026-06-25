@@ -113,8 +113,8 @@ mind
 escape
 island
 jail
-dna
-rna
+deoxyribonucleic acid
+ribonucleic acid
 vote
 election
 re-election
@@ -309,3 +309,437 @@ metropolis
 town
 city
 rampage
+phone
+telephone
+telegram
+teleportation
+application
+app
+exe
+html
+json
+archipelago
+chromosome
+france
+netherlands
+united states of america
+czech
+poland
+brazil
+argentina
+chile
+peru
+bolivia
+paraguay
+uruguay
+colombia
+venezuela
+ecuador
+guyana
+suriname
+mexico
+canada
+guatemala
+honduras
+nicaragua
+costa rica
+panama
+cuba
+jamaica
+haiti
+dominican republic
+iceland
+ireland
+united kingdom
+portugal
+spain
+andorra
+belgium
+luxembourg
+germany
+switzerland
+austria
+italy
+san marino
+vatican city
+denmark
+norway
+sweden
+finland
+estonia
+latvia
+lithuania
+belarus
+ukraine
+moldova
+romania
+bulgaria
+greece
+albania
+serbia
+croatia
+slovenia
+bosnia and herzegovina
+montenegro
+north macedonia
+hungary
+slovakia
+turkey
+georgia
+armenia
+azerbaijan
+russia
+kazakhstan
+mongolia
+china
+india
+pakistan
+afghanistan
+nepal
+bhutan
+bangladesh
+sri lanka
+myanmar
+thailand
+laos
+cambodia
+vietnam
+malaysia
+singapore
+indonesia
+philippines
+japan
+south korea
+north korea
+taiwan
+australia
+new zealand
+papua new guinea
+fiji
+egypt
+libya
+algeria
+morocco
+tunisia
+sudan
+ethiopia
+kenya
+uganda
+tanzania
+nigeria
+ghana
+cameroon
+angola
+namibia
+botswana
+zimbabwe
+mozambique
+madagascar
+south africa
+antarctica
+stairs
+flight
+jet
+jet lag
+lag
+glitch
+error
+continent
+europe
+asia
+africa
+north america
+south america
+oceania
+antarctica
+continent drift
+tectonic plate
+earthquake
+tsunami
+hurricane
+tornado
+blizzard
+drought
+flood
+disaster
+survival
+shelter
+tent
+campsite
+campfire
+smoke
+ash
+charcoal
+graphite
+pencil lead
+sketch
+drawing
+painting
+artwork
+museum
+exhibit
+gallery
+sculpture
+artist
+creator
+invention
+innovation
+technology
+future
+time
+clock
+watch
+stopwatch
+timer
+countdown
+launch
+spaceship
+astronaut
+space station
+black hole
+nebula
+star
+constellation
+telescope
+observatory
+cosmos
+chair
+table
+sofa
+couch cushion
+lamp
+television
+remote control
+bookshelf
+book
+notebook
+pencil
+pen
+eraser
+ruler
+marker
+scissors
+glue stick
+tape
+stapler
+paper clip
+calendar
+clock
+picture frame
+mirror
+curtain
+blinds
+rug
+carpet
+vacuum cleaner
+broom
+dustpan
+mop
+bucket
+trash can
+recycling bin
+laundry basket
+washing machine
+dryer
+ironing board
+iron
+hanger
+wardrobe
+dresser
+bed
+pillow
+blanket
+bedsheet
+mattress
+alarm clock
+nightstand
+toothbrush
+toothpaste
+soap
+shampoo
+conditioner
+towel
+washcloth
+hairbrush
+comb
+hair dryer
+toilet
+toilet paper
+plunger
+sink
+bathtub
+shower curtain
+medicine cabinet
+first aid kit
+deodorant
+razor
+kitchen sink
+refrigerator
+freezer
+oven
+stove
+microwave
+toaster
+blender
+kettle
+coffee maker
+mug
+cup
+plate
+bowl
+fork
+spoon
+knife
+spatula
+whisk
+cutting board
+frying pan
+saucepan
+baking tray
+oven mitt
+dish towel
+sponge
+dish soap
+water bottle
+lunch box
+food container
+apple
+banana
+orange
+potato
+onion
+carrot
+cereal box
+cookie jar
+salt shaker
+pepper shaker
+sugar jar
+refrigerator magnet
+flashlight
+battery
+extension cord
+charger
+phone
+tablet
+laptop
+desktop computer
+monitor
+keyboard
+mouse
+printer
+headphones
+speaker
+webcam
+router
+modem
+usb drive
+stick
+tree
+forest
+wood
+log
+cabin
+hut
+treehouse
+birch
+oak
+spruce
+pale
+taiga
+dark
+light
+flashlight
+epilepsy
+attack
+fight
+monkey
+ape
+neutron
+proton
+electron
+electricity
+rainbow
+road
+double
+triple
+triplet
+twin
+quadruplet
+youtube
+google
+wikipedia
+helix
+nebula
+amoeba
+bacteria
+photon
+game console
+controller
+board game
+puzzle
+deck of cards
+dice
+toy car
+teddy bear
+action figure
+doll
+brick
+backpack
+suitcase
+umbrella
+coat
+jacket
+sweater
+shirt
+pants
+socks
+shoes
+slippers
+belt
+hat
+scarf
+gloves
+jewelry box
+necklace
+bracelet
+ring
+candle
+candle holder
+lighter
+matches
+plant pot
+houseplant
+watering can
+vase
+flower
+doormat
+key
+keychain
+doorbell
+smoke detector
+thermostat
+toolbox
+hammer
+screwdriver
+wrench
+measuring tape
+nail
+screw
+glue bottle
+sewing needle
+thread spool
+button
+zipper
+coin
+wallet
+purse
+envelope
+stamp
+tissue box
+sunglasses
+camera
+binoculars
+trophy
+piggy bank
+ornament
+snow globe
