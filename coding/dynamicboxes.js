@@ -13,6 +13,12 @@ const items = [
         size: "square"
     },
     {
+        title: "Vote for Everything",
+        image: "https://frostcat224.github.io/frostcatgameswebsite/img/vote.png",
+        url: "https://frostcat224.github.io/frostcatgameswebsite/voteforeverything/",
+        size: "square"
+    },
+    {
         title: "Zoek de Bo's",
         image: "https://frostcat224.github.io/frostcatgameswebsite/img/zoekdebos.png",
         url: "https://turbowarp.org/886364357",
