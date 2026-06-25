@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrostCatGames</title>
+    <link href="https://frostcat224.github.io/frostcatgameswebsite/style.css" rel="stylesheet" type="text/css" media="all">
+
+    <style>
+    </style>
+</head>
+    
+<body>
+    <header>
+    <img src="https://frostcat224.github.io/frostcatgameswebsite/img/textlogo.png" alt="FrostCatGames">
+
+    <nav>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/">Home</a>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/stuff">Stuff</a>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/archive">Archive</a>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/info">Info</a>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/search">Search</a>
+    </nav>
+    </header>
+
+    
+<main>
+    <h1>VOTE FOR EVERYTHING!!!!</h1>
+  <p>  <a href="https://frostcat224.github.io/frostcatgameswebsite/voteforeverything/results">Results</a></p>
+<p></p>
+
+    <div id="voteArea">
+        <button id="left"></button>
+        <button id="right"></button>
+    </div>
+</main>
+
+<style>
+#voteArea{
+    display:flex;
+    gap:20px;
+    justify-content:center;
+    margin-top:40px;
+}
+
+#voteArea button{
+    font-size:25px;
+    padding:30px;
+    min-width:250px;
+    cursor:pointer;
+}
+</style>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import {
+getDatabase,
+ref,
+runTransaction
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
+
+
+// PUT YOUR FIREBASE CONFIG HERE
+const firebaseConfig = {
+    apiKey:"YOUR_API_KEY",
+    authDomain:"YOUR_PROJECT.firebaseapp.com",
+    databaseURL:"https://YOUR_PROJECT-default-rtdb.firebaseio.com",
+    projectId:"YOUR_PROJECT",
+    storageBucket:"YOUR_PROJECT.appspot.com",
+    messagingSenderId:"ID",
+    appId:"APPID"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+let items = [];
+
+async function loadItems(){
+
+    const response =
+    await fetch(
+"https://frostcat224.github.io/frostcatgameswebsite/voteforeverything/everything.txt"
+    );
+
+    const text = await response.text();
+
+    items = [
+        ...new Set(
+            text
+            .split(/\r?\n/)
+            .map(x=>x.trim())
+            .filter(Boolean)
+        )
+    ];
+
+    showNext();
+}
+
+function randomPair(){
+
+    let a =
+        Math.floor(Math.random()*items.length);
+
+    let b;
+
+    do{
+        b =
+        Math.floor(Math.random()*items.length);
+    }
+    while(a===b);
+
+    return [
+        items[a],
+        items[b]
+    ];
+}
+
+function showNext(){
+
+    const [left,right] =
+    randomPair();
+
+    const leftBtn =
+    document.getElementById("left");
+
+    const rightBtn =
+    document.getElementById("right");
+
+    leftBtn.textContent =
+    left;
+
+    rightBtn.textContent =
+    right;
+
+    leftBtn.onclick =
+    ()=>vote(left);
+
+    rightBtn.onclick =
+    ()=>vote(right);
+}
+
+async function vote(name){
+
+    const safe =
+    encodeURIComponent(name);
+
+    const voteRef =
+    ref(
+        db,
+        "votes/"+safe
+    );
+
+    await runTransaction(
+        voteRef,
+        current=>
+        (current||0)+1
+    );
+
+    showNext();
+}
+
+loadItems();
+
+</script>
+
+</body>
+</html>
