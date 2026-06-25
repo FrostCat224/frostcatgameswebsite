@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrostCatGames</title>
+    <link href="https://frostcat224.github.io/frostcatgameswebsite/style.css" rel="stylesheet" type="text/css" media="all">
+
+    <style>
+    </style>
+</head>
+    
+<body>
+    <header>
+    <img src="https://frostcat224.github.io/frostcatgameswebsite/img/textlogo.png" alt="FrostCatGames">
+
+    <nav>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/">Home</a>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/stuff">Stuff</a>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/archive">Archive</a>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/info">Info</a>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/search">Search</a>
+    </nav>
+    </header>
+
+    
+<main>
+
+<h1>VOTE RESULTS</h1>
+
+<div id="results">
+Loading...
+</div>
+
+</main>
+
+<style>
+
+#results{
+    max-width:700px;
+    margin:auto;
+    padding:20px;
+}
+
+.result{
+    padding:12px;
+    border-bottom:1px solid #444;
+    font-size:22px;
+}
+
+</style>
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+
+import {
+getDatabase,
+ref,
+onValue
+}
+from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
+
+
+
+const firebaseConfig={
+    apiKey: "AIzaSyDXAWNB_bGP-nh0C5rsWxgRFYifOg15e-U",
+    authDomain: "voteforeverythingintheworld.firebaseapp.com",
+    databaseURL: "https://voteforeverythingintheworld-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "voteforeverythingintheworld",
+    storageBucket: "voteforeverythingintheworld.firebasestorage.app",
+    messagingSenderId: "866574146067",
+    appId: "1:866574146067:web:389fa48fc302c7b6c47de6"
+};
+
+const app=
+initializeApp(firebaseConfig);
+
+const db=
+getDatabase(app);
+
+const results=
+document.getElementById("results");
+
+const votesRef=
+ref(db,"votes");
+
+onValue(votesRef,(snapshot)=>{
+
+const data=
+snapshot.val()||{};
+
+results.innerHTML="";
+
+const sorted=
+Object.entries(data)
+.sort(
+(a,b)=>
+b[1]-a[1]
+);
+
+if(sorted.length===0){
+
+results.innerHTML=
+"No votes yet.";
+
+return;
+
+}
+
+sorted.forEach(([name,votes])=>{
+
+const row=
+document.createElement("div");
+
+row.className=
+"result";
+
+row.textContent=
+decodeURIComponent(name)+
+" ("+
+votes+
+(votes===1
+?" vote)"
+:" votes)");
+
+results.appendChild(row);
+
+});
+
+});
+
+</script>
+
+</body>
+</html>
