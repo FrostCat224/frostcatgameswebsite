@@ -5,6 +5,12 @@ const items = [
         image: "https://frostcat224.github.io/frostcatgameswebsite/img/unknown.png",
         url: "https://frostcat224.github.io/frostcatgameswebsite/archive/kikipijlenboogappelschieter.html",
         size: "square"
+    },
+    {
+        title: "Elemental Infinity Tree",
+        image: "https://frostcat224.github.io/frostcatgameswebsite/img/unknown.png",
+        url: "https://frostcat224.github.io/frostcatgameswebsite/archive/elementalinf.html",
+        size: "square"
     }
 ];
 
