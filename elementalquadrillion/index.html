@@ -349,7 +349,7 @@ color:"#dddddd"
 {
 id:2,
 name:"Earth",
-color:"#5fa64b"
+color:"#a3501c"
 },
 
 {
@@ -429,6 +429,29 @@ snap.val()
 
 }
 
+function getTextColor(hex){
+
+const c=
+hex.replace("#","");
+
+const r=
+parseInt(c.slice(0,2),16);
+
+const g=
+parseInt(c.slice(2,4),16);
+
+const b=
+parseInt(c.slice(4,6),16);
+
+const brightness=
+(r*299 + g*587 + b*114)/1000;
+
+return brightness>140
+? "#000"
+: "#fff";
+
+}
+
 renderElements();
 
 }
@@ -494,6 +517,11 @@ div.className=
 
 div.style.background=
 element.color;
+  
+div.style.color=
+getTextColor(
+element.color
+);
 
 div.dataset.id=
 element.id;
