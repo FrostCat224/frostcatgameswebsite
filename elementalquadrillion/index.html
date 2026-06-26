@@ -144,7 +144,10 @@ color:#777;
 font-size:13px;
 
 }
-
+.element.new {
+  border: 3px solid gold;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+}
 .popup{
 
 position:fixed;
@@ -392,6 +395,8 @@ let clone=null;
 
 let combineA=null;
 
+let newSessionElements = new Set();
+  
 let combineB=null;
 
 let pendingColor=null;
@@ -514,6 +519,10 @@ document.createElement(
 
 div.className=
 "element";
+  
+if (newSessionElements.has(element.id)) {
+  div.classList.add("new");
+}
 
 div.style.background=
 element.color;
@@ -652,16 +661,12 @@ h;
 
 }
 
-function startDrag(
-e,
-element
-){
+function startDrag(e, element) {
 
-dragging=
-element;
+  newSessionElements.delete(element.id);
 
-combineA=
-element;
+  dragging = element;
+  combineA = element;
 
 clone=
 
@@ -846,12 +851,9 @@ resultId
 )
 ){
 
-owned.push(
-resultId
-);
-
+owned.push(resultId);
 saveOwned();
-
+newSessionElements.add(resultId);
 renderElements();
 
 }
