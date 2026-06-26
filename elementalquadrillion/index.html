@@ -213,11 +213,14 @@ margin-top:10px;
 
 <body>
 
+// why the fuck is this code so ugly
+
 <div id="left">
 
 <div class="title">
 Elemental Quadrillion (WIP)
 </div>
+  <p id="elementCounter"></p>
 
 <div id="elements"></div>
 
@@ -295,6 +298,14 @@ Done
 </div>
 
 <script type="module">
+
+  function updateElementCounter() {
+  const total = Object.keys(elements).length;
+  const ownedCount = owned.length;
+
+  document.getElementById("elementCounter").innerText =
+    `Elements: ${ownedCount}/${total}`;
+}
 
 import {
 initializeApp
@@ -461,6 +472,7 @@ renderElements();
 }
 
 function saveOwned(){
+  
 
 localStorage.setItem(
 
@@ -560,7 +572,7 @@ element
 wrap.appendChild(
 div
 );
-
+updateElementCounter();
 }
 
 );
