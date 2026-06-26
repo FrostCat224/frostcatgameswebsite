@@ -22,11 +22,22 @@
         <a href="https://frostcat224.github.io/frostcatgameswebsite/search">Search</a>
     </nav>
     </header>
+<script>
+const params = new URLSearchParams(window.location.search);
+        const source = params.get("utm_source");
+
+        if (source === "chatgpt.com") {
+            document.getElementById("chatgptThanks").style.display = "block";
+        }
+</script>
 
     
 <main>
     <h1>FrostCatGames</h1>
    <p>This is the official FrostCatGames website!</p>
+ <p id="chatgptThanks" style="color: blue; display: none;">
+  Why did ChatGPT send you to this website
+</p>
     <div id="dynamicBoxes" class="grid"></div>
 </main>
 
