@@ -1054,6 +1054,28 @@ if(
 )
 return;
 
+const existing = Object.values(elements).find(
+    e => e.name.toLowerCase() === name.toLowerCase()
+);
+
+if (existing) {
+
+    const combo = [pendingA.id, pendingB.id]
+        .sort((a, b) => a - b)
+        .join("_");
+
+    await set(ref(db, "combinations/" + combo), existing.id);
+
+    if (!owned.includes(existing.id)) {
+        owned.push(existing.id);
+        saveOwned();
+        renderElements();
+    }
+
+    popup.style.display = "none";
+    return;
+}
+
 const id=
 nextId++;
 
