@@ -24,25 +24,15 @@
     </header>
 
     
-<main>
-    <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Element Stats (Live Firebase)</title>
-</head>
-<body>
-
-<h1>Elemental Quadrillion Stats </h1>
+<h1>Elemental Quadrillion Stats</h1>
 <pre id="output">Loading...</pre>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
 import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
 
-
 const firebaseConfig = {
-  apiKey: "AIzaSyDFH5CJJR-dNrBcA8h8zfks-9mCxo-vxt0",
+  apiKey: "AIzaSyDFH5CJJRdNrBcA8h8zfks-9mCxo-vxt0",
   authDomain: "elementalquadrillion.firebaseapp.com",
   databaseURL: "https://elementalquadrillion-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "elementalquadrillion",
@@ -50,7 +40,6 @@ const firebaseConfig = {
   messagingSenderId: "828897871116",
   appId: "1:828897871116:web:8e05949030ca774ce5f529"
 };
-
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
@@ -66,20 +55,27 @@ onValue(ref(db), (snapshot) => {
   }
 
   const elements = data.elements || [];
-  const news = data.news || {};
+  const combinations = data.combinations || {};
 
-  const elMap = {};
-  elements.forEach(e => { if (e) elMap[e.id] = e; });
+  // ---- ELEMENT MAP (includes base elements 1-4) ----
+  const elMap = {
+    1: { id: 1, name: "Air" },
+    2: { id: 2, name: "Earth" },
+    3: { id: 3, name: "Fire" },
+    4: { id: 4, name: "Water" }
+  };
 
-  let newest = null;
-  for (const e of elements) {
-    if (!e) continue;
-    if (!newest || e.date > newest.date) newest = e;
-  }
+  elements.forEach(e => {
+    if (e) elMap[e.id] = e;
+  });
 
-  const elementCount = elements.filter(Boolean).length;
-  const recipeCount = Object.keys(news).length;
+  const name = (id) => elMap[id]?.name || "Unknown";
 
+  // ---- BASIC STATS ----
+  const elementCount = elements.filter(Boolean).length + 4;
+  const recipeCount = Object.keys(combinations).length;
+
+  // ---- SIZE ----
   const bytes = new Blob([JSON.stringify(data)]).size;
 
   function formatSize(b) {
@@ -89,15 +85,15 @@ onValue(ref(db), (snapshot) => {
     return (b/1024/1024/1024).toFixed(2) + " GB";
   }
 
+  // ---- USAGE STATS ----
   const resultCount = {};
   const usedCount = {};
 
-  for (const id in news) {
-    const r = news[id].result;
-    const a = news[id].a;
-    const b = news[id].b;
+  for (const key in combinations) {
+    const result = combinations[key];
+    const [a, b] = key.split("_").map(Number);
 
-    resultCount[r] = (resultCount[r] || 0) + 1;
+    resultCount[result] = (resultCount[result] || 0) + 1;
     usedCount[a] = (usedCount[a] || 0) + 1;
     usedCount[b] = (usedCount[b] || 0) + 1;
   }
@@ -112,32 +108,30 @@ onValue(ref(db), (snapshot) => {
         bestVal = map[k];
       }
     }
-    return { id: best, count: bestVal };
+    return { id: Number(best), count: bestVal };
   }
 
   const mostCreated = maxKey(resultCount);
   const mostUsed = maxKey(usedCount);
 
+  // ---- DEPTH CALCULATION ----
   const depthMemo = {};
 
   function getDepth(id) {
+    if (id <= 4) return 0;
+
     if (depthMemo[id] !== undefined) return depthMemo[id];
 
-    let incoming = [];
-    for (const r in news) {
-      if (news[r].result === Number(id)) {
-        incoming.push(news[r]);
-      }
-    }
-
-    if (incoming.length === 0) {
+    const element = elMap[id];
+    if (!element?.combinations?.length) {
       depthMemo[id] = 0;
       return 0;
     }
 
     let max = 0;
-    for (const rec of incoming) {
-      const d = 1 + Math.max(getDepth(rec.a), getDepth(rec.b));
+
+    for (const r of element.combinations) {
+      const d = 1 + Math.max(getDepth(r.a), getDepth(r.b));
       if (d > max) max = d;
     }
 
@@ -147,19 +141,17 @@ onValue(ref(db), (snapshot) => {
 
   let deepest = { id: null, depth: -1 };
 
-  for (const e of elements) {
-    if (!e) continue;
-    const d = getDepth(e.id);
+  for (const id in elMap) {
+    const d = getDepth(Number(id));
     if (d > deepest.depth) {
-      deepest = { id: e.id, depth: d };
+      deepest = { id: Number(id), depth: d };
     }
   }
 
-  const name = (id) => elMap[id]?.name || "Unknown";
-
-  output.textContent =
-`Newest element:
-${newest?.name || "None"} (ID: ${newest?.id})
+  // ---- OUTPUT ----
+  output.textContent = `
+Newest element:
+${elements.find(e => e)?.name || "None"}
 
 Number of elements:
 ${elementCount}
@@ -178,10 +170,10 @@ ${name(mostUsed.id)} (${mostUsed.count})
 
 Deepest element:
 ${name(deepest.id)} (depth: ${deepest.depth})
-`;
+`.trim();
 
 });
-</script>
+</script>s
 
 </body>
 </html>
