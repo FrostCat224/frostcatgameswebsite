@@ -60,7 +60,6 @@ onValue(ref(db), (snapshot) => {
   const elements = data.elements || [];
   const combinations = data.combinations || {};
 
-  // ---- ELEMENT MAP (includes base elements 1-4) ----
   const elMap = {
     1: { id: 1, name: "Air" },
     2: { id: 2, name: "Earth" },
@@ -74,11 +73,9 @@ onValue(ref(db), (snapshot) => {
 
   const name = (id) => elMap[id]?.name || "Unknown";
 
-  // ---- BASIC STATS ----
   const elementCount = elements.filter(Boolean).length + 4;
   const recipeCount = Object.keys(combinations).length;
 
-  // ---- SIZE ----
   const bytes = new Blob([JSON.stringify(data)]).size;
 
   function formatSize(b) {
@@ -88,7 +85,6 @@ onValue(ref(db), (snapshot) => {
     return (b/1024/1024/1024).toFixed(2) + " GB";
   }
 
-  // ---- USAGE STATS ----
   const resultCount = {};
   const usedCount = {};
 
@@ -117,7 +113,6 @@ onValue(ref(db), (snapshot) => {
   const mostCreated = maxKey(resultCount);
   const mostUsed = maxKey(usedCount);
 
-  // ---- DEPTH CALCULATION ----
   const depthMemo = {};
 
   function getDepth(id) {
