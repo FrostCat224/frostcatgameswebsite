@@ -159,7 +159,7 @@ onValue(ref(db), (snapshot) => {
 
   output.textContent =
 `Newest element:
-${newest?.name || "None"} (ID ${newest?.id})
+${newest?.name || "None"} (ID: ${newest?.id})
 
 Number of elements:
 ${elementCount}
@@ -177,7 +177,7 @@ Element used in most recipes:
 ${name(mostUsed.id)} (${mostUsed.count})
 
 Deepest element:
-${name(deepest.id)} (depth ${deepest.depth})
+${name(deepest.id)} (depth: ${deepest.depth})
 `;
 
 });
