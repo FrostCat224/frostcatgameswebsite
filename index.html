@@ -23,12 +23,14 @@
     </nav>
     </header>
 <script>
-const params = new URLSearchParams(window.location.search);
-        const source = params.get("utm_source");
+document.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    const source = params.get("utm_source");
 
-        if (source === "chatgpt.com") {
-            document.getElementById("chatgptThanks").style.display = "block";
-        }
+    if (source === "chatgpt.com") {
+        document.getElementById("chatgptThanks").style.display = "block";
+    }
+});
 </script>
 
     
