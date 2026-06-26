@@ -401,7 +401,28 @@ let pendingA=null;
 let pendingB=null;
 
 let nextId=5;
+function getTextColor(hex){
 
+const c=
+hex.replace("#","");
+
+const r=
+parseInt(c.slice(0,2),16);
+
+const g=
+parseInt(c.slice(2,4),16);
+
+const b=
+parseInt(c.slice(4,6),16);
+
+const brightness=
+(r*299 + g*587 + b*114)/1000;
+
+return brightness>140
+? "#000"
+: "#fff";
+
+}
   async function loadElements(){
 
 const snap=
@@ -429,28 +450,7 @@ snap.val()
 
 }
 
-function getTextColor(hex){
 
-const c=
-hex.replace("#","");
-
-const r=
-parseInt(c.slice(0,2),16);
-
-const g=
-parseInt(c.slice(2,4),16);
-
-const b=
-parseInt(c.slice(4,6),16);
-
-const brightness=
-(r*299 + g*587 + b*114)/1000;
-
-return brightness>140
-? "#000"
-: "#fff";
-
-}
 
 renderElements();
 
@@ -676,6 +676,8 @@ clone.className=
 clone.style.background=
 
 element.color;
+  clone.style.color = getTextColor(element.color);
+  
 
 clone.innerHTML=`
 
