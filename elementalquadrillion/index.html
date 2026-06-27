@@ -144,15 +144,15 @@ color:#777;
 font-size:13px;
 
 }
+  
 .element.new{
-outline:6px solid #ffd500;
-box-shadow:
-0 0 18px #ffd500,
-0 0 35px #ffea00,
-0 0 55px rgba(255,230,0,.8);
-transform:scale(1.06);
-z-index:2;
+outline:3px solid #ffd500;
 }
+
+.element.rediscovered{
+outline:3px solid #00ffff;
+}
+  
 .popup{
 
 position:fixed;
@@ -412,6 +412,8 @@ let clone=null;
 let combineA=null;
 
 let newSessionElements = new Set();
+
+let rediscoveredElement = null;
   
 let combineB=null;
 
@@ -538,7 +540,11 @@ div.className=
 "element";
   
 if (newSessionElements.has(element.id)) {
-  div.classList.add("new");
+div.classList.add("new");
+}
+
+if (rediscoveredElement === element.id) {
+div.classList.add("rediscovered");
 }
 
 div.style.background=
@@ -867,8 +873,18 @@ owned.push(resultId);
 
 saveOwned();
 
+rediscoveredElement = null;
+
 newSessionElements.clear();
 newSessionElements.add(resultId);
+
+renderElements();
+
+}else{
+
+newSessionElements.clear();
+
+rediscoveredElement = resultId;
 
 renderElements();
 
@@ -1178,6 +1194,8 @@ elements[id]=obj;
 owned.push(
 id
 );
+  
+rediscoveredElement = null;
 newSessionElements.clear();
 newSessionElements.add(id);
 saveOwned();
