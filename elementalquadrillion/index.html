@@ -472,6 +472,19 @@ let pendingA=null;
 
 let pendingB=null;
 
+const newElementSound = new Audio(
+"https://frostcat224.github.io/frostcatgameswebsite/elementalquadrillion/newelement.wav"
+);
+
+const existingElementSound = new Audio(
+"https://frostcat224.github.io/frostcatgameswebsite/elementalquadrillion/nonunique.wav"
+);
+
+function playSound(sound){
+sound.currentTime = 0;
+sound.play().catch(()=>{});
+}
+
 let nextId=5;
 function getTextColor(hex){
 
@@ -935,6 +948,8 @@ rediscoveredElement = null;
 newSessionElements.clear();
 newSessionElements.add(resultId);
 
+playSound(newElementSound);
+
 renderElements();
 
 }else{
@@ -942,6 +957,8 @@ renderElements();
 newSessionElements.clear();
 
 rediscoveredElement = resultId;
+
+playSound(existingElementSound);
 
 renderElements();
 
@@ -1145,10 +1162,31 @@ if (existing) {
     await set(ref(db, "combinations/" + combo), existing.id);
 
     if (!owned.includes(existing.id)) {
-        owned.push(existing.id);
-        saveOwned();
-        renderElements();
-    }
+
+    owned.push(existing.id);
+
+    rediscoveredElement = null;
+
+    newSessionElements.clear();
+    newSessionElements.add(existing.id);
+
+    playSound(newElementSound);
+
+    saveOwned();
+
+    renderElements();
+
+}else{
+
+    newSessionElements.clear();
+
+    rediscoveredElement = existing.id;
+
+    playSound(existingElementSound);
+
+    renderElements();
+
+}
 
     popup.style.display = "none";
     return;
@@ -1253,8 +1291,12 @@ id
 );
   
 rediscoveredElement = null;
+
 newSessionElements.clear();
 newSessionElements.add(id);
+
+playSound(newElementSound);
+
 saveOwned();
 
 renderElements();
