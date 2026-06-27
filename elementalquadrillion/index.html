@@ -137,6 +137,42 @@ margin-bottom:8px;
 
 }
 
+.closePopup{
+
+position:absolute;
+
+top:10px;
+
+right:12px;
+
+width:32px;
+
+height:32px;
+
+border:none;
+
+background:#eee;
+
+border-radius:8px;
+
+font-size:22px;
+
+font-weight:bold;
+
+margin:0;
+
+padding:0;
+
+cursor:pointer;
+
+}
+
+.closePopup:hover{
+
+background:#ddd;
+
+}
+
 .newsDate{
 
 color:#777;
@@ -245,6 +281,13 @@ NEWS
 </div>
 
 <div class="popup" id="popup">
+
+<button
+class="closePopup"
+onclick="closePopup()"
+>
+×
+</button>
 
 <h2 id="comboText">
 ???
@@ -681,6 +724,17 @@ return h<0
 h+360
 :
 h;
+
+}
+function closePopup(){
+
+document.getElementById(
+"popup"
+).style.display="none";
+
+pendingA=null;
+
+pendingB=null;
 
 }
 
@@ -1470,6 +1524,9 @@ finishCreate;
 
 window.updatePreview=
 updatePreview;
+
+window.closePopup=
+closePopup;
 
 </script>
 
