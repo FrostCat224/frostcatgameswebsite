@@ -23,7 +23,7 @@ const items = [
         image: "https://frostcat224.github.io/frostcatgameswebsite/img/elementalquadrillion.png",
         url: "https://frostcat224.github.io/frostcatgameswebsite/elementalquadrillion/",
         size: "square"
-    },
+    }
 ];
 
 const container = document.getElementById("dynamicBoxes");
