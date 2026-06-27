@@ -72,6 +72,11 @@ onValue(ref(db), (snapshot) => {
   });
 
   const name = (id) => elMap[id]?.name || "Unknown";
+const newest = elements
+  .filter(Boolean)
+  .sort((a, b) => b.id - a.id)[0];
+
+const newestName = newest?.name || "None";
 
   const elementCount = elements.filter(Boolean).length + 4;
   const recipeCount = Object.keys(combinations).length;
@@ -149,7 +154,7 @@ onValue(ref(db), (snapshot) => {
   // ---- OUTPUT ----
   output.textContent = `
 Newest element:
-${elements.find(e => e)?.name || "None"}
+${newestName}
 
 Number of elements:
 ${elementCount}
