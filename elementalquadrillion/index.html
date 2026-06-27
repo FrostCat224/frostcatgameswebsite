@@ -1349,39 +1349,30 @@ Math.max(
 
 }
 
-  function cubeHTML(
-element
-){
+function cubeHTML(element){
+
+const textColor = getTextColor(element.color);
 
 return `
 
 <div
 class="element"
 style="
-
 width:90px;
-
 height:90px;
-
 background:${element.color};
-
+color:${textColor};
 pointer-events:none;
-
 "
-
 >
 
-<div
-class="elementName"
->
+<div class="elementName">
 
 ${element.name}
 
 </div>
 
-<div
-class="elementId"
->
+<div class="elementId">
 
 #${element.id}
 
