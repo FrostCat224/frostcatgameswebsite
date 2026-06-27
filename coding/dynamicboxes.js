@@ -36,6 +36,12 @@ const items = [
         url: "https://frostcat224.github.io/frostcatgameswebsite/filetools/",
         size: "square"
     },
+    {
+        title: "Elemental Quadrillion",
+        image: "https://frostcat224.github.io/frostcatgameswebsite/img/elementalquadrillion.png",
+        url: "https://frostcat224.github.io/frostcatgameswebsite/elementalquadrillion/",
+        size: "square"
+    }
 ];
 
 const container = document.getElementById("dynamicBoxes");
