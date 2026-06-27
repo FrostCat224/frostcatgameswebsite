@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>Elemental Qaudrillion</title>
+<title>Elemental Quadrillion</title>
 
 <style>
 
@@ -489,29 +489,30 @@ return brightness>140
 : "#fff";
 
 }
-  async function loadElements(){
+function listenElements(){
 
-const snap=
-await get(
-ref(
-db,
-"elements"
-)
-);
+onValue(
+ref(db,"elements"),
+snap=>{
 
 elements={};
 
 START.forEach(e=>{
-
 elements[e.id]=e;
-
 });
 
 if(snap.exists()){
-
 Object.assign(
 elements,
 snap.val()
+);
+}
+
+updateNextId();
+renderElements();
+
+}
+
 );
 
 }
@@ -1509,9 +1510,7 @@ snap.val()
 
 async function init(){
 
-await loadElements();
-
-await updateNextId();
+listenElements();
 
 listenNews();
 
