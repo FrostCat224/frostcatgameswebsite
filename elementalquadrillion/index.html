@@ -144,8 +144,14 @@ color:#777;
 font-size:13px;
 
 }
-.element.new {
-
+.element.new{
+outline:6px solid #ffd500;
+box-shadow:
+0 0 18px #ffd500,
+0 0 35px #ffea00,
+0 0 55px rgba(255,230,0,.8);
+transform:scale(1.06);
+z-index:2;
 }
 .popup{
 
@@ -674,7 +680,6 @@ h;
 
 function startDrag(e, element) {
 
-  newSessionElements.delete(element.id);
 
   dragging = element;
   combineA = element;
@@ -856,15 +861,15 @@ const resultId=
 
 comboSnap.val();
 
-if(
-!owned.includes(
-resultId
-)
-){
+if(!owned.includes(resultId)){
 
 owned.push(resultId);
+
 saveOwned();
+
+newSessionElements.clear();
 newSessionElements.add(resultId);
+
 renderElements();
 
 }
@@ -1173,7 +1178,8 @@ elements[id]=obj;
 owned.push(
 id
 );
-
+newSessionElements.clear();
+newSessionElements.add(id);
 saveOwned();
 
 renderElements();
