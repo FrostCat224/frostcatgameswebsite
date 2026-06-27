@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrostCatGames</title>
+    <link href="https://frostcat224.github.io/frostcatgameswebsite/style.css" rel="stylesheet" type="text/css" media="all">
+
+    <style>
+        #output {
+    font-family: Verdana, Arial, sans-serif;
+}
+    </style>
+</head>
+
+<body>
+    <header>
+    <img src="https://frostcat224.github.io/frostcatgameswebsite/img/textlogo.png" alt="FrostCatGames">
+
+    <nav>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/">Home</a>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/stuff">Stuff</a>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/archive">Archive</a>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/info">Info</a>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/search">Search</a>
+    </nav>
+    </header>
+
+
+<h1>Elemental Quadrillion Stats</h1>
+<pre id="output">Loading...</pre>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDFH5CJJRdNrBcA8h8zfks-9mCxo-vxt0",
+  authDomain: "elementalquadrillion.firebaseapp.com",
+  databaseURL: "https://elementalquadrillion-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "elementalquadrillion",
+  storageBucket: "elementalquadrillion.firebasestorage.app",
+  messagingSenderId: "828897871116",
+  appId: "1:828897871116:web:8e05949030ca774ce5f529"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+const output = document.getElementById("output");
+
+onValue(ref(db), (snapshot) => {
+  const data = snapshot.val();
+
+  if (!data) {
+    output.textContent = "No data found.";
+    return;
+  }
+
+  const elements = data.elements || [];
+  const combinations = data.combinations || {};
+
+  const elMap = {
+    1: { id: 1, name: "Air" },
+    2: { id: 2, name: "Earth" },
+    3: { id: 3, name: "Fire" },
+    4: { id: 4, name: "Water" }
+  };
+
+  elements.forEach(e => {
+    if (e) elMap[e.id] = e;
+  });
+
+  const name = (id) => elMap[id]?.name || "Unknown";
+const newest = elements
+  .filter(Boolean)
+  .sort((a, b) => b.id - a.id)[0];
+
+const newestName = newest?.name || "None";
+
+  const elementCount = elements.filter(Boolean).length + 4;
+  const recipeCount = Object.keys(combinations).length;
+
+  const bytes = new Blob([JSON.stringify(data)]).size;
+
+  function formatSize(b) {
+    if (b < 1024) return b + " bytes";
+    if (b < 1024**2) return (b/1024).toFixed(2) + " KB";
+    if (b < 1024**3) return (b/1024/1024).toFixed(2) + " MB";
+    return (b/1024/1024/1024).toFixed(2) + " GB";
+  }
+
+  const resultCount = {};
+  const usedCount = {};
+
+  for (const key in combinations) {
+    const result = combinations[key];
+    const [a, b] = key.split("_").map(Number);
+
+    resultCount[result] = (resultCount[result] || 0) + 1;
+    usedCount[a] = (usedCount[a] || 0) + 1;
+    usedCount[b] = (usedCount[b] || 0) + 1;
+  }
+
+  function maxKey(map) {
+    let best = null;
+    let bestVal = -1;
+
+    for (const k in map) {
+      if (map[k] > bestVal) {
+        best = k;
+        bestVal = map[k];
+      }
+    }
+    return { id: Number(best), count: bestVal };
+  }
+
+  const mostCreated = maxKey(resultCount);
+  const mostUsed = maxKey(usedCount);
+
+  const depthMemo = {};
+
+  function getDepth(id) {
+    if (id <= 4) return 0;
+
+    if (depthMemo[id] !== undefined) return depthMemo[id];
+
+    const element = elMap[id];
+    if (!element?.combinations?.length) {
+      depthMemo[id] = 0;
+      return 0;
+    }
+
+    let max = 0;
+
+    for (const r of element.combinations) {
+      const d = 1 + Math.max(getDepth(r.a), getDepth(r.b));
+      if (d > max) max = d;
+    }
+
+    depthMemo[id] = max;
+    return max;
+  }
+
+  let deepest = { id: null, depth: -1 };
+
+  for (const id in elMap) {
+    const d = getDepth(Number(id));
+    if (d > deepest.depth) {
+      deepest = { id: Number(id), depth: d };
+    }
+  }
+
+
+
+const lines = [];
+
+const allElements = Object.values(elMap).sort((a, b) => a.id - b.id);
+
+for (const element of allElements) {
+  lines.push(`ID: ${element.id}`);
+  lines.push(`Name: ${element.name}`);
+
+  if (element.id <= 4) {
+    lines.push("Recipes:");
+    lines.push("  Starting element");
+  } else if (element.combinations?.length) {
+    lines.push("Recipes:");
+    for (const combo of element.combinations) {
+      lines.push(`  ${name(combo.a)} + ${name(combo.b)}`);
+    }
+  } else {
+    lines.push("Recipes:");
+    lines.push("  Unknown");
+  }
+
+  lines.push("");
+}
+
+output.textContent = lines.join("\n");
+
+});
+</script>
+
+</body>
+</html>
