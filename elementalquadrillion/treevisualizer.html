@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Element Firebase Tree</title>
+<title>Element Evolution Timeline</title>
 
 <style>
 body {
@@ -61,12 +61,12 @@ body {
 <body>
 
 <div id="left">
-    <div class="title">Element Tree</div>
+    <div class="title">🌳 Element Evolution Tree</div>
     <div id="tree"></div>
 </div>
 
 <div id="right">
-    <div class="title">Time</div>
+    <div class="title">⏱ Virtual Time</div>
     <div id="time"></div>
 </div>
 
@@ -98,9 +98,14 @@ let virtualMinutes = 0;
 setInterval(() => {
     virtualMinutes++;
     updateTime();
+    render();
 }, 1000);
 
-// ================= DATA STORAGE =================
+function getVirtualTime() {
+    return new Date(startTime.getTime() + virtualMinutes * 60000);
+}
+
+// ================= DATA =================
 
 let elements = {};
 let combinations = {};
@@ -117,20 +122,36 @@ onValue(ref(db, "combinations"), snap => {
     render();
 });
 
-// ================= TREE LOGIC =================
+// ================= BASE ELEMENTS =================
 
-function getUnlockedElements() {
-    return Object.values(elements);
+const BASE_IDS = [1,2,3,4];
+
+// ================= VISIBILITY RULE =================
+
+function isVisible(e) {
+    if (!e) return false;
+
+    const now = getVirtualTime().getTime();
+
+    if (!e.date) return BASE_IDS.includes(e.id);
+
+    return e.date <= now;
 }
 
-function buildTree() {
-    const unlocked = getUnlockedElements();
+// ================= TREE LOGIC =================
 
+function buildTree() {
     const map = {};
-    unlocked.forEach(e => map[e.id] = {...e, children: []});
+    const unlocked = Object.values(elements).filter(isVisible);
+
+    // only visible elements exist in map
+    unlocked.forEach(e => {
+        map[e.id] = { ...e, children: [] };
+    });
 
     const roots = [];
 
+    // connect using combinations
     for (const key in combinations) {
         const [a, b] = key.split("_").map(Number);
         const resultId = combinations[key];
@@ -141,17 +162,9 @@ function buildTree() {
         }
     }
 
+    // roots = base elements only
     unlocked.forEach(e => {
-        let hasParent = false;
-
-        for (const key in combinations) {
-            const [a, b] = key.split("_").map(Number);
-            if (combinations[key] === e.id) {
-                hasParent = true;
-            }
-        }
-
-        if (!hasParent) {
+        if (BASE_IDS.includes(e.id)) {
             roots.push(map[e.id]);
         }
     });
@@ -169,10 +182,10 @@ function renderNode(node, visited = new Set()) {
 
     html += `<div class="element" style="background:${node.color || '#555'}">${node.name}</div>`;
 
-    if (node.children && node.children.length > 0) {
+    if (node.children.length > 0) {
         html += `<div class="line">`;
-        node.children.forEach(child => {
-            html += renderNode(child, visited);
+        node.children.forEach(c => {
+            html += renderNode(c, visited);
         });
         html += `</div>`;
     }
@@ -187,16 +200,15 @@ function render() {
         tree.map(t => renderNode(t)).join("");
 }
 
-// ================= TIME DISPLAY =================
+// ================= TIME UI =================
 
 function updateTime() {
-    const now = new Date(startTime.getTime() + virtualMinutes * 60000);
-
-    document.getElementById("time").innerText =
-        now.toString();
+    const now = getVirtualTime();
+    document.getElementById("time").innerText = now.toString();
 }
 
 updateTime();
+render();
 
 </script>
 
