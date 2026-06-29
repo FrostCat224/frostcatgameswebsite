@@ -251,6 +251,49 @@ margin-top:10px;
 
 }
 
+@media (max-width:850px){
+
+body{
+flex-direction:column;
+overflow:auto;
+height:auto;
+}
+
+#news{
+width:100%;
+border-left:none;
+border-top:2px solid #ddd;
+}
+
+#elements{
+justify-content:center;
+gap:10px;
+}
+
+.element{
+
+width:100px;
+height:100px;
+
+font-size:15px;
+
+
+touch-action:none;
+
+}
+
+.popup{
+
+width:min(95vw,420px);
+
+max-height:85vh;
+
+overflow:auto;
+
+}
+
+}
+
 </style>
 
 </head>
@@ -636,7 +679,7 @@ ${element.name}
 
 `;
 
-div.onmousedown=
+div.onpointerdown=
 e=>
 startDrag(
 e,
@@ -804,12 +847,12 @@ e
 );
 
 document.addEventListener(
-"mousemove",
+"pointermove",
 moveClone
 );
 
 document.addEventListener(
-"mouseup",
+"pointerup",
 stopDrag
 );
 
@@ -837,12 +880,12 @@ e
 ){
 
 document.removeEventListener(
-"mousemove",
+"pointermove",
 moveClone
 );
 
 document.removeEventListener(
-"mouseup",
+"pointerup",
 stopDrag
 );
 
