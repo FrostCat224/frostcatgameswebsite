@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Element Firebase Tree</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Verdana;
+    background: #0f0f0f;
+    color: white;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#left {
+    flex: 1;
+    padding: 16px;
+    overflow: auto;
+}
+
+#right {
+    width: 320px;
+    border-left: 2px solid #333;
+    padding: 16px;
+    overflow: auto;
+    background: #151515;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.node {
+    margin-left: 18px;
+    margin-top: 6px;
+}
+
+.element {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 8px;
+    margin: 4px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.line {
+    border-left: 1px solid #444;
+    margin-left: 10px;
+    padding-left: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="left">
+    <div class="title">Element Tree</div>
+    <div id="tree"></div>
+</div>
+
+<div id="right">
+    <div class="title">Time</div>
+    <div id="time"></div>
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
+
+// ================= FIREBASE =================
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDFH5CJJR-dNrBcA8h8zfks-9mCxo-vxt0",
+  authDomain: "elementalquadrillion.firebaseapp.com",
+  databaseURL: "https://elementalquadrillion-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "elementalquadrillion",
+  storageBucket: "elementalquadrillion.firebasestorage.app",
+  messagingSenderId: "828897871116",
+  appId: "1:828897871116:web:8e05949030ca774ce5f529"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+// ================= TIME SYSTEM =================
+
+const startTime = new Date("2026-06-26T00:00:00");
+let virtualMinutes = 0;
+
+setInterval(() => {
+    virtualMinutes++;
+    updateTime();
+}, 1000);
+
+// ================= DATA STORAGE =================
+
+let elements = {};
+let combinations = {};
+
+// ================= FIREBASE LISTENERS =================
+
+onValue(ref(db, "elements"), snap => {
+    elements = snap.val() || {};
+    render();
+});
+
+onValue(ref(db, "combinations"), snap => {
+    combinations = snap.val() || {};
+    render();
+});
+
+// ================= TREE LOGIC =================
+
+function getUnlockedElements() {
+    return Object.values(elements);
+}
+
+function buildTree() {
+    const unlocked = getUnlockedElements();
+
+    const map = {};
+    unlocked.forEach(e => map[e.id] = {...e, children: []});
+
+    const roots = [];
+
+    for (const key in combinations) {
+        const [a, b] = key.split("_").map(Number);
+        const resultId = combinations[key];
+
+        if (map[a] && map[b] && map[resultId]) {
+            map[a].children.push(map[resultId]);
+            map[b].children.push(map[resultId]);
+        }
+    }
+
+    unlocked.forEach(e => {
+        let hasParent = false;
+
+        for (const key in combinations) {
+            const [a, b] = key.split("_").map(Number);
+            if (combinations[key] === e.id) {
+                hasParent = true;
+            }
+        }
+
+        if (!hasParent) {
+            roots.push(map[e.id]);
+        }
+    });
+
+    return roots;
+}
+
+// ================= RENDER =================
+
+function renderNode(node, visited = new Set()) {
+    if (!node || visited.has(node.id)) return "";
+    visited.add(node.id);
+
+    let html = `<div class="node">`;
+
+    html += `<div class="element" style="background:${node.color || '#555'}">${node.name}</div>`;
+
+    if (node.children && node.children.length > 0) {
+        html += `<div class="line">`;
+        node.children.forEach(child => {
+            html += renderNode(child, visited);
+        });
+        html += `</div>`;
+    }
+
+    html += `</div>`;
+    return html;
+}
+
+function render() {
+    const tree = buildTree();
+    document.getElementById("tree").innerHTML =
+        tree.map(t => renderNode(t)).join("");
+}
+
+// ================= TIME DISPLAY =================
+
+function updateTime() {
+    const now = new Date(startTime.getTime() + virtualMinutes * 60000);
+
+    document.getElementById("time").innerText =
+        now.toString();
+}
+
+updateTime();
+
+</script>
+
+</body>
+</html>
