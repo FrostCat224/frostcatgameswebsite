@@ -173,7 +173,7 @@ onValue(ref(db), (snapshot) => {
 
   const formatList = (list) =>
     list
-      .map((x, i) => `${i + 1}. ${name(x.id)} — ${x.count}`)
+      .map((x, i) => `${i + 1}. ${name(x.id)} - ${x.count}`)
       .join("\n");
 
   output.textContent = `
