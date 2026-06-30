@@ -1630,6 +1630,10 @@ closePopup;
 const news = document.getElementById("news");
 const btn = document.getElementById("toggleNews");
 
+if (window.innerWidth <= 800) {
+    news.classList.add("hidden");
+}
+
 btn.onclick = () => {
     news.classList.toggle("hidden");
 };
