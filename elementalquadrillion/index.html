@@ -849,21 +849,34 @@ stopDrag
 
 }
 
-function moveClone(
-e
-){
+const left = document.getElementById("left");
+const edgeSize = 70;    
+const maxSpeed = 18;  
 
-if(!clone)
-return;
+function moveClone(e){
+    if(!clone) return;
 
-clone.style.left=
+    clone.style.left = e.clientX + "px";
+    clone.style.top = e.clientY + "px";
 
-e.clientX+"px";
+   
+    const rect = left.getBoundingClientRect();
 
-clone.style.top=
+  
+    const fromTop = e.clientY - rect.top;
+    const fromBottom = rect.bottom - e.clientY;
 
-e.clientY+"px";
+   
+    if (fromTop < edgeSize) {
+        const speed = (edgeSize - fromTop) / edgeSize;
+        left.scrollTop -= speed * maxSpeed;
+    }
 
+
+    if (fromBottom < edgeSize) {
+        const speed = (edgeSize - fromBottom) / edgeSize;
+        left.scrollTop += speed * maxSpeed;
+    }
 }
 
 async function stopDrag(
