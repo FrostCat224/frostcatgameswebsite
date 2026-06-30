@@ -54,6 +54,15 @@ const db = getDatabase(app);
 
 const output = document.getElementById("output");
 
+function top10(map) {
+  return Object.entries(map)
+    .map(([id, count]) => ({ id: Number(id), count }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 10);
+}
+
+
+
 onValue(ref(db), (snapshot) => {
   const data = snapshot.val();
 
@@ -123,6 +132,9 @@ const newestName = newest?.name || "None";
   const mostCreated = maxKey(resultCount);
   const mostUsed = maxKey(usedCount);
 
+const topUsed = top10(usedCount);
+const topCreated = top10(resultCount);
+
   const depthMemo = {};
 
   function getDepth(id) {
@@ -156,8 +168,12 @@ const newestName = newest?.name || "None";
     }
   }
 
-  // ---- OUTPUT ----
-  output.textContent = `
+   const formatList = (list) =>
+  list
+    .map((x, i) => `${i + 1}. ${name(x.id)} — ${x.count}`)
+    .join("\n");
+
+output.textContent = `
 Newest element:
 ${newestName}
 
@@ -170,17 +186,15 @@ ${recipeCount}
 Database size:
 ${formatSize(bytes)}
 
-Element with the most recipes:
-${name(mostCreated.id)} (is the result of ${mostCreated.count} recipes)
+Top 10 most used elements:
+${formatList(topUsed)}
 
-Element used in most recipes:
-${name(mostUsed.id)} (used in ${mostUsed.count} recipes)
+Top 10 elements with most recipes:
+${formatList(topCreated)}
 
 Deepest element:
 ${name(deepest.id)} (depth: ${deepest.depth})
 `.trim();
-
-});
 </script>
 
 </body>
