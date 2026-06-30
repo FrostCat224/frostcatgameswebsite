@@ -61,8 +61,6 @@ function top10(map) {
     .slice(0, 10);
 }
 
-
-
 onValue(ref(db), (snapshot) => {
   const data = snapshot.val();
 
@@ -71,7 +69,7 @@ onValue(ref(db), (snapshot) => {
     return;
   }
 
-  const elements = data.elements || [];
+  const elements = Object.values(data.elements || {});
   const combinations = data.combinations || {};
 
   const elMap = {
@@ -86,11 +84,12 @@ onValue(ref(db), (snapshot) => {
   });
 
   const name = (id) => elMap[id]?.name || "Unknown";
-const newest = elements
-  .filter(Boolean)
-  .sort((a, b) => b.id - a.id)[0];
 
-const newestName = newest?.name || "None";
+  const newest = elements
+    .filter(Boolean)
+    .sort((a, b) => Number(b.id) - Number(a.id))[0];
+
+  const newestName = newest?.name || "None";
 
   const elementCount = elements.filter(Boolean).length + 4;
   const recipeCount = Object.keys(combinations).length;
@@ -99,9 +98,9 @@ const newestName = newest?.name || "None";
 
   function formatSize(b) {
     if (b < 1024) return b + " bytes";
-    if (b < 1024**2) return (b/1024).toFixed(2) + " KB";
-    if (b < 1024**3) return (b/1024/1024).toFixed(2) + " MB";
-    return (b/1024/1024/1024).toFixed(2) + " GB";
+    if (b < 1024 ** 2) return (b / 1024).toFixed(2) + " KB";
+    if (b < 1024 ** 3) return (b / 1024 / 1024).toFixed(2) + " MB";
+    return (b / 1024 / 1024 / 1024).toFixed(2) + " GB";
   }
 
   const resultCount = {};
@@ -111,9 +110,12 @@ const newestName = newest?.name || "None";
     const result = combinations[key];
     const [a, b] = key.split("_").map(Number);
 
-    resultCount[result] = (resultCount[result] || 0) + 1;
-    usedCount[a] = (usedCount[a] || 0) + 1;
-    usedCount[b] = (usedCount[b] || 0) + 1;
+    if (!isNaN(a)) usedCount[a] = (usedCount[a] || 0) + 1;
+    if (!isNaN(b)) usedCount[b] = (usedCount[b] || 0) + 1;
+
+    if (result != null) {
+      resultCount[result] = (resultCount[result] || 0) + 1;
+    }
   }
 
   function maxKey(map) {
@@ -126,14 +128,15 @@ const newestName = newest?.name || "None";
         bestVal = map[k];
       }
     }
-    return { id: Number(best), count: bestVal };
+
+    return best ? { id: Number(best), count: bestVal } : { id: 0, count: 0 };
   }
 
   const mostCreated = maxKey(resultCount);
   const mostUsed = maxKey(usedCount);
 
-const topUsed = top10(usedCount);
-const topCreated = top10(resultCount);
+  const topUsed = top10(usedCount);
+  const topCreated = top10(resultCount);
 
   const depthMemo = {};
 
@@ -168,12 +171,12 @@ const topCreated = top10(resultCount);
     }
   }
 
-   const formatList = (list) =>
-  list
-    .map((x, i) => `${i + 1}. ${name(x.id)} — ${x.count}`)
-    .join("\n");
+  const formatList = (list) =>
+    list
+      .map((x, i) => `${i + 1}. ${name(x.id)} — ${x.count}`)
+      .join("\n");
 
-output.textContent = `
+  output.textContent = `
 Newest element:
 ${newestName}
 
@@ -195,6 +198,7 @@ ${formatList(topCreated)}
 Deepest element:
 ${name(deepest.id)} (depth: ${deepest.depth})
 `.trim();
+});
 </script>
 
 </body>
