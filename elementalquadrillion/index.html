@@ -16,10 +16,10 @@ font-family:Verdana;
 
 body{
     margin:0;
-    background:#e8e8e8;
-    min-height:100vh;
-    display:flex;
-    overflow-y:auto;
+background:#e8e8e8;
+height:100vh;
+display:flex;
+overflow:hidden;
 }
 
 #left{
@@ -261,33 +261,31 @@ margin-top:10px;
 }
 
 
-@media (max-width: 800px) {
 
+@media (max-width: 800px) {
     body{
         flex-direction: column;
-        display: flex;  
-        min-height: 100vh;
     }
 
     #left{
-        flex: none;   
-        width: 100%;
+        flex: 1;
         border-right: none;
     }
 
     #news{
         width: 100%;
-        border-top: 2px solid #ddd;
+        height: 220px;
         border-left: none;
-        overflow: visible;
+        border-top: 2px solid #ddd;
     }
-
-    .popup{
-        width: min(420px,95vw);
-        max-height: 90vh;
-        overflow-y: auto;
-    }
+.popup{
+    width:min(420px,95vw);
+    max-height:90vh;
+    overflow-y:auto;
 }
+}
+
+
 
 
 </style>
