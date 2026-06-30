@@ -260,28 +260,34 @@ margin-top:10px;
 
 }
 
+
 @media (max-width: 800px) {
+
     body{
         flex-direction: column;
+        display: flex;  
+        min-height: 100vh;
     }
 
     #left{
-        flex: 1;
+        flex: none;   
+        width: 100%;
         border-right: none;
     }
 
     #news{
-    width:100%;
-    border-top:2px solid #ddd;
-    overflow:visible;
-}
-.popup{
-    width:min(420px,95vw);
-    max-height:90vh;
-    overflow-y:auto;
-}
-}
+        width: 100%;
+        border-top: 2px solid #ddd;
+        border-left: none;
+        overflow: visible;
+    }
 
+    .popup{
+        width: min(420px,95vw);
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+}
 
 
 </style>
