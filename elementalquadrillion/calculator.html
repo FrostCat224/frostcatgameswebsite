@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FrostCatGames</title>
+
+<link href="https://frostcat224.github.io/frostcatgameswebsite/style.css" rel="stylesheet">
+
+<style>
+main {
+    padding: 20px;
+}
+
+#output {
+    white-space: pre-wrap;
+    font-family: Verdana, Arial, sans-serif;
+    margin-top: 20px;
+}
+
+input, button {
+    padding: 10px;
+    font-size: 16px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<img src="https://frostcat224.github.io/frostcatgameswebsite/img/textlogo.png">
+<nav>
+    <a href="https://frostcat224.github.io/frostcatgameswebsite/">Home</a>
+    <a href="https://frostcat224.github.io/frostcatgameswebsite/stuff">Stuff</a>
+    <a href="https://frostcat224.github.io/frostcatgameswebsite/archive">Archive</a>
+    <a href="https://frostcat224.github.io/frostcatgameswebsite/info">Info</a>
+    <a href="https://frostcat224.github.io/frostcatgameswebsite/search">Search</a>
+</nav>
+</header>
+
+<main>
+<h1>Element Calculator</h1>
+
+<input id="input" placeholder="Type element name...">
+<button onclick="search()">Find recipe</button>
+
+<pre id="output">Loading database...</pre>
+</main>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDFH5CJJRdNrBcA8h8zfks-9mCxo-vxt0",
+  authDomain: "elementalquadrillion.firebaseapp.com",
+  databaseURL: "https://elementalquadrillion-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "elementalquadrillion",
+  storageBucket: "elementalquadrillion.firebasestorage.app",
+  messagingSenderId: "828897871116",
+  appId: "1:828897871116:web:8e05949030ca774ce5f529"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+let elMap = {};
+let combinations = {};
+
+const output = document.getElementById("output");
+
+function nameToId(name) {
+    name = name.toLowerCase();
+    for (const id in elMap) {
+        if ((elMap[id].name || "").toLowerCase() === name) {
+            return Number(id);
+        }
+    }
+    return null;
+}
+
+// BFS shortest path
+function findPath(targetId) {
+    const startIds = [1, 2, 3, 4];
+
+    const queue = startIds.map(id => ({
+        id,
+        path: [id]
+    }));
+
+    const visited = new Set(startIds);
+
+    while (queue.length) {
+        const current = queue.shift();
+
+        if (current.id === targetId) {
+            return current.path;
+        }
+
+        for (const key in combinations) {
+            const [a, b] = key.split("_").map(Number);
+            const result = combinations[key];
+
+            if (result == null) continue;
+
+            const canMake =
+                (a === current.id && !visited.has(b)) ||
+                (b === current.id && !visited.has(a));
+
+            if (canMake) {
+                const next = a === current.id ? b : a;
+
+                if (!visited.has(next)) {
+                    visited.add(next);
+                    queue.push({
+                        id: next,
+                        path: [...current.path, next]
+                    });
+                }
+            }
+        }
+    }
+
+    return null;
+}
+
+window.search = function () {
+    const input = document.getElementById("input").value.trim();
+    const id = nameToId(input);
+
+    if (!id) {
+        output.textContent = "Error";
+        return;
+    }
+
+    const path = findPath(id);
+
+    if (!path) {
+        output.textContent = "Error (impossible recipe)";
+        return;
+    }
+
+    output.textContent =
+        "Fastest crafting route:\n\n" +
+        path.map((id, i) =>
+            `${i + 1}. ${elMap[id]?.name || "Unknown"} (ID ${id})`
+        ).join("\n");
+};
+
+onValue(ref(db), (snapshot) => {
+    const data = snapshot.val();
+
+    if (!data) {
+        output.textContent = "No database found.";
+        return;
+    }
+
+    const elements = Object.values(data.elements || {});
+
+    elMap = {
+        1: { id: 1, name: "Air" },
+        2: { id: 2, name: "Earth" },
+        3: { id: 3, name: "Fire" },
+        4: { id: 4, name: "Water" }
+    };
+
+    elements.forEach(e => {
+        if (e?.id) elMap[e.id] = e;
+    });
+
+    combinations = data.combinations || {};
+
+    output.textContent = "Type an element name";
+});
+</script>
+
+</body>
+</html>
