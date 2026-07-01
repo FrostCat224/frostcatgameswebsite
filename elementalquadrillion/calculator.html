@@ -86,20 +86,19 @@ function getIdByName(name) {
     return null;
 }
 
-// ---------- combo lookup (supports reversed keys) ----------
+// ---------- combination lookup (supports reversed keys) ----------
 function getCombination(a, b) {
-    const k1 = `${a}_${b}`;
-    const k2 = `${b}_${a}`;
-    return combinations[k1] ?? combinations[k2];
+    return combinations[`${a}_${b}`] ?? combinations[`${b}_${a}`];
 }
 
-// ---------- MAIN FORWARD SIMULATION ----------
+// ---------- FORWARD SIMULATION ----------
 function findRecipe(targetId) {
+
     const starters = [1, 2, 3, 4];
 
     let discovered = new Set(starters);
 
-    // stores: resultId -> {a, b}
+    // resultId -> {a,b}
     let recipeMap = {};
 
     let changed = true;
@@ -107,10 +106,10 @@ function findRecipe(targetId) {
     while (changed) {
         changed = false;
 
-        const current = Array.from(discovered);
+        const list = Array.from(discovered);
 
-        for (const a of current) {
-            for (const b of current) {
+        for (const a of list) {
+            for (const b of list) {
 
                 const result = getCombination(a, b);
 
@@ -121,7 +120,7 @@ function findRecipe(targetId) {
                     changed = true;
 
                     if (result === targetId) {
-                        return { recipeMap, targetId };
+                        return recipeMap;
                     }
                 }
             }
@@ -131,17 +130,33 @@ function findRecipe(targetId) {
     return null;
 }
 
-// ---------- BUILD HUMAN-READABLE CHAIN ----------
-function buildChain(id, recipeMap) {
-    if (id <= 4) return [getName(id)];
+// ---------- BUILD CLEAN STEP LIST (NO RECURSION) ----------
+function buildSteps(targetId, recipeMap) {
 
-    const recipe = recipeMap[id];
-    if (!recipe) return [getName(id)];
+    const steps = [];
+    const used = new Set();
 
-    const left = buildChain(recipe.a, recipeMap);
-    const right = buildChain(recipe.b, recipeMap);
+    function resolve(id) {
 
-    return [...left, "+", ...right, "=", getName(id)];
+        if (id <= 4 || used.has(id)) return;
+        used.add(id);
+
+        const r = recipeMap[id];
+        if (!r) return;
+
+        resolve(r.a);
+        resolve(r.b);
+
+        steps.push({
+            a: r.a,
+            b: r.b,
+            result: id
+        });
+    }
+
+    resolve(targetId);
+
+    return steps;
 }
 
 // ---------- SEARCH ----------
@@ -155,33 +170,33 @@ window.search = function () {
         return;
     }
 
-    const result = findRecipe(targetId);
+    const recipeMap = findRecipe(targetId);
 
-    if (!result) {
+    if (!recipeMap) {
         output.textContent = "Error (no route found)";
         return;
     }
 
-    const chain = buildChain(result.targetId, result.recipeMap);
+    const steps = buildSteps(targetId, recipeMap);
 
     let lines = [];
-    let buffer = [];
 
-    for (const token of chain) {
-        buffer.push(token);
+    lines.push(`Start: ${getName(1)}`);
 
-        if (token === getName(result.targetId)) {
-            lines.push(buffer.join(" "));
-            buffer = [];
-        }
+    for (const s of steps) {
+        lines.push(
+            `${getName(s.a)} + ${getName(s.b)} = ${getName(s.result)}`
+        );
     }
+
+    lines.push(`Final: ${getName(targetId)}`);
 
     output.textContent =
         "Fastest crafting route:\n\n" +
         lines.join("\n");
 };
 
-// ---------- LOAD FIREBASE ----------
+// ---------- LOAD DATA ----------
 onValue(ref(db), (snapshot) => {
 
     const data = snapshot.val();
@@ -200,7 +215,7 @@ onValue(ref(db), (snapshot) => {
         if (e?.id) elMap[e.id] = e;
     }
 
-    output.textContent = "Type an element name.";
+    output.textContent = "Ready. Type an element name.";
 });
 </script> 
 
