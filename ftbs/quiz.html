@@ -1,0 +1,163 @@
+<!DOCTYPE html>    
+<html lang="en">    
+<head>    
+    <meta charset="UTF-8">    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>FrostCatGames</title>    
+    <link href="https://frostcat224.github.io/frostcatgameswebsite/style.css" rel="stylesheet" type="text/css" media="all">    
+
+</head>    
+
+<body>    
+<header>    
+    <img src="https://frostcat224.github.io/frostcatgameswebsite/img/textlogo.png" alt="FrostCatGames">    
+    <nav>    
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/">Home</a>    
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/stuff">Stuff</a>    
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/archive">Archive</a>    
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/info">Info</a>    
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/search">Search</a>    
+    </nav>    
+</header>    
+
+<main>
+<div class="quiz-box">
+    <h1>Find the Breadsellers Quiz</h1>
+<p>Since Find the Breadsellers has been dead for a while, let's see how much you still remember!</p>
+    <form id="quizForm">
+
+        <div class="question">
+            1. How many times does a potbelly7777 NPC appear in the game?
+            <br>
+            <input type="radio" name="q1" value="1"> 2 <br>
+            <input type="radio" name="q1" value="0"> 3<br>
+        </div>
+
+        <div class="question">
+            2. What is the code for Glagglelands?
+            <br>
+            <input type="radio" name="q2" value="0"> /e glagglingaround<br>
+            <input type="radio" name="q2" value="1"> /e gigglingaround<br>
+        </div>
+
+        <div class="question">
+            3. Who is not a FTBS developer?
+            <br>
+            <input type="radio" name="q3" value="1"> Pups la Rommelkoe<br>
+            <input type="radio" name="q3" value="0"> MrArma<br>
+        </div>
+
+        <div class="question">
+            4. What is Breadseller's real name?
+            <br>
+            <input type="radio" name="q4" value="1"> Broodjesverkoper<br>
+            <input type="radio" name="q4" value="0"> Broodverkoper<br>
+        </div>
+
+        <div class="question">
+            5. In what Backrooms level was Almond Water Breadseller hidden?
+            <br>
+            <input type="radio" name="q5" value="1"> The Infinite Hotel<br>
+            <input type="radio" name="q5" value="0"> Level 11<br>
+        </div>
+
+        <div class="question">
+            6. What Breadseller was never added to the game?
+            <br>
+            <input type="radio" name="q6" value="1"> C00lkidd Breadseller<br>
+            <input type="radio" name="q6" value="0"> Pink Breadseller<br>
+        </div>
+
+        <div class="question">
+            7. Who made Cool Breadseller?
+            <br>
+            <input type="radio" name="q7" value="0"> Kp<br>
+            <input type="radio" name="q7" value="1"> Benter<br>
+        </div>
+
+        <div class="question">
+            8. Was a Team Orange obby planned to be made?
+            <br>
+            <input type="radio" name="q8" value="0"> Yeah, kind of<br>
+            <input type="radio" name="q8" value="1"> No<br>
+        </div>
+
+        <div class="question">
+            9. What is canonically the smallest Breadseller?
+            <br>
+            <input type="radio" name="q9" value="1"> Fractal Goblin Breadseller<br>
+            <input type="radio" name="q9" value="0"> QWERTYUIOP Breadseller<br>
+        </div>
+
+        <div class="question">
+            10. Which sub-area is found in Classic City?
+            <br>
+            <input type="radio" name="q10" value="0"> Happy Home of Robloxia<br>
+            <input type="radio" name="q10" value="1"> Area 51<br>
+        </div>
+
+        <button type="button" onclick="checkQuiz()">Submit</button>
+    </form>
+
+    <div id="result"></div>
+</div>
+</main>
+
+<script>
+function checkQuiz() {
+    let score = 0;
+
+    for (let i = 1; i <= 10; i++) {
+        const answers = document.getElementsByName("q" + i);
+        for (const a of answers) {
+            if (a.checked) {
+                score += parseInt(a.value);
+            }
+        }
+    }
+
+    let resultText = "";
+
+    switch (score) {
+        case 10:
+            resultText = "You are probably a FTBS developer!";
+            break;
+        case 9:
+            resultText = "You probably have every single Breadseller!";
+            break;
+        case 8:
+            resultText = "You are a FTBS pro!";
+            break;
+        case 7:
+            resultText = "You are a very big FTBS fan!";
+            break;
+        case 6:
+            resultText = "You are a big FTBS fan!";
+            break;
+        case 5:
+            resultText = "You are a FTBS fan!";
+            break;
+        case 4:
+            resultText = "You played FTBS a few times!";
+            break;
+        case 3:
+            resultText = "You played FTBS one time.";
+            break;
+        case 2:
+            resultText = "You... What?";
+            break;
+        case 1:
+            resultText = "You never played the game.";
+            break;
+        case 0:
+            resultText = "You don't even know what FTBS is.";
+            break;
+    }
+
+    document.getElementById("result").innerText = 
+        "Score: " + score + "/10\n" + resultText;
+}
+</script>
+
+</body>    
+</html>
