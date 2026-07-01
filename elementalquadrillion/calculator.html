@@ -71,6 +71,11 @@ let combinations = {};
 
 const output = document.getElementById("output");
 
+// ---------- helpers ----------
+function getName(id) {
+    return elMap[id]?.name || `Unknown(${id})`;
+}
+
 function getIdByName(name) {
     name = name.toLowerCase();
     for (const id in elMap) {
@@ -81,47 +86,43 @@ function getIdByName(name) {
     return null;
 }
 
-function getName(id) {
-    return elMap[id]?.name || `Unknown(${id})`;
+// ---------- combo lookup (supports reversed keys) ----------
+function getCombination(a, b) {
+    const k1 = `${a}_${b}`;
+    const k2 = `${b}_${a}`;
+    return combinations[k1] ?? combinations[k2];
 }
 
-// BFS that ALSO tracks crafting steps correctly
-function findPath(targetId) {
-    const start = [1, 2, 3, 4];
+// ---------- MAIN FORWARD SIMULATION ----------
+function findRecipe(targetId) {
+    const starters = [1, 2, 3, 4];
 
-    const queue = start.map(id => ({
-        id,
-        path: [id],
-        steps: []
-    }));
+    let discovered = new Set(starters);
 
-    const visited = new Set(start);
+    // stores: resultId -> {a, b}
+    let recipeMap = {};
 
-    while (queue.length) {
-        const cur = queue.shift();
+    let changed = true;
 
-        if (cur.id === targetId) {
-            return cur;
-        }
+    while (changed) {
+        changed = false;
 
-        for (const key in combinations) {
-            const [a, b] = key.split("_").map(Number);
-            const result = combinations[key];
+        const current = Array.from(discovered);
 
-            if (result !== cur.id) continue;
+        for (const a of current) {
+            for (const b of current) {
 
-            for (const next of [a, b]) {
-                if (!visited.has(next)) {
-                    visited.add(next);
+                const result = getCombination(a, b);
 
-                    queue.push({
-                        id: next,
-                        path: [...cur.path, next],
-                        steps: [
-                            ...cur.steps,
-                            { a, b, result }
-                        ]
-                    });
+                if (result !== undefined && !discovered.has(result)) {
+
+                    discovered.add(result);
+                    recipeMap[result] = { a, b };
+                    changed = true;
+
+                    if (result === targetId) {
+                        return { recipeMap, targetId };
+                    }
                 }
             }
         }
@@ -130,37 +131,59 @@ function findPath(targetId) {
     return null;
 }
 
-window.search = function () {
-    const input = document.getElementById("input").value.trim();
-    const id = getIdByName(input);
+// ---------- BUILD HUMAN-READABLE CHAIN ----------
+function buildChain(id, recipeMap) {
+    if (id <= 4) return [getName(id)];
 
-    if (!id) {
+    const recipe = recipeMap[id];
+    if (!recipe) return [getName(id)];
+
+    const left = buildChain(recipe.a, recipeMap);
+    const right = buildChain(recipe.b, recipeMap);
+
+    return [...left, "+", ...right, "=", getName(id)];
+}
+
+// ---------- SEARCH ----------
+window.search = function () {
+
+    const input = document.getElementById("input").value.trim();
+    const targetId = getIdByName(input);
+
+    if (!targetId) {
         output.textContent = "Error";
         return;
     }
 
-    const res = findPath(id);
+    const result = findRecipe(targetId);
 
-    if (!res) {
+    if (!result) {
         output.textContent = "Error (no route found)";
         return;
     }
 
-    let lines = [];
-    lines.push(`Start: ${getName(res.path[0])}`);
+    const chain = buildChain(result.targetId, result.recipeMap);
 
-    for (const step of res.steps) {
-        lines.push(
-            `${getName(step.a)} + ${getName(step.b)} = ${getName(step.result)}`
-        );
+    let lines = [];
+    let buffer = [];
+
+    for (const token of chain) {
+        buffer.push(token);
+
+        if (token === getName(result.targetId)) {
+            lines.push(buffer.join(" "));
+            buffer = [];
+        }
     }
 
-    lines.push(`Final: ${getName(res.id)}`);
-
-    output.textContent = "Fastest crafting route:\n\n" + lines.join("\n");
+    output.textContent =
+        "Fastest crafting route:\n\n" +
+        lines.join("\n");
 };
 
+// ---------- LOAD FIREBASE ----------
 onValue(ref(db), (snapshot) => {
+
     const data = snapshot.val();
 
     const elements = Object.values(data.elements || {});
@@ -177,9 +200,9 @@ onValue(ref(db), (snapshot) => {
         if (e?.id) elMap[e.id] = e;
     }
 
-    output.textContent = "Ready. Type an element name.";
+    output.textContent = "Type an element name.";
 });
-</script>
+</script> 
 
 </body>
 </html>
