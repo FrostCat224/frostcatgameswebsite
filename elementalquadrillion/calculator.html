@@ -3,24 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FrostCatGames</title>
+<title>Element Calculator</title>
 
 <link href="https://frostcat224.github.io/frostcatgameswebsite/style.css" rel="stylesheet">
 
 <style>
-main {
-    padding: 20px;
+main { padding: 20px; }
+
+input, button {
+    padding: 10px;
+    font-size: 16px;
+    margin-right: 5px;
 }
 
 #output {
     white-space: pre-wrap;
     font-family: Verdana, Arial, sans-serif;
     margin-top: 20px;
-}
-
-input, button {
-    padding: 10px;
-    font-size: 16px;
 }
 </style>
 </head>
@@ -29,6 +28,7 @@ input, button {
 
 <header>
 <img src="https://frostcat224.github.io/frostcatgameswebsite/img/textlogo.png">
+
 <nav>
     <a href="https://frostcat224.github.io/frostcatgameswebsite/">Home</a>
     <a href="https://frostcat224.github.io/frostcatgameswebsite/stuff">Stuff</a>
@@ -42,9 +42,9 @@ input, button {
 <h1>Element Calculator</h1>
 
 <input id="input" placeholder="Type element name...">
-<button onclick="search()">Find recipe</button>
+<button onclick="search()">Search</button>
 
-<pre id="output">Loading database...</pre>
+<pre id="output">Loading...</pre>
 </main>
 
 <script type="module">
@@ -69,7 +69,7 @@ let combinations = {};
 
 const output = document.getElementById("output");
 
-function nameToId(name) {
+function getIdByName(name) {
     name = name.toLowerCase();
     for (const id in elMap) {
         if ((elMap[id].name || "").toLowerCase() === name) {
@@ -79,42 +79,40 @@ function nameToId(name) {
     return null;
 }
 
-// BFS shortest path
-function findPath(targetId) {
-    const startIds = [1, 2, 3, 4];
+function getName(id) {
+    return elMap[id]?.name || `Unknown(${id})`;
+}
 
-    const queue = startIds.map(id => ({
+// BFS shortest path from starters
+function findPath(targetId) {
+    const start = [1, 2, 3, 4];
+
+    const queue = start.map(id => ({
         id,
         path: [id]
     }));
 
-    const visited = new Set(startIds);
+    const visited = new Set(start);
 
     while (queue.length) {
-        const current = queue.shift();
+        const cur = queue.shift();
 
-        if (current.id === targetId) {
-            return current.path;
+        if (cur.id === targetId) {
+            return cur.path;
         }
 
         for (const key in combinations) {
             const [a, b] = key.split("_").map(Number);
             const result = combinations[key];
 
-            if (result == null) continue;
+            if (result !== cur.id) continue;
 
-            const canMake =
-                (a === current.id && !visited.has(b)) ||
-                (b === current.id && !visited.has(a));
-
-            if (canMake) {
-                const next = a === current.id ? b : a;
-
+            for (const next of [a, b]) {
                 if (!visited.has(next)) {
                     visited.add(next);
                     queue.push({
                         id: next,
-                        path: [...current.path, next]
+                        path: [...cur.path, next]
                     });
                 }
             }
@@ -124,9 +122,22 @@ function findPath(targetId) {
     return null;
 }
 
+// find recipe used to create result from two inputs
+function findRecipe(a, b, result) {
+    for (const key in combinations) {
+        const [x, y] = key.split("_").map(Number);
+        if (combinations[key] === result) {
+            if ((x === a && y === b) || (x === b && y === a)) {
+                return [x, y];
+            }
+        }
+    }
+    return null;
+}
+
 window.search = function () {
     const input = document.getElementById("input").value.trim();
-    const id = nameToId(input);
+    const id = getIdByName(input);
 
     if (!id) {
         output.textContent = "Error";
@@ -136,41 +147,55 @@ window.search = function () {
     const path = findPath(id);
 
     if (!path) {
-        output.textContent = "Error (impossible recipe)";
+        output.textContent = "Error (no route found)";
         return;
     }
 
+    let lines = [];
+
+    for (let i = 0; i < path.length; i++) {
+        const current = path[i];
+
+        if (i === 0) {
+            lines.push(`Start: ${getName(current)}`);
+            continue;
+        }
+
+        const prev = path[i - 1];
+
+        const recipe = findRecipe(prev, current, current);
+
+        if (recipe) {
+            lines.push(
+                `${getName(recipe[0])} + ${getName(recipe[1])} = ${getName(current)}`
+            );
+        } else {
+            lines.push(`→ ${getName(current)}`);
+        }
+    }
+
     output.textContent =
-        "Fastest crafting route:\n\n" +
-        path.map((id, i) =>
-            `${i + 1}. ${elMap[id]?.name || "Unknown"} (ID ${id})`
-        ).join("\n");
+        "🔥 Fastest crafting route:\n\n" + lines.join("\n");
 };
 
 onValue(ref(db), (snapshot) => {
     const data = snapshot.val();
 
-    if (!data) {
-        output.textContent = "No database found.";
-        return;
-    }
-
     const elements = Object.values(data.elements || {});
-
-    elMap = {
-        1: { id: 1, name: "Air" },
-        2: { id: 2, name: "Earth" },
-        3: { id: 3, name: "Fire" },
-        4: { id: 4, name: "Water" }
-    };
-
-    elements.forEach(e => {
-        if (e?.id) elMap[e.id] = e;
-    });
-
     combinations = data.combinations || {};
 
-    output.textContent = "Type an element name";
+    elMap = {
+        1: { name: "Air" },
+        2: { name: "Earth" },
+        3: { name: "Fire" },
+        4: { name: "Water" }
+    };
+
+    for (const e of elements) {
+        if (e?.id) elMap[e.id] = e;
+    }
+
+    output.textContent = "Ready. Type an element name.";
 });
 </script>
 
