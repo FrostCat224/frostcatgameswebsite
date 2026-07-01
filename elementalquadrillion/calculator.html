@@ -8,7 +8,9 @@
 <link href="https://frostcat224.github.io/frostcatgameswebsite/style.css" rel="stylesheet">
 
 <style>
-main { padding: 20px; }
+main {
+    padding: 20px;
+}
 
 input, button {
     padding: 10px;
@@ -41,7 +43,7 @@ input, button {
 <main>
 <h1>Element Calculator</h1>
 
-<input id="input" placeholder="Type element name...">
+<input id="input" placeholder="Type element name">
 <button onclick="search()">Search</button>
 
 <pre id="output">Loading...</pre>
@@ -52,13 +54,13 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/fireba
 import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDFH5CJJRdNrBcA8h8zfks-9mCxo-vxt0",
-  authDomain: "elementalquadrillion.firebaseapp.com",
-  databaseURL: "https://elementalquadrillion-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "elementalquadrillion",
-  storageBucket: "elementalquadrillion.firebasestorage.app",
-  messagingSenderId: "828897871116",
-  appId: "1:828897871116:web:8e05949030ca774ce5f529"
+    apiKey: "AIzaSyDFH5CJJRdNrBcA8h8zfks-9mCxo-vxt0",
+    authDomain: "elementalquadrillion.firebaseapp.com",
+    databaseURL: "https://elementalquadrillion-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "elementalquadrillion",
+    storageBucket: "elementalquadrillion.firebasestorage.app",
+    messagingSenderId: "828897871116",
+    appId: "1:828897871116:web:8e05949030ca774ce5f529"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -83,13 +85,14 @@ function getName(id) {
     return elMap[id]?.name || `Unknown(${id})`;
 }
 
-// BFS shortest path from starters
+// BFS that ALSO tracks crafting steps correctly
 function findPath(targetId) {
     const start = [1, 2, 3, 4];
 
     const queue = start.map(id => ({
         id,
-        path: [id]
+        path: [id],
+        steps: []
     }));
 
     const visited = new Set(start);
@@ -98,7 +101,7 @@ function findPath(targetId) {
         const cur = queue.shift();
 
         if (cur.id === targetId) {
-            return cur.path;
+            return cur;
         }
 
         for (const key in combinations) {
@@ -110,28 +113,20 @@ function findPath(targetId) {
             for (const next of [a, b]) {
                 if (!visited.has(next)) {
                     visited.add(next);
+
                     queue.push({
                         id: next,
-                        path: [...cur.path, next]
+                        path: [...cur.path, next],
+                        steps: [
+                            ...cur.steps,
+                            { a, b, result }
+                        ]
                     });
                 }
             }
         }
     }
 
-    return null;
-}
-
-// find recipe used to create result from two inputs
-function findRecipe(a, b, result) {
-    for (const key in combinations) {
-        const [x, y] = key.split("_").map(Number);
-        if (combinations[key] === result) {
-            if ((x === a && y === b) || (x === b && y === a)) {
-                return [x, y];
-            }
-        }
-    }
     return null;
 }
 
@@ -144,38 +139,25 @@ window.search = function () {
         return;
     }
 
-    const path = findPath(id);
+    const res = findPath(id);
 
-    if (!path) {
+    if (!res) {
         output.textContent = "Error (no route found)";
         return;
     }
 
     let lines = [];
+    lines.push(`Start: ${getName(res.path[0])}`);
 
-    for (let i = 0; i < path.length; i++) {
-        const current = path[i];
-
-        if (i === 0) {
-            lines.push(`Start: ${getName(current)}`);
-            continue;
-        }
-
-        const prev = path[i - 1];
-
-        const recipe = findRecipe(prev, current, current);
-
-        if (recipe) {
-            lines.push(
-                `${getName(recipe[0])} + ${getName(recipe[1])} = ${getName(current)}`
-            );
-        } else {
-            lines.push(`→ ${getName(current)}`);
-        }
+    for (const step of res.steps) {
+        lines.push(
+            `${getName(step.a)} + ${getName(step.b)} = ${getName(step.result)}`
+        );
     }
 
-    output.textContent =
-        "Fastest crafting route:\n\n" + lines.join("\n");
+    lines.push(`Final: ${getName(res.id)}`);
+
+    output.textContent = "Fastest crafting route:\n\n" + lines.join("\n");
 };
 
 onValue(ref(db), (snapshot) => {
