@@ -181,7 +181,6 @@ window.search = function () {
 
     let lines = [];
 
-    lines.push(`Start: ${getName(1)}`);
 
     for (const s of steps) {
         lines.push(
@@ -215,7 +214,7 @@ onValue(ref(db), (snapshot) => {
         if (e?.id) elMap[e.id] = e;
     }
 
-    output.textContent = "Ready. Type an element name.";
+    output.textContent = "Type an element name";
 });
 </script> 
 
