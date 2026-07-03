@@ -18,6 +18,14 @@ header {
 }
 
 
+@media (max-width: 768px) {
+    header img {
+        height: 35px;
+        max-width: 90%;
+    }
+}
+
+
 nav {
     margin-left: 40px;
     display: flex;
