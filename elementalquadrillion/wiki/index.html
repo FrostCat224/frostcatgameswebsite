@@ -159,7 +159,7 @@ function render(){
                 ${recipes.slice(0,8).map(r=>{
                     const a = elements[r.a]?.name || "#" + r.a;
                     const b = elements[r.b]?.name || "#" + r.b;
-                    return "• " + a + " + " + b;
+                    return "" + a + " + " + b;
                 }).join("<br>")}
             </div>
         `;
