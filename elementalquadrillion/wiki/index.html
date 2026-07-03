@@ -94,79 +94,147 @@ appId:"1:828897871116:web:8e05949030ca774ce5f529"
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-let elements = {};
+/* =========================
+   ELEMENT STORAGE
+========================= */
+
+let elements = {
+    1: {id:1,name:"Air",color:"#dddddd",combinations:[]},
+    2: {id:2,name:"Earth",color:"#a3501c",combinations:[]},
+    3: {id:3,name:"Fire",color:"#ff6b39",combinations:[]},
+    4: {id:4,name:"Water",color:"#3f88ff",combinations:[]}
+};
+
 let list = [];
 let page = 0;
 const perPage = 100;
+
+/* =========================
+   DOM
+========================= */
 
 const wrap = document.getElementById("wrap");
 const search = document.getElementById("search");
 const sort = document.getElementById("sort");
 
+/* =========================
+   HELPERS
+========================= */
+
 function rebuild(){
-list = Object.values(elements);
+    list = Object.values(elements);
 
-const q = search.value.toLowerCase().trim();
-if(q){
-list = list.filter(e =>
-(e.name||"").toLowerCase().includes(q) ||
-String(e.id).includes(q)
-);
+    const q = search.value.toLowerCase().trim();
+
+    if(q){
+        list = list.filter(e =>
+            (e.name || "").toLowerCase().includes(q) ||
+            String(e.id).includes(q)
+        );
+    }
+
+    if(sort.value === "name"){
+        list.sort((a,b)=>a.name.localeCompare(b.name));
+    } else {
+        list.sort((a,b)=>a.id-b.id);
+    }
 }
 
-if(sort.value === "name"){
-list.sort((a,b)=>a.name.localeCompare(b.name));
-}else{
-list.sort((a,b)=>a.id-b.id);
+function getMaxPage(){
+    return Math.max(0, Math.ceil(list.length / perPage) - 1);
 }
-}
+
+/* =========================
+   RENDER
+========================= */
 
 function render(){
-rebuild();
+    rebuild();
 
-const start = page * perPage;
-const items = list.slice(start, start + perPage);
+    const maxPage = getMaxPage();
 
-wrap.innerHTML = "";
+    if(page > maxPage) page = maxPage;
+    if(page < 0) page = 0;
 
-items.forEach(e=>{
-const div = document.createElement("div");
-div.className = "card";
-div.style.borderLeftColor = e.color || "#999";
+    const start = page * perPage;
+    const items = list.slice(start, start + perPage);
 
-const recipes = e.combinations || [];
+    wrap.innerHTML = "";
 
-div.innerHTML = `
-<div class="title">#${e.id} ${e.name}</div>
-<div class="small">Color: ${e.color || "unknown"}</div>
-<div class="small">Recipes: ${recipes.length}</div>
-<div class="recipe">
-${recipes.slice(0,8).map(r => "• " + r.a + " + " + r.b).join("<br>")}
-</div>
-`;
+    items.forEach(e=>{
+        const div = document.createElement("div");
+        div.className = "card";
+        div.style.borderLeftColor = e.color || "#999";
 
-wrap.appendChild(div);
-});
+        const recipes = e.combinations || [];
 
-document.getElementById("pageInfo").innerText =
-`Page ${page+1} / ${Math.max(1, Math.ceil(list.length/perPage))}`;
+        div.innerHTML = `
+            <div class="title">#${e.id} ${e.name}</div>
+            <div class="small">Color: ${e.color || "unknown"}</div>
+            <div class="small">Recipes: ${recipes.length}</div>
+            <div class="recipe">
+                ${recipes.slice(0,8).map(r=>{
+                    const a = elements[r.a]?.name || "#" + r.a;
+                    const b = elements[r.b]?.name || "#" + r.b;
+                    return "• " + a + " + " + b;
+                }).join("<br>")}
+            </div>
+        `;
+        wrap.appendChild(div);
+    });
+
+    document.getElementById("pageInfo").innerText =
+        `Page ${page+1} / ${Math.max(1, maxPage+1)}`;
 }
 
+/* =========================
+   FIREBASE
+========================= */
+
 onValue(ref(db,"elements"), snap=>{
-elements = snap.exists() ? snap.val() : {};
-render();
+    const dbData = snap.exists() ? snap.val() : {};
+
+    // merge starters + database
+    elements = {
+        1: {id:1,name:"Air",color:"#dddddd",combinations:[]},
+        2: {id:2,name:"Earth",color:"#a3501c",combinations:[]},
+        3: {id:3,name:"Fire",color:"#ff6b39",combinations:[]},
+        4: {id:4,name:"Water",color:"#3f88ff",combinations:[]},
+        ...dbData
+    };
+
+    render();
 });
 
-search.oninput = ()=>{page=0;render();};
-sort.onchange = ()=>render();
+/* =========================
+   CONTROLS
+========================= */
+
+search.oninput = ()=>{
+    page = 0;
+    render();
+};
+
+sort.onchange = ()=>{
+    page = 0;
+    render();
+};
 
 document.getElementById("prev").onclick = ()=>{
-if(page>0){page--;render();}
+    if(page > 0){
+        page--;
+        render();
+    }
 };
 
 document.getElementById("next").onclick = ()=>{
-page++;render();
+    const maxPage = getMaxPage();
+    if(page < maxPage){
+        page++;
+        render();
+    }
 };
+
 </script>
 
 </body>
