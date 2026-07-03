@@ -155,7 +155,7 @@ function render(){
         div.innerHTML = `
             <div class="title">#${e.id} ${e.name}</div>
             <div class="small">Color: ${e.color || "unknown"}</div>
-            <div class="small">Recipes: ${recipes.length}</div>
+            
             <div class="recipe">
                 ${recipes.slice(0,8).map(r=>{
                     const a = elements[r.a]?.name || "#" + r.a;
