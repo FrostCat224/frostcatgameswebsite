@@ -94,10 +94,6 @@ appId:"1:828897871116:web:8e05949030ca774ce5f529"
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-/* =========================
-   ELEMENT STORAGE
-========================= */
-
 let elements = {
     1: {id:1,name:"Air",color:"#dddddd",combinations:[]},
     2: {id:2,name:"Earth",color:"#a3501c",combinations:[]},
@@ -109,17 +105,9 @@ let list = [];
 let page = 0;
 const perPage = 100;
 
-/* =========================
-   DOM
-========================= */
-
 const wrap = document.getElementById("wrap");
 const search = document.getElementById("search");
 const sort = document.getElementById("sort");
-
-/* =========================
-   HELPERS
-========================= */
 
 function rebuild(){
     list = Object.values(elements);
@@ -143,10 +131,6 @@ function rebuild(){
 function getMaxPage(){
     return Math.max(0, Math.ceil(list.length / perPage) - 1);
 }
-
-/* =========================
-   RENDER
-========================= */
 
 function render(){
     rebuild();
@@ -187,10 +171,6 @@ function render(){
         `Page ${page+1} / ${Math.max(1, maxPage+1)}`;
 }
 
-/* =========================
-   FIREBASE
-========================= */
-
 onValue(ref(db,"elements"), snap=>{
     const dbData = snap.exists() ? snap.val() : {};
 
@@ -205,10 +185,6 @@ onValue(ref(db,"elements"), snap=>{
 
     render();
 });
-
-/* =========================
-   CONTROLS
-========================= */
 
 search.oninput = ()=>{
     page = 0;
