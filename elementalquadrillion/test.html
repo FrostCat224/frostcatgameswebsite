@@ -311,7 +311,16 @@ margin-top:10px;
 <div class="title">
 Elemental Quadrillion
 </div>
-<button id="toggleNews" class="toggleNewsBtn">News</button>
+<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+    <button id="toggleNews" class="toggleNewsBtn">News</button>
+
+    <select id="sortMode">
+        <option value="hue">Hue</option>
+        <option value="id">ID</option>
+        <option value="obtained">Time Obtained</option>
+        <option value="name">Name</option>
+    </select>
+</div>
 <p></p>
   <p id="elementCounter"></p>
 
@@ -508,6 +517,8 @@ let elements={};
 
 let dragging=null;
 
+let sortMode = "hue";
+
 let clone=null;
 
 let combineA=null;
@@ -629,13 +640,26 @@ e.id
 
 )
 
-.sort(
+.sort((a, b) => {
 
-(a,b)=>
+    switch (sortMode) {
 
-hexHue(a.color)-hexHue(b.color)
+        case "id":
+            return a.id - b.id;
 
-);
+        case "name":
+            return a.name.localeCompare(b.name);
+
+        case "obtained":
+            return owned.indexOf(a.id) - owned.indexOf(b.id);
+
+        case "hue":
+        default:
+            return hexHue(a.color) - hexHue(b.color);
+
+    }
+
+});
 
 list.forEach(
 
