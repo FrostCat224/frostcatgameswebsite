@@ -111,7 +111,17 @@ right:8px;
 bottom:6px;
 font-size:11px;
 }
+.controls{
+    display:flex;
+    align-items:stretch;
+    gap:8px;
+}
 
+#toggleNews,
+#sortMode{
+    height:100%;
+    margin:0;
+}
 .dragClone{
 
 position:fixed;
@@ -313,6 +323,7 @@ margin-top:10px;
 Elemental Quadrillion
 </div>
 <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+<div class="title">
     <button id="toggleNews" class="toggleNewsBtn">News</button>
 
     <select id="sortMode">
@@ -321,6 +332,7 @@ Elemental Quadrillion
         <option value="obtained">Obtained At</option>
         <option value="name">Name</option>
     </select>
+</div>
 </div>
 <p></p>
   <p id="elementCounter"></p>
