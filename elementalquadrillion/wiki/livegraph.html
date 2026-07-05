@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Elemental Quadrillion Timeline</title>
+
+<script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+
+<style>
+
+*{
+box-sizing:border-box;
+font-family:Verdana,sans-serif;
+}
+
+html,body{
+margin:0;
+width:100%;
+height:100%;
+overflow:hidden;
+background:#202124;
+color:white;
+}
+
+#topbar{
+height:60px;
+background:#2d2f31;
+display:flex;
+align-items:center;
+gap:12px;
+padding:10px;
+border-bottom:2px solid #444;
+}
+
+button,select,input{
+
+padding:8px;
+border:none;
+border-radius:6px;
+font-size:14px;
+
+}
+
+button{
+cursor:pointer;
+}
+
+#clock{
+font-weight:bold;
+font-size:18px;
+}
+
+#counter{
+margin-left:auto;
+font-weight:bold;
+}
+
+#graph{
+
+position:absolute;
+
+top:60px;
+
+left:0;
+
+right:0;
+
+bottom:0;
+
+}
+
+.highlight{
+
+animation:pop .7s;
+
+}
+
+@keyframes pop{
+
+0%{
+transform:scale(.2);
+}
+
+50%{
+transform:scale(1.3);
+}
+
+100%{
+transform:scale(1);
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="topbar">
+
+<button id="playPause">
+Pause
+</button>
+
+<select id="speed">
+
+<option value="1">1x</option>
+<option value="2">2x</option>
+<option value="5" selected>5x</option>
+<option value="10">10x</option>
+<option value="25">25x</option>
+<option value="50">50x</option>
+<option value="100">100x</option>
+
+</select>
+
+<input
+id="search"
+placeholder="Search element..."
+>
+
+<div id="clock"></div>
+
+<div id="counter"></div>
+
+</div>
+
+<div id="graph"></div>
+
+<script type="module">
+
+import{
+initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+
+import{
+
+getDatabase,
+
+ref,
+
+get
+
+}
+from
+"https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
+
+const firebaseConfig={
+
+apiKey:"AIzaSyDFH5CJJR-dNrBcA8h8zfks-9mCxo-vxt0",
+
+authDomain:"elementalquadrillion.firebaseapp.com",
+
+databaseURL:"https://elementalquadrillion-default-rtdb.europe-west1.firebasedatabase.app",
+
+projectId:"elementalquadrillion",
+
+storageBucket:"elementalquadrillion.firebasestorage.app",
+
+messagingSenderId:"828897871116",
+
+appId:"1:828897871116:web:8e05949030ca774ce5f529"
+
+};
+
+const app=initializeApp(firebaseConfig);
+
+const db=getDatabase(app);
+
+const START_DATE=new Date("2026-06-26T00:00:00").getTime();
+
+let simulationTime=START_DATE;
+
+const GAME_SPEED=300000;
+
+let paused=false;
+
+let speedMultiplier=5;
+
+let visibleCount=4;
+
+let elements=[];
+
+let queue=[];
+
+const nodes=new vis.DataSet();
+
+const edges=new vis.DataSet();
+
+const network=new vis.Network(
+
+document.getElementById("graph"),
+
+{
+
+nodes,
+
+edges
+
+},
+
+{
+
+physics:{
+
+solver:"forceAtlas2Based",
+
+forceAtlas2Based:{
+
+gravitationalConstant:-80,
+
+centralGravity:.01,
+
+springLength:120,
+
+springConstant:.08
+
+},
+
+stabilization:false
+
+},
+
+interaction:{
+
+dragNodes:false,
+
+dragView:false,
+
+zoomView:false,
+
+hover:true
+
+},
+
+nodes:{
+
+shape:"dot",
+
+size:18,
+
+borderWidth:2,
+
+font:{
+
+color:"white"
+
+}
+
+},
+
+edges:{
+
+color:"#888",
+
+smooth:true
+
+}
+
+}
+
+);
+
+const START={
+
+1:{
+id:1,
+name:"Air",
+color:"#dddddd"
+},
+
+2:{
+id:2,
+name:"Earth",
+color:"#a3501c"
+},
+
+3:{
+id:3,
+name:"Fire",
+color:"#ff6b39"
+},
+
+4:{
+id:4,
+name:"Water",
+color:"#3f88ff"
+}
+
+};
+
+let addNode = function(e){
+
+nodes.add({
+
+id:e.id,
+
+label:e.name,
+
+color:e.color,
+
+title:"#"+e.id
+
+});
+
+if(e.combinations){
+
+for(const combo of e.combinations){
+
+edges.add({
+
+from:combo.a,
+
+to:e.id
+
+});
+
+edges.add({
+
+from:combo.b,
+
+to:e.id
+
+});
+
+}
+
+}
+
+}
+
+for(const id of [1,2,3,4]){
+
+addNode(START[id]);
+
+}
+
+async function load(){
+
+const snap=await get(ref(db,"elements"));
+
+elements=Object.values(snap.val()||{});
+
+elements.sort((a,b)=>a.date-b.date);
+
+queue=[...elements];
+
+document.getElementById("counter").textContent=
+visibleCount+" / "+(elements.length+4);
+
+}
+
+function tick(dt){
+
+if(paused)return;
+
+simulationTime+=dt*GAME_SPEED*speedMultiplier/1000;
+
+document.getElementById("clock").textContent=
+
+new Date(simulationTime).toLocaleString();
+
+while(
+
+queue.length &&
+
+queue[0].date<=simulationTime
+
+){
+
+const e=queue.shift();
+
+visibleCount++;
+
+addNode(e);
+
+network.focus(
+
+e.id,
+
+{
+
+scale:1,
+
+animation:{
+
+duration:500
+
+}
+
+}
+
+);
+
+document.getElementById("counter").textContent=
+visibleCount+" / "+(elements.length+4);
+
+}
+
+}
+
+let last=performance.now();
+
+function frame(now){
+
+const dt=now-last;
+
+last=now;
+
+tick(dt);
+
+requestAnimationFrame(frame);
+
+}
+
+document.getElementById("playPause").onclick=()=>{
+
+paused=!paused;
+
+playPause.textContent=
+
+paused?
+
+"Play":
+
+"Pause";
+
+};
+
+document.getElementById("speed").onchange=e=>{
+
+speedMultiplier=
+
+Number(e.target.value);
+
+};
+
+document.getElementById("search").oninput=e=>{
+
+const txt=e.target.value.toLowerCase();
+
+if(!txt)return;
+
+const match=nodes.get().find(n=>
+
+n.label.toLowerCase().includes(txt)
+
+);
+
+if(match){
+
+network.focus(
+
+match.id,
+
+{
+
+animation:true
+
+});
+
+network.selectNodes(
+
+[match.id]
+
+);
+
+}
+
+};
+
+await load();
+
+requestAnimationFrame(frame);
+
+  // =======================
+// Highlight newest element
+// =======================
+
+let previousNewest = null;
+
+network.on("afterDrawing", ctx => {
+
+    if (!previousNewest) return;
+
+    const pos = network.getPositions([previousNewest])[previousNewest];
+
+    if (!pos) return;
+
+    const canvasPos = network.canvasToDOM(pos);
+
+    ctx.save();
+
+    ctx.beginPath();
+    ctx.arc(pos.x, pos.y, 35, 0, Math.PI * 2);
+    ctx.strokeStyle = "rgba(255,255,0,0.45)";
+    ctx.lineWidth = 8;
+    ctx.stroke();
+
+    ctx.restore();
+
+});
+
+// =======================
+// Fade-in animation
+// =======================
+
+const originalAdd = addNode;
+
+addNode = function(e){
+
+    originalAdd(e);
+
+    previousNewest = e.id;
+
+    nodes.update({
+
+        id:e.id,
+
+        size:0
+
+    });
+
+    let size = 0;
+
+    function grow(){
+
+        size += 1.5;
+
+        if(size > 18){
+
+            nodes.update({
+
+                id:e.id,
+
+                size:18
+
+            });
+
+            return;
+
+        }
+
+        nodes.update({
+
+            id:e.id,
+
+            size:size
+
+        });
+
+        requestAnimationFrame(grow);
+
+    }
+
+    grow();
+
+}
+
+// =======================
+// Keep graph centred
+// =======================
+
+setInterval(()=>{
+
+    network.fit({
+
+        animation:{
+
+            duration:500
+
+        }
+
+    });
+
+},5000);
+
+// =======================
+// Keyboard shortcuts
+// =======================
+
+window.addEventListener("keydown",e=>{
+
+    if(e.code==="Space"){
+
+        e.preventDefault();
+
+        playPause.click();
+
+    }
+
+    if(e.key==="ArrowUp"){
+
+        speed.selectedIndex=Math.min(
+
+            speed.selectedIndex+1,
+
+            speed.options.length-1
+
+        );
+
+        speed.dispatchEvent(
+
+            new Event("change")
+
+        );
+
+    }
+
+    if(e.key==="ArrowDown"){
+
+        speed.selectedIndex=Math.max(
+
+            speed.selectedIndex-1,
+
+            0
+
+        );
+
+        speed.dispatchEvent(
+
+            new Event("change")
+
+        );
+
+    }
+
+});
+
+// =======================
+// Show FPS
+// =======================
+
+let fpsCounter=document.createElement("div");
+
+fpsCounter.style.position="absolute";
+fpsCounter.style.right="10px";
+fpsCounter.style.bottom="10px";
+fpsCounter.style.background="#0008";
+fpsCounter.style.padding="6px";
+fpsCounter.style.borderRadius="6px";
+
+document.body.appendChild(fpsCounter);
+
+let frames=0;
+let lastFPS=performance.now();
+
+function fpsLoop(){
+
+    frames++;
+
+    const now=performance.now();
+
+    if(now-lastFPS>=1000){
+
+        fpsCounter.textContent=
+
+        "FPS: "+frames+
+
+        " | Nodes: "+nodes.length+
+
+        " | Edges: "+edges.length;
+
+        frames=0;
+
+        lastFPS=now;
+
+    }
+
+    requestAnimationFrame(fpsLoop);
+
+}
+
+fpsLoop();
+
+// =======================
+// Auto refresh Firebase
+// =======================
+
+setInterval(async()=>{
+
+    const snap=await get(ref(db,"elements"));
+
+    const latest=Object.values(snap.val()||{});
+
+    if(latest.length>elements.length){
+
+        elements=latest.sort((a,b)=>a.date-b.date);
+
+        queue=elements.filter(e=>!
+
+            nodes.get(e.id)
+
+        );
+
+    }
+
+},30000);
+
+// =======================
+// Finished
+// =======================
+
+</script>
+
+</body>
+</html>
+  
