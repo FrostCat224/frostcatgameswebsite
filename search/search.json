@@ -89,7 +89,7 @@
   },
   {
     "name": "Multideletable Words",
-    "link": "https://frostcat224.github.io/frostcatgameswebsite/docs/multideletablewords.html"
+    "link": "https://frostcat224.github.io/frostcatgameswebsite/a/multideletablewords.html"
   },
   {
     "name": "Elemental Quadrillion",
@@ -98,5 +98,13 @@
   {
     "name": "Elemental Quadrillion Stats",
     "link": "https://frostcat224.github.io/frostcatgameswebsite/elementalquadrillion/stats/"
+  },
+  {
+    "name": "Pi",
+    "link": "https://frostcat224.github.io/frostcatgameswebsite/a/pi.txt"
+  },
+  {
+    "name": "Elemental Quadrillion Credits",
+    "link": "https://frostcat224.github.io/frostcatgameswebsite/elementalquadrillion/credits/"
   }
 ]
