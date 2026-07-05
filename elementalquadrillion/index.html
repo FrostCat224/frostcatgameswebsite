@@ -111,7 +111,17 @@ right:8px;
 bottom:6px;
 font-size:11px;
 }
+.controls{
+    display:flex;
+    align-items:stretch;
+    gap:8px;
+}
 
+#toggleNews,
+#sortMode{
+    height:100%;
+    margin:0;
+}
 .dragClone{
 
 position:fixed;
@@ -189,7 +199,7 @@ color:#777;
 font-size:13px;
 
 }
-  
+
 .element.new{
 outline:5px solid #ffd500;
 }
@@ -197,7 +207,7 @@ outline:5px solid #ffd500;
 .element.rediscovered{
 outline:5px solid #00ffff;
 }
-  
+
 .popup{
 
 position:fixed;
@@ -262,6 +272,7 @@ margin-top:10px;
 
 
 
+
 @media (max-width: 800px) {
     body{
         flex-direction: column;
@@ -311,7 +322,18 @@ margin-top:10px;
 <div class="title">
 Elemental Quadrillion
 </div>
-<button id="toggleNews" class="toggleNewsBtn">News</button>
+<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+<div class="title">
+    <button id="toggleNews" class="toggleNewsBtn">News</button>
+
+    <select id="sortMode">
+        <option value="hue">Hue</option>
+        <option value="id">ID</option>
+        <option value="obtained">Obtained At</option>
+        <option value="name">Name</option>
+    </select>
+</div>
+</div>
 <p></p>
   <p id="elementCounter"></p>
 
@@ -508,6 +530,8 @@ let elements={};
 
 let dragging=null;
 
+let sortMode = "hue";
+
 let clone=null;
 
 let combineA=null;
@@ -515,7 +539,7 @@ let combineA=null;
 let newSessionElements = new Set();
 
 let rediscoveredElement = null;
-  
+
 let combineB=null;
 
 let pendingColor=null;
@@ -591,7 +615,7 @@ renderElements();
 
 
 function saveOwned(){
-  
+
 
 localStorage.setItem(
 
@@ -629,13 +653,26 @@ e.id
 
 )
 
-.sort(
+.sort((a, b) => {
 
-(a,b)=>
+    switch (sortMode) {
 
-hexHue(a.color)-hexHue(b.color)
+        case "id":
+            return a.id - b.id;
 
-);
+        case "name":
+            return a.name.localeCompare(b.name);
+
+        case "obtained":
+            return owned.indexOf(a.id) - owned.indexOf(b.id);
+
+        case "hue":
+        default:
+            return hexHue(a.color) - hexHue(b.color);
+
+    }
+
+});
 
 list.forEach(
 
@@ -649,7 +686,7 @@ document.createElement(
 
 div.className=
 "element";
-  
+
 if (newSessionElements.has(element.id)) {
 div.classList.add("new");
 }
@@ -660,7 +697,7 @@ div.classList.add("rediscovered");
 
 div.style.background=
 element.color;
-  
+
 div.style.color=
 getTextColor(
 element.color
@@ -826,7 +863,7 @@ clone.style.background=
 
 element.color;
   clone.style.color = getTextColor(element.color);
-  
+
 
 clone.innerHTML=`
 
@@ -874,14 +911,14 @@ function moveClone(e){
     clone.style.left = e.clientX + "px";
     clone.style.top = e.clientY + "px";
 
-   
+
     const rect = left.getBoundingClientRect();
 
-  
+
     const fromTop = e.clientY - rect.top;
     const fromBottom = rect.bottom - e.clientY;
 
-   
+
     if (fromTop < edgeSize) {
         const speed = (edgeSize - fromTop) / edgeSize;
         left.scrollTop -= speed * maxSpeed;
@@ -1354,7 +1391,7 @@ elements[id]=obj;
 owned.push(
 id
 );
-  
+
 rediscoveredElement = null;
 
 newSessionElements.clear();
@@ -1626,6 +1663,12 @@ updatePreview;
 
 window.closePopup=
 closePopup;
+const sortSelect = document.getElementById("sortMode");
+
+sortSelect.addEventListener("change", () => {
+    sortMode = sortSelect.value;
+    renderElements();
+});
 
 const news = document.getElementById("news");
 const btn = document.getElementById("toggleNews");
@@ -1638,6 +1681,25 @@ btn.onclick = () => {
     news.classList.toggle("hidden");
 };
 
+const bgMusic = new Audio(
+  "https://frostcat224.github.io/frostcatgameswebsite/elementalquadrillion/Elemental 4.wav"
+);
+
+bgMusic.loop = true;
+bgMusic.volume = 0.4; // adjust if needed
+
+function startMusic() {
+  bgMusic.play().catch(() => {
+
+    document.addEventListener("pointerdown", () => {
+      bgMusic.play().catch(() => {});
+    }, { once: true });
+  });
+}
+
+
+startMusic();
+    
 </script>
 
 </body>
