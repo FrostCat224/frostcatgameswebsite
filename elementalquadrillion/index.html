@@ -325,6 +325,7 @@ Elemental Quadrillion
 <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
 <div class="title">
     <button id="toggleNews" class="toggleNewsBtn">News</button>
+    <button id="muteBtn" class="toggleNewsBtn">🔊</button>    
 
     <select id="sortMode">
         <option value="hue">Hue</option>
@@ -1689,13 +1690,30 @@ bgMusic.loop = true;
 bgMusic.volume = 0.1; 
 
 function startMusic() {
-  bgMusic.play().catch(() => {
+  if (muted) return;
 
+  bgMusic.play().catch(() => {
     document.addEventListener("pointerdown", () => {
-      bgMusic.play().catch(() => {});
+      if (!muted) bgMusic.play().catch(() => {});
     }, { once: true });
   });
 }
+
+    let muted = false;
+
+const muteBtn = document.getElementById("muteBtn");
+
+muteBtn.onclick = () => {
+  muted = !muted;
+
+  if (muted) {
+    bgMusic.pause();
+    muteBtn.innerText = "Muted";
+  } else {
+    bgMusic.play().catch(() => {});
+    muteBtn.innerText = "Mute";
+  }
+};
 
 
 startMusic();
