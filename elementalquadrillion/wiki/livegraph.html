@@ -264,6 +264,15 @@ smooth:true
 }
 
 );
+network.once("stabilizationIterationsDone", () => {
+
+    network.setOptions({
+
+        physics:false
+
+    });
+
+});
 
 const START={
 
@@ -306,6 +315,8 @@ color:e.color,
 title:"#"+e.id
 
 });
+
+
 
 if(e.combinations){
 
@@ -376,8 +387,19 @@ const e=queue.shift();
 
 visibleCount++;
 
+network.setOptions({
+    physics:true
+});
+
 addNode(e);
 
+setTimeout(()=>{
+
+    network.setOptions({
+        physics:false
+    });
+
+},300);
 network.focus(
 
 e.id,
