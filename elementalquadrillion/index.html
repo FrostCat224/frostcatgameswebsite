@@ -321,7 +321,7 @@ margin-top:10px;
 <div id="left">
 
 <div class="title">
-Elemental Quadrillion
+Elemental Quadrillion v1.3
 </div>
 <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
 <div class="title">
@@ -569,7 +569,11 @@ const newElementSound = new Audio(
 const existingElementSound = new Audio(
 "https://frostcat224.github.io/frostcatgameswebsite/elementalquadrillion/nonunique.wav"
 );
-
+    
+const popupOpenSound = new Audio(
+"https://frostcat224.github.io/frostcatgameswebsite/elementalquadrillion/popup-open.mp3"
+);
+    
 function playSound(sound){
 sound.currentTime = 0;
 sound.play().catch(()=>{});
@@ -1100,6 +1104,8 @@ document.getElementById(
 "popup"
 ).style.display=
 "block";
+
+playSound(popupOpenSound);
 
 document.getElementById(
 "newName"
