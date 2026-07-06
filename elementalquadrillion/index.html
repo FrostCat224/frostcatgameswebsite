@@ -326,7 +326,17 @@ Elemental Quadrillion
 <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
 <div class="title">
     <button id="toggleNews" class="toggleNewsBtn">News</button>
-    <button id="muteBtn" class="toggleNewsBtn">Mute</button>    
+    <button id="muteBtn" class="toggleNewsBtn">Mute</button>
+
+<input
+    id="volumeSlider"
+    type="range"
+    min="0"
+    max="100"
+    value="20"
+    title="Music Volume"
+    style="width:100px;"
+> 
 
     <select id="sortMode">
         <option value="hue">Hue</option>
@@ -1690,7 +1700,9 @@ const bgMusic = new Audio(
 );
 
 bgMusic.loop = true;
-bgMusic.volume = 0.1; 
+const savedVolume = localStorage.getItem("musicVolume");
+
+bgMusic.volume = savedVolume !== null ? Number(savedVolume) : 0.1;
 
 function startMusic() {
   if (muted) return;
@@ -1705,6 +1717,14 @@ function startMusic() {
     let muted = false;
 
 const muteBtn = document.getElementById("muteBtn");
+const volumeSlider = document.getElementById("volumeSlider");
+
+volumeSlider.value = bgMusic.volume * 100;
+
+volumeSlider.oninput = () => {
+  bgMusic.volume = volumeSlider.value / 100;
+  localStorage.setItem("musicVolume", bgMusic.volume);
+};
 
 muteBtn.onclick = () => {
   muted = !muted;
