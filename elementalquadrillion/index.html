@@ -1702,7 +1702,7 @@ const bgMusic = new Audio(
 bgMusic.loop = true;
 const savedVolume = localStorage.getItem("musicVolume");
 
-bgMusic.volume = savedVolume !== null ? Number(savedVolume) : 0.1;
+bgMusic.volume = savedVolume !== null ? Number(savedVolume) : 0.36;
 
 function startMusic() {
   if (muted) return;
