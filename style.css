@@ -85,3 +85,61 @@ main {
 .tall {
     grid-row: span 2;
 }
+
+.footer {
+    background: #111;
+    color: white;
+    margin-top: 60px;
+    border-top: 2px solid #333;
+}
+
+.footer-content {
+    max-width: 1100px;
+    margin: auto;
+    padding: 35px 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.footer-logo {
+    width: 180px;
+    margin-bottom: 10px;
+}
+
+.footer h3 {
+    margin-top: 0;
+    color: #fff;
+}
+
+.footer a {
+    display: block;
+    color: #ddd;
+    text-decoration: none;
+    margin: 6px 0;
+    transition: color .2s;
+}
+
+.footer a:hover {
+    color: #66ccff;
+}
+
+.footer-bottom {
+    border-top: 1px solid #333;
+    text-align: center;
+    padding: 15px;
+    color: #999;
+    font-size: 14px;
+}
+
+@media (max-width: 700px) {
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-logo {
+        margin: 0 auto 10px;
+    }
+}
