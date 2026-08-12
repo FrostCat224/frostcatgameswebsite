@@ -41,6 +41,18 @@
       "name": "OpenAI",
       "url": "https://openai.com",
       "connections": ["chatgpt", "google"]
+    },
+    {
+      "id": "example",
+      "name": "example.com",
+      "url": "https://example.com",
+      "connections": ["iana"]
+    },
+    {
+      "id": "iana",
+      "name": "IANA",
+      "url": "https://iana.com",
+      "connections": ["example", "google"]
     }
   ]
 }
