@@ -51,7 +51,7 @@
     {
       "id": "iana",
       "name": "IANA",
-      "url": "https://iana.com",
+      "url": "https://iana.org",
       "connections": ["example", "google"]
     }
   ]
