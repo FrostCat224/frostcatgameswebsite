@@ -54,7 +54,15 @@
             "https://youtube.com/",
             "https://google.com/",
             "https://discord.com/",
-            "https://roblox.com/"
+            "https://roblox.com/",
+            "https://github.com/",
+            "https://guthib.com/",
+            "https://neocities.org/",
+            "https://gmail.com/",
+            "https://kamtape.com/",
+            "https://minecraft.net/",
+            "https://netflix.com/",
+            "https://geometrydash.com/"
         ];
 
         function gamble() {
@@ -72,7 +80,7 @@
 
     function randomString() {
         // Random length between 3 and 12
-        const length = Math.floor(Math.random() * 10) + 3;
+        const length = Math.floor(Math.random() * 15) + 6;
 
         let text = "";
 
@@ -93,7 +101,7 @@
         count++;
 
         // After 10 strings
-        if (count >= 10) {
+        if (count >= 20) {
 
             clearInterval(interval);
 
@@ -102,7 +110,7 @@
                 `<a href="${randomLink}">${randomLink}</a>`;
         }
 
-    }, 150);
+    }, 75);
         }
     </script>
 
