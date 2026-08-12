@@ -1,0 +1,29 @@
+{
+  "sites": [
+    {
+      "id": "google",
+      "name": "Google",
+      "url": "https://www.google.com",
+      "connections": ["youtube", "github", "wikipedia"]
+    },
+    {
+      "id": "youtube",
+      "name": "YouTube",
+      "url": "https://www.youtube.com",
+      "connections": ["google", "wikipedia"]
+    },
+    
+    {
+      "id": "wikipedia",
+      "name": "Wikipedia",
+      "url": "https://www.wikipedia.org",
+      "connections": ["google", "youtube", "github"]
+    },
+    {
+      "id": "guthib",
+      "name": "Guthib",
+      "url": "https://guthib.com",
+      "connections": ["github"]
+    },
+  ]
+}
