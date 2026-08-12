@@ -12,12 +12,11 @@
       "url": "https://www.youtube.com",
       "connections": ["google", "wikipedia"]
     },
-    
     {
       "id": "wikipedia",
       "name": "Wikipedia",
       "url": "https://www.wikipedia.org",
-      "connections": ["google", "youtube", "github"]
+      "connections": ["google", "youtube"]
     },
     {
       "id": "guthib",
@@ -25,5 +24,11 @@
       "url": "https://guthib.com",
       "connections": ["github"]
     },
+    {
+      "id": "github",
+      "name": "GitHub",
+      "url": "https://github.com",
+      "connections": ["google", "guthib"]
+    }
   ]
 }
