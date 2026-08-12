@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrostCatGames</title>
+    <link href="https://frostcat224.github.io/frostcatgameswebsite/style.css" rel="stylesheet" type="text/css" media="all">
+
+    <style>
+        #gambleResult {
+            margin-top: 15px;
+            font-size: 24px;
+        }
+
+        #gambleResult a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        #gambleButton {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+    
+<body>
+    <header>
+        <img src="https://frostcat224.github.io/frostcatgameswebsite/img/textlogo.png" alt="FrostCatGames">
+
+        <nav>
+            <a href="https://frostcat224.github.io/frostcatgameswebsite/">Home</a>
+            <a href="https://frostcat224.github.io/frostcatgameswebsite/stuff">Stuff</a>
+            <a href="https://frostcat224.github.io/frostcatgameswebsite/archive">Archive</a>
+            <a href="https://frostcat224.github.io/frostcatgameswebsite/info">Info</a>
+            <a href="https://frostcat224.github.io/frostcatgameswebsite/search">Search</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Website Gambling</h1>
+
+
+        <button id="gambleButton" onclick="gamble()">Gamble</button>
+
+        <div id="gambleResult"></div>
+    </main>
+
+    <script>
+        // Put your links here
+        const links = [
+            "https://frostcat224.github.io/frostcatgameswebsite/",
+            "https://youtube.com/",
+            "https://google.com/",
+            "https://discord.com/",
+            "https://roblox.com/"
+        ];
+
+        function gamble() {
+
+    const result = document.getElementById("gambleResult");
+
+    // Pick a random link
+    const randomLink = links[
+        Math.floor(Math.random() * links.length)
+    ];
+
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+
+    let count = 0;
+
+    function randomString() {
+        // Random length between 3 and 12
+        const length = Math.floor(Math.random() * 10) + 3;
+
+        let text = "";
+
+        for (let i = 0; i < length; i++) {
+            text += characters.charAt(
+                Math.floor(Math.random() * characters.length)
+            );
+        }
+
+        return text;
+    }
+
+    // Show 10 random strings
+    const interval = setInterval(() => {
+
+        result.textContent = randomString();
+
+        count++;
+
+        // After 10 strings
+        if (count >= 10) {
+
+            clearInterval(interval);
+
+            // Show the actual link as clickable text
+            result.innerHTML =
+                `<a href="${randomLink}">${randomLink}</a>`;
+        }
+
+    }, 150);
+        }
+    </script>
+
+</body>
+</html>
