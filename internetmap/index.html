@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Internet Map</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="topbar">
+        <h1>Map of the Internet</h1>
+
+        <input
+            id="search"
+            type="text"
+            placeholder="Search websites..."
+        >
+    </div>
+
+    <canvas id="map"></canvas>
+
+    <div id="info">
+        <h2 id="siteName">Select a website</h2>
+
+        <a
+            id="siteUrl"
+            href="#"
+            target="_blank"
+            rel="noopener"
+        ></a>
+
+        <p id="connections"></p>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
