@@ -4,7 +4,7 @@
       "id": "google",
       "name": "Google",
       "url": "https://www.google.com",
-      "connections": ["youtube", "github", "wikipedia"]
+      "connections": ["youtube", "github", "wikipedia", "chatgpt"]
     },
     {
       "id": "youtube",
@@ -29,6 +29,18 @@
       "name": "GitHub",
       "url": "https://github.com",
       "connections": ["google", "guthib"]
+    },
+    {
+      "id": "chatgpt",
+      "name": "ChatGPT",
+      "url": "https://chatgpt.com",
+      "connections": ["openai", "google"]
+    },
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "url": "https://openai.com",
+      "connections": ["chatgpt", "google"]
     }
   ]
 }
