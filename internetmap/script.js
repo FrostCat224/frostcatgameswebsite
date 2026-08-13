@@ -111,12 +111,11 @@ fetch("data.json")
 function createPositions() {
 
     const spacing = 100;
-    const hubDistance = 120;
-    const maxIterations = 1000;
+    const componentGap = 500;
 
-    // =========================
-    // BUILD CONNECTION COUNTS
-    // =========================
+    // =====================================
+    // CONNECTION COUNTS
+    // =====================================
 
     const connectionCount = new Map();
 
@@ -130,348 +129,362 @@ function createPositions() {
     }
 
 
-    // =========================
-    // SORT BY MOST CONNECTIONS
-    // =========================
+    // =====================================
+    // BUILD UNDIRECTED GRAPH
+    // =====================================
 
-    const sortedSites = [...sites].sort((a, b) => {
-
-        const aConnections =
-            connectionCount.get(a.id) || 0;
-
-        const bConnections =
-            connectionCount.get(b.id) || 0;
-
-        return bConnections - aConnections;
-    });
-
-
-    // =========================
-    // RESET POSITIONS
-    // =========================
+    const graph = new Map();
 
     for (const site of sites) {
 
-        site.x = null;
-        site.y = null;
-    }
+        if (!graph.has(site.id)) {
+            graph.set(site.id, new Set());
+        }
 
-
-    // =========================
-    // PLACE FIRST HUB
-    // =========================
-
-    if (sortedSites.length === 0) {
-        camera.x = 0;
-        camera.y = 0;
-        camera.zoom = 1;
-        return;
-    }
-
-    const first =
-        sortedSites[0];
-
-    first.x = 0;
-    first.y = 0;
-
-
-    // =========================
-    // PLACE NODES
-    // =========================
-
-    const placed = new Set();
-
-    placed.add(first.id);
-
-
-    for (const site of sortedSites) {
-
-        if (placed.has(site.id)) {
+        if (!Array.isArray(site.connections)) {
             continue;
         }
 
-        const connections =
-            Array.isArray(site.connections)
-                ? site.connections
-                : [];
+        for (const connectionId of site.connections) {
 
-
-        // Find already-placed connected sites
-        const connectedPlaced = [];
-
-        for (const connectionId of connections) {
-
-            const target =
-                siteMap.get(connectionId);
-
-            if (
-                target &&
-                placed.has(target.id)
-            ) {
-                connectedPlaced.push(target);
-            }
-        }
-
-
-        // =========================
-        // NO CONNECTION TO PLACED NODE
-        // =========================
-
-        if (connectedPlaced.length === 0) {
-
-            // Find the closest high-connection
-            // node that has already been placed.
-
-            let nearest = null;
-            let nearestDistance = Infinity;
-
-            for (const other of sortedSites) {
-
-                if (!placed.has(other.id)) {
-                    continue;
-                }
-
-                const dx =
-                    other.x;
-
-                const dy =
-                    other.y;
-
-                const distance =
-                    Math.hypot(dx, dy);
-
-                if (
-                    distance < nearestDistance
-                ) {
-
-                    nearest = other;
-                    nearestDistance = distance;
-                }
+            if (!siteMap.has(connectionId)) {
+                continue;
             }
 
+            graph.get(site.id).add(connectionId);
 
-            if (nearest) {
-
-                const angle =
-                    Math.random() *
-                    Math.PI * 2;
-
-                site.x =
-                    nearest.x +
-                    Math.cos(angle) *
-                    hubDistance * 2;
-
-                site.y =
-                    nearest.y +
-                    Math.sin(angle) *
-                    hubDistance * 2;
-
-            } else {
-
-                site.x = 0;
-                site.y = 0;
-            }
-
-            placed.add(site.id);
-
-            continue;
-        }
-
-
-        // =========================
-        // FIND AVERAGE POSITION
-        // =========================
-
-        let averageX = 0;
-        let averageY = 0;
-
-        let totalWeight = 0;
-
-        for (const target of connectedPlaced) {
-
-            // Highly connected nodes pull
-            // other nodes toward themselves.
-
-            const weight =
-                Math.max(
-                    1,
-                    connectionCount.get(target.id) || 1
+            if (!graph.has(connectionId)) {
+                graph.set(
+                    connectionId,
+                    new Set()
                 );
-
-            averageX +=
-                target.x * weight;
-
-            averageY +=
-                target.y * weight;
-
-            totalWeight += weight;
-        }
-
-        averageX /=
-            totalWeight;
-
-        averageY /=
-            totalWeight;
-
-
-        // =========================
-        // FIND OPEN DIRECTION
-        // =========================
-
-        let angle =
-            Math.random() *
-            Math.PI * 2;
-
-
-        // Try several directions and choose
-        // one with the least nearby nodes.
-
-        let bestX = 0;
-        let bestY = 0;
-        let bestScore = Infinity;
-
-        for (
-            let attempt = 0;
-            attempt < 16;
-            attempt++
-        ) {
-
-            const testAngle =
-                (Math.PI * 2 / 16) *
-                attempt;
-
-            const testX =
-                averageX +
-                Math.cos(testAngle) *
-                hubDistance;
-
-            const testY =
-                averageY +
-                Math.sin(testAngle) *
-                hubDistance;
-
-
-            let score = 0;
-
-            for (const other of sites) {
-
-                if (
-                    !placed.has(other.id)
-                ) {
-                    continue;
-                }
-
-                const distance =
-                    Math.hypot(
-                        testX - other.x,
-                        testY - other.y
-                    );
-
-                // Strongly avoid overlapping nodes.
-                if (distance < spacing) {
-
-                    score +=
-                        (spacing - distance) *
-                        10;
-                }
-
-                // Slightly prefer empty space.
-                score +=
-                    100 /
-                    Math.max(distance, 10);
             }
 
-
-            if (score < bestScore) {
-
-                bestScore = score;
-
-                bestX = testX;
-                bestY = testY;
-            }
+            graph.get(connectionId).add(site.id);
         }
-
-
-        site.x = bestX;
-        site.y = bestY;
-
-        placed.add(site.id);
     }
 
 
-    // =========================
-    // SMALL STATIC CLEANUP
-    // =========================
+    // =====================================
+    // FIND CONNECTED COMPONENTS
+    // =====================================
 
-    // Push overlapping nodes apart.
-    // This happens only while creating the map,
-    // NOT every frame.
+    const components = [];
+    const visited = new Set();
+
+    for (const site of sites) {
+
+        if (visited.has(site.id)) {
+            continue;
+        }
+
+        const component = [];
+        const queue = [site.id];
+
+        visited.add(site.id);
+
+        while (queue.length > 0) {
+
+            const id = queue.shift();
+
+            component.push(
+                siteMap.get(id)
+            );
+
+            for (const neighbor of graph.get(id) || []) {
+
+                if (!visited.has(neighbor)) {
+
+                    visited.add(neighbor);
+                    queue.push(neighbor);
+                }
+            }
+        }
+
+        components.push(component);
+    }
+
+
+    // =====================================
+    // SORT BIGGEST COMPONENTS FIRST
+    // =====================================
+
+    components.sort(
+        (a, b) => b.length - a.length
+    );
+
+
+    // =====================================
+    // RESET POSITIONS
+    // =====================================
+
+    for (const site of sites) {
+
+        site.x = 0;
+        site.y = 0;
+    }
+
+
+    // =====================================
+    // PLACE COMPONENTS
+    // =====================================
+
+    let componentX = 0;
+    let componentY = 0;
 
     for (
-        let iteration = 0;
-        iteration < 40;
-        iteration++
+        let componentIndex = 0;
+        componentIndex < components.length;
+        componentIndex++
     ) {
 
-        for (let i = 0; i < sites.length; i++) {
-
-            const a = sites[i];
-
-            for (
-                let j = i + 1;
-                j < sites.length;
-                j++
-            ) {
-
-                const b = sites[j];
-
-                let dx =
-                    b.x - a.x;
-
-                let dy =
-                    b.y - a.y;
-
-                let distance =
-                    Math.hypot(dx, dy);
+        const component =
+            components[componentIndex];
 
 
-                if (distance === 0) {
+        // ---------------------------------
+        // DIFFERENT COMPONENTS GET
+        // LARGE SEPARATION
+        // ---------------------------------
 
-                    dx = 1;
-                    dy = 0;
+        if (componentIndex === 0) {
 
-                    distance = 1;
-                }
+            componentX = 0;
+            componentY = 0;
+
+        } else {
+
+            // Put smaller components
+            // far away from the main graph.
+
+            const angle =
+                componentIndex * 2.4;
+
+            const distance =
+                componentGap *
+                Math.sqrt(componentIndex);
+
+            componentX =
+                Math.cos(angle) * distance;
+
+            componentY =
+                Math.sin(angle) * distance;
+        }
 
 
-                if (distance < spacing) {
+        // ---------------------------------
+        // RANDOM INITIAL POSITIONS
+        // ---------------------------------
 
-                    const push =
-                        (spacing - distance) / 2;
+        for (const site of component) {
+
+            site.x =
+                componentX +
+                (Math.random() - 0.5) *
+                300;
+
+            site.y =
+                componentY +
+                (Math.random() - 0.5) *
+                300;
+        }
+
+
+        // =================================
+        // FORCE SIMULATION
+        // =================================
+
+        for (let iteration = 0; iteration < 150; iteration++) {
+
+            const forces = new Map();
+
+            for (const site of component) {
+
+                forces.set(
+                    site.id,
+                    {
+                        x: 0,
+                        y: 0
+                    }
+                );
+            }
+
+
+            // ---------------------------------
+            // REPULSION
+            // ---------------------------------
+
+            for (let i = 0; i < component.length; i++) {
+
+                const a = component[i];
+
+                for (
+                    let j = i + 1;
+                    j < component.length;
+                    j++
+                ) {
+
+                    const b = component[j];
+
+                    let dx =
+                        b.x - a.x;
+
+                    let dy =
+                        b.y - a.y;
+
+                    let distance =
+                        Math.hypot(dx, dy);
+
+                    if (distance < 1) {
+                        distance = 1;
+                    }
+
+
+                    // Nodes push each other apart.
+                    const force =
+                        5000 /
+                        (distance * distance);
+
 
                     dx /= distance;
                     dy /= distance;
 
-                    a.x -=
-                        dx * push;
 
-                    a.y -=
-                        dy * push;
+                    forces.get(a.id).x -=
+                        dx * force;
 
-                    b.x +=
-                        dx * push;
+                    forces.get(a.id).y -=
+                        dy * force;
 
-                    b.y +=
-                        dy * push;
+                    forces.get(b.id).x +=
+                        dx * force;
+
+                    forces.get(b.id).y +=
+                        dy * force;
                 }
+            }
+
+
+            // ---------------------------------
+            // CONNECTION ATTRACTION
+            // ---------------------------------
+
+            for (const site of component) {
+
+                const neighbors =
+                    graph.get(site.id) || [];
+
+                for (const neighborId of neighbors) {
+
+                    const target =
+                        siteMap.get(neighborId);
+
+                    if (!target) continue;
+
+                    // Avoid calculating each
+                    // connection twice.
+                    if (
+                        site.id >
+                        target.id
+                    ) {
+                        continue;
+                    }
+
+                    let dx =
+                        target.x - site.x;
+
+                    let dy =
+                        target.y - site.y;
+
+                    let distance =
+                        Math.hypot(dx, dy);
+
+                    if (distance < 1) {
+                        distance = 1;
+                    }
+
+
+                    // Preferred connection length.
+                    const desiredDistance = 160;
+
+                    const force =
+                        (distance -
+                            desiredDistance) *
+                        0.008;
+
+
+                    dx /= distance;
+                    dy /= distance;
+
+
+                    forces.get(site.id).x +=
+                        dx * force;
+
+                    forces.get(site.id).y +=
+                        dy * force;
+
+                    forces.get(target.id).x -=
+                        dx * force;
+
+                    forces.get(target.id).y -=
+                        dy * force;
+                }
+            }
+
+
+            // ---------------------------------
+            // MOVE NODES
+            // ---------------------------------
+
+            for (const site of component) {
+
+                const force =
+                    forces.get(site.id);
+
+                site.x +=
+                    force.x;
+
+                site.y +=
+                    force.y;
             }
         }
     }
 
 
-    // =========================
+    // =====================================
+    // RANDOMLY PUSH VERY ISOLATED NODES
+    // EVEN FARTHER AWAY
+    // =====================================
+
+    for (const site of sites) {
+
+        const connections =
+            connectionCount.get(site.id) || 0;
+
+        if (connections <= 1) {
+
+            const angle =
+                Math.random() *
+                Math.PI * 2;
+
+            const distance =
+                600 +
+                Math.random() * 700;
+
+            site.x +=
+                Math.cos(angle) *
+                distance;
+
+            site.y +=
+                Math.sin(angle) *
+                distance;
+        }
+    }
+
+
+    // =====================================
     // CENTER MAP
-    // =========================
+    // =====================================
 
     let minX = Infinity;
     let maxX = -Infinity;
@@ -514,7 +527,6 @@ function createPositions() {
     camera.y = 0;
     camera.zoom = 1;
 }
-
 
 // =========================
 // COORDINATES
