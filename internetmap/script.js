@@ -517,6 +517,44 @@ function createPositions() {
 
 
 // =========================
+// COORDINATES
+// =========================
+
+function worldToScreen(x, y) {
+
+    return {
+        x:
+            x * camera.zoom
+            + window.innerWidth / 2
+            + camera.x,
+
+        y:
+            y * camera.zoom
+            + window.innerHeight / 2
+            + camera.y
+    };
+}
+
+
+function screenToWorld(x, y) {
+
+    return {
+        x:
+            (x
+            - window.innerWidth / 2
+            - camera.x)
+            / camera.zoom,
+
+        y:
+            (y
+            - window.innerHeight / 2
+            - camera.y)
+            / camera.zoom
+    };
+}
+
+
+// =========================
 // DRAW LOOP
 // =========================
 
