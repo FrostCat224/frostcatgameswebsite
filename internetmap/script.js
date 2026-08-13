@@ -110,65 +110,409 @@ fetch("data.json")
 
 function createPositions() {
 
-    const radius = Math.max(
-        120,
-        Math.min(300, sites.length * 20)
-    );
+    const spacing = 100;
+    const hubDistance = 120;
+    const maxIterations = 1000;
 
-    sites.forEach((site, index) => {
+    // =========================
+    // BUILD CONNECTION COUNTS
+    // =========================
 
-        const angle =
-            (index / Math.max(sites.length, 1))
-            * Math.PI * 2;
+    const connectionCount = new Map();
 
-        site.x =
-            Math.cos(angle) * radius;
+    for (const site of sites) {
+        connectionCount.set(
+            site.id,
+            Array.isArray(site.connections)
+                ? site.connections.length
+                : 0
+        );
+    }
 
-        site.y =
-            Math.sin(angle) * radius;
+
+    // =========================
+    // SORT BY MOST CONNECTIONS
+    // =========================
+
+    const sortedSites = [...sites].sort((a, b) => {
+
+        const aConnections =
+            connectionCount.get(a.id) || 0;
+
+        const bConnections =
+            connectionCount.get(b.id) || 0;
+
+        return bConnections - aConnections;
     });
+
+
+    // =========================
+    // RESET POSITIONS
+    // =========================
+
+    for (const site of sites) {
+
+        site.x = null;
+        site.y = null;
+    }
+
+
+    // =========================
+    // PLACE FIRST HUB
+    // =========================
+
+    if (sortedSites.length === 0) {
+        camera.x = 0;
+        camera.y = 0;
+        camera.zoom = 1;
+        return;
+    }
+
+    const first =
+        sortedSites[0];
+
+    first.x = 0;
+    first.y = 0;
+
+
+    // =========================
+    // PLACE NODES
+    // =========================
+
+    const placed = new Set();
+
+    placed.add(first.id);
+
+
+    for (const site of sortedSites) {
+
+        if (placed.has(site.id)) {
+            continue;
+        }
+
+        const connections =
+            Array.isArray(site.connections)
+                ? site.connections
+                : [];
+
+
+        // Find already-placed connected sites
+        const connectedPlaced = [];
+
+        for (const connectionId of connections) {
+
+            const target =
+                siteMap.get(connectionId);
+
+            if (
+                target &&
+                placed.has(target.id)
+            ) {
+                connectedPlaced.push(target);
+            }
+        }
+
+
+        // =========================
+        // NO CONNECTION TO PLACED NODE
+        // =========================
+
+        if (connectedPlaced.length === 0) {
+
+            // Find the closest high-connection
+            // node that has already been placed.
+
+            let nearest = null;
+            let nearestDistance = Infinity;
+
+            for (const other of sortedSites) {
+
+                if (!placed.has(other.id)) {
+                    continue;
+                }
+
+                const dx =
+                    other.x;
+
+                const dy =
+                    other.y;
+
+                const distance =
+                    Math.hypot(dx, dy);
+
+                if (
+                    distance < nearestDistance
+                ) {
+
+                    nearest = other;
+                    nearestDistance = distance;
+                }
+            }
+
+
+            if (nearest) {
+
+                const angle =
+                    Math.random() *
+                    Math.PI * 2;
+
+                site.x =
+                    nearest.x +
+                    Math.cos(angle) *
+                    hubDistance * 2;
+
+                site.y =
+                    nearest.y +
+                    Math.sin(angle) *
+                    hubDistance * 2;
+
+            } else {
+
+                site.x = 0;
+                site.y = 0;
+            }
+
+            placed.add(site.id);
+
+            continue;
+        }
+
+
+        // =========================
+        // FIND AVERAGE POSITION
+        // =========================
+
+        let averageX = 0;
+        let averageY = 0;
+
+        let totalWeight = 0;
+
+        for (const target of connectedPlaced) {
+
+            // Highly connected nodes pull
+            // other nodes toward themselves.
+
+            const weight =
+                Math.max(
+                    1,
+                    connectionCount.get(target.id) || 1
+                );
+
+            averageX +=
+                target.x * weight;
+
+            averageY +=
+                target.y * weight;
+
+            totalWeight += weight;
+        }
+
+        averageX /=
+            totalWeight;
+
+        averageY /=
+            totalWeight;
+
+
+        // =========================
+        // FIND OPEN DIRECTION
+        // =========================
+
+        let angle =
+            Math.random() *
+            Math.PI * 2;
+
+
+        // Try several directions and choose
+        // one with the least nearby nodes.
+
+        let bestX = 0;
+        let bestY = 0;
+        let bestScore = Infinity;
+
+        for (
+            let attempt = 0;
+            attempt < 16;
+            attempt++
+        ) {
+
+            const testAngle =
+                (Math.PI * 2 / 16) *
+                attempt;
+
+            const testX =
+                averageX +
+                Math.cos(testAngle) *
+                hubDistance;
+
+            const testY =
+                averageY +
+                Math.sin(testAngle) *
+                hubDistance;
+
+
+            let score = 0;
+
+            for (const other of sites) {
+
+                if (
+                    !placed.has(other.id)
+                ) {
+                    continue;
+                }
+
+                const distance =
+                    Math.hypot(
+                        testX - other.x,
+                        testY - other.y
+                    );
+
+                // Strongly avoid overlapping nodes.
+                if (distance < spacing) {
+
+                    score +=
+                        (spacing - distance) *
+                        10;
+                }
+
+                // Slightly prefer empty space.
+                score +=
+                    100 /
+                    Math.max(distance, 10);
+            }
+
+
+            if (score < bestScore) {
+
+                bestScore = score;
+
+                bestX = testX;
+                bestY = testY;
+            }
+        }
+
+
+        site.x = bestX;
+        site.y = bestY;
+
+        placed.add(site.id);
+    }
+
+
+    // =========================
+    // SMALL STATIC CLEANUP
+    // =========================
+
+    // Push overlapping nodes apart.
+    // This happens only while creating the map,
+    // NOT every frame.
+
+    for (
+        let iteration = 0;
+        iteration < 40;
+        iteration++
+    ) {
+
+        for (let i = 0; i < sites.length; i++) {
+
+            const a = sites[i];
+
+            for (
+                let j = i + 1;
+                j < sites.length;
+                j++
+            ) {
+
+                const b = sites[j];
+
+                let dx =
+                    b.x - a.x;
+
+                let dy =
+                    b.y - a.y;
+
+                let distance =
+                    Math.hypot(dx, dy);
+
+
+                if (distance === 0) {
+
+                    dx = 1;
+                    dy = 0;
+
+                    distance = 1;
+                }
+
+
+                if (distance < spacing) {
+
+                    const push =
+                        (spacing - distance) / 2;
+
+                    dx /= distance;
+                    dy /= distance;
+
+                    a.x -=
+                        dx * push;
+
+                    a.y -=
+                        dy * push;
+
+                    b.x +=
+                        dx * push;
+
+                    b.y +=
+                        dy * push;
+                }
+            }
+        }
+    }
+
+
+    // =========================
+    // CENTER MAP
+    // =========================
+
+    let minX = Infinity;
+    let maxX = -Infinity;
+
+    let minY = Infinity;
+    let maxY = -Infinity;
+
+
+    for (const site of sites) {
+
+        minX =
+            Math.min(minX, site.x);
+
+        maxX =
+            Math.max(maxX, site.x);
+
+        minY =
+            Math.min(minY, site.y);
+
+        maxY =
+            Math.max(maxY, site.y);
+    }
+
+
+    const centerX =
+        (minX + maxX) / 2;
+
+    const centerY =
+        (minY + maxY) / 2;
+
+
+    for (const site of sites) {
+
+        site.x -= centerX;
+        site.y -= centerY;
+    }
+
 
     camera.x = 0;
     camera.y = 0;
     camera.zoom = 1;
-}
-
-
-// =========================
-// COORDINATES
-// =========================
-
-function worldToScreen(x, y) {
-
-    return {
-        x:
-            x * camera.zoom
-            + window.innerWidth / 2
-            + camera.x,
-
-        y:
-            y * camera.zoom
-            + window.innerHeight / 2
-            + camera.y
-    };
-}
-
-
-function screenToWorld(x, y) {
-
-    return {
-        x:
-            (x
-            - window.innerWidth / 2
-            - camera.x)
-            / camera.zoom,
-
-        y:
-            (y
-            - window.innerHeight / 2
-            - camera.y)
-            / camera.zoom
-    };
 }
 
 
