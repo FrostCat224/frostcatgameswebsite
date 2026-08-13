@@ -1,58 +1,378 @@
 {
   "sites": [
     {
-      "id": "google",
-      "name": "Google",
-      "url": "https://www.google.com",
-      "connections": ["youtube", "github", "wikipedia", "chatgpt"]
+      "id": "frostcat224.github.io",
+      "name": "frostcat224.github.io",
+      "url": "https://frostcat224.github.io",
+      "connections": [
+        "github.com"
+      ]
     },
     {
-      "id": "youtube",
-      "name": "YouTube",
-      "url": "https://www.youtube.com",
-      "connections": ["google", "wikipedia"]
-    },
-    {
-      "id": "wikipedia",
-      "name": "Wikipedia",
-      "url": "https://www.wikipedia.org",
-      "connections": ["google", "youtube"]
-    },
-    {
-      "id": "guthib",
-      "name": "Guthib",
-      "url": "https://guthib.com",
-      "connections": ["github"]
-    },
-    {
-      "id": "github",
-      "name": "GitHub",
+      "id": "github.com",
+      "name": "github.com",
       "url": "https://github.com",
-      "connections": ["google", "guthib"]
+      "connections": [
+        "docs.github.com",
+        "github.blog",
+        "skills.github.com",
+        "support.github.com",
+        "securitylab.github.com",
+        "maintainers.github.com",
+        "stars.github.com",
+        "archiveprogram.github.com",
+        "avatars.githubusercontent.com",
+        "githubstatus.com",
+        "github.community",
+        "gartner.com",
+        "cli.github.com",
+        "github.careers",
+        "socialimpact.github.com",
+        "thegithubshop.com",
+        "linkedin.com",
+        "instagram.com",
+        "youtube.com",
+        "x.com",
+        "tiktok.com",
+        "twitch.tv",
+        "copilot.github.trust.page",
+        "cwe.mitre.org",
+        "blogs.microsoft.com",
+        "gh.io",
+        "learning.linkedin.com",
+        "education.github.com",
+        "learn.github.com",
+        "githubuniverse.com",
+        "azure.microsoft.com",
+        "resources.github.com",
+        "desktop.github.com",
+        "electronjs.org",
+        "forrester.com",
+        "slack.github.com",
+        "nonprofits.github.com",
+        "aka.ms",
+        "tei.forrester.com"
+      ]
     },
     {
-      "id": "chatgpt",
-      "name": "ChatGPT",
-      "url": "https://chatgpt.com",
-      "connections": ["openai", "google"]
+      "id": "docs.github.com",
+      "name": "docs.github.com",
+      "url": "https://docs.github.com",
+      "connections": [
+        "codeql.github.com",
+        "electronjs.org",
+        "docs.npmjs.com",
+        "wellarchitected.github.com",
+        "github.com",
+        "support.github.com",
+        "githubstatus.com",
+        "services.github.com",
+        "github.blog"
+      ]
     },
     {
-      "id": "openai",
-      "name": "OpenAI",
-      "url": "https://openai.com",
-      "connections": ["chatgpt", "google"]
+      "id": "github.blog",
+      "name": "github.blog",
+      "url": "https://github.blog",
+      "connections": [
+        "github.com",
+        "docs.github.com",
+        "githubuniverse.com",
+        "resources.github.com",
+        "youtube.com",
+        "developer.github.com",
+        "partner.github.com",
+        "atom.io",
+        "electronjs.org",
+        "desktop.github.com",
+        "github.community",
+        "services.github.com",
+        "githubstatus.com",
+        "support.github.com",
+        "shop.github.com",
+        "linkedin.com",
+        "instagram.com",
+        "twitter.com",
+        "tiktok.com",
+        "twitch.tv",
+        "x.com"
+      ]
     },
     {
-      "id": "example",
-      "name": "example.com",
-      "url": "https://example.com",
-      "connections": ["iana"]
+      "id": "skills.github.com",
+      "name": "skills.github.com",
+      "url": "https://skills.github.com",
+      "connections": []
     },
     {
-      "id": "iana",
-      "name": "IANA",
-      "url": "https://iana.org",
-      "connections": ["example", "google"]
+      "id": "support.github.com",
+      "name": "support.github.com",
+      "url": "https://support.github.com",
+      "connections": []
+    },
+    {
+      "id": "securitylab.github.com",
+      "name": "securitylab.github.com",
+      "url": "https://securitylab.github.com",
+      "connections": []
+    },
+    {
+      "id": "maintainers.github.com",
+      "name": "maintainers.github.com",
+      "url": "https://maintainers.github.com",
+      "connections": []
+    },
+    {
+      "id": "stars.github.com",
+      "name": "stars.github.com",
+      "url": "https://stars.github.com",
+      "connections": []
+    },
+    {
+      "id": "archiveprogram.github.com",
+      "name": "archiveprogram.github.com",
+      "url": "https://archiveprogram.github.com",
+      "connections": []
+    },
+    {
+      "id": "avatars.githubusercontent.com",
+      "name": "avatars.githubusercontent.com",
+      "url": "https://avatars.githubusercontent.com",
+      "connections": []
+    },
+    {
+      "id": "githubstatus.com",
+      "name": "githubstatus.com",
+      "url": "https://githubstatus.com",
+      "connections": []
+    },
+    {
+      "id": "github.community",
+      "name": "github.community",
+      "url": "https://github.community",
+      "connections": []
+    },
+    {
+      "id": "gartner.com",
+      "name": "gartner.com",
+      "url": "https://gartner.com",
+      "connections": []
+    },
+    {
+      "id": "cli.github.com",
+      "name": "cli.github.com",
+      "url": "https://cli.github.com",
+      "connections": []
+    },
+    {
+      "id": "github.careers",
+      "name": "github.careers",
+      "url": "https://github.careers",
+      "connections": []
+    },
+    {
+      "id": "socialimpact.github.com",
+      "name": "socialimpact.github.com",
+      "url": "https://socialimpact.github.com",
+      "connections": []
+    },
+    {
+      "id": "thegithubshop.com",
+      "name": "thegithubshop.com",
+      "url": "https://thegithubshop.com",
+      "connections": []
+    },
+    {
+      "id": "linkedin.com",
+      "name": "linkedin.com",
+      "url": "https://linkedin.com",
+      "connections": []
+    },
+    {
+      "id": "instagram.com",
+      "name": "instagram.com",
+      "url": "https://instagram.com",
+      "connections": []
+    },
+    {
+      "id": "youtube.com",
+      "name": "youtube.com",
+      "url": "https://youtube.com",
+      "connections": []
+    },
+    {
+      "id": "x.com",
+      "name": "x.com",
+      "url": "https://x.com",
+      "connections": []
+    },
+    {
+      "id": "tiktok.com",
+      "name": "tiktok.com",
+      "url": "https://tiktok.com",
+      "connections": []
+    },
+    {
+      "id": "twitch.tv",
+      "name": "twitch.tv",
+      "url": "https://twitch.tv",
+      "connections": []
+    },
+    {
+      "id": "copilot.github.trust.page",
+      "name": "copilot.github.trust.page",
+      "url": "https://copilot.github.trust.page",
+      "connections": []
+    },
+    {
+      "id": "cwe.mitre.org",
+      "name": "cwe.mitre.org",
+      "url": "https://cwe.mitre.org",
+      "connections": []
+    },
+    {
+      "id": "blogs.microsoft.com",
+      "name": "blogs.microsoft.com",
+      "url": "https://blogs.microsoft.com",
+      "connections": []
+    },
+    {
+      "id": "gh.io",
+      "name": "gh.io",
+      "url": "https://gh.io",
+      "connections": []
+    },
+    {
+      "id": "learning.linkedin.com",
+      "name": "learning.linkedin.com",
+      "url": "https://learning.linkedin.com",
+      "connections": []
+    },
+    {
+      "id": "education.github.com",
+      "name": "education.github.com",
+      "url": "https://education.github.com",
+      "connections": []
+    },
+    {
+      "id": "learn.github.com",
+      "name": "learn.github.com",
+      "url": "https://learn.github.com",
+      "connections": []
+    },
+    {
+      "id": "githubuniverse.com",
+      "name": "githubuniverse.com",
+      "url": "https://githubuniverse.com",
+      "connections": []
+    },
+    {
+      "id": "azure.microsoft.com",
+      "name": "azure.microsoft.com",
+      "url": "https://azure.microsoft.com",
+      "connections": []
+    },
+    {
+      "id": "resources.github.com",
+      "name": "resources.github.com",
+      "url": "https://resources.github.com",
+      "connections": []
+    },
+    {
+      "id": "codeql.github.com",
+      "name": "codeql.github.com",
+      "url": "https://codeql.github.com",
+      "connections": []
+    },
+    {
+      "id": "electronjs.org",
+      "name": "electronjs.org",
+      "url": "https://electronjs.org",
+      "connections": []
+    },
+    {
+      "id": "docs.npmjs.com",
+      "name": "docs.npmjs.com",
+      "url": "https://docs.npmjs.com",
+      "connections": []
+    },
+    {
+      "id": "wellarchitected.github.com",
+      "name": "wellarchitected.github.com",
+      "url": "https://wellarchitected.github.com",
+      "connections": []
+    },
+    {
+      "id": "services.github.com",
+      "name": "services.github.com",
+      "url": "https://services.github.com",
+      "connections": []
+    },
+    {
+      "id": "developer.github.com",
+      "name": "developer.github.com",
+      "url": "https://developer.github.com",
+      "connections": []
+    },
+    {
+      "id": "partner.github.com",
+      "name": "partner.github.com",
+      "url": "https://partner.github.com",
+      "connections": []
+    },
+    {
+      "id": "atom.io",
+      "name": "atom.io",
+      "url": "https://atom.io",
+      "connections": []
+    },
+    {
+      "id": "desktop.github.com",
+      "name": "desktop.github.com",
+      "url": "https://desktop.github.com",
+      "connections": []
+    },
+    {
+      "id": "shop.github.com",
+      "name": "shop.github.com",
+      "url": "https://shop.github.com",
+      "connections": []
+    },
+    {
+      "id": "twitter.com",
+      "name": "twitter.com",
+      "url": "https://twitter.com",
+      "connections": []
+    },
+    {
+      "id": "forrester.com",
+      "name": "forrester.com",
+      "url": "https://forrester.com",
+      "connections": []
+    },
+    {
+      "id": "slack.github.com",
+      "name": "slack.github.com",
+      "url": "https://slack.github.com",
+      "connections": []
+    },
+    {
+      "id": "nonprofits.github.com",
+      "name": "nonprofits.github.com",
+      "url": "https://nonprofits.github.com",
+      "connections": []
+    },
+    {
+      "id": "aka.ms",
+      "name": "aka.ms",
+      "url": "https://aka.ms",
+      "connections": []
+    },
+    {
+      "id": "tei.forrester.com",
+      "name": "tei.forrester.com",
+      "url": "https://tei.forrester.com",
+      "connections": []
     }
   ]
 }
