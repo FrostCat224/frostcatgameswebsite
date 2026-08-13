@@ -111,14 +111,7 @@ fetch("data.json")
 function createPositions() {
 
     const spacing = 100;
-
-    // Normal distance between connected websites
-    const hubDistance = 180;
-
-    // Distance for websites that aren't connected
-    // to anything already placed
-    const isolatedDistance = 600;
-
+    const hubDistance = 120;
 
     // =========================
     // BUILD CONNECTION COUNTS
@@ -136,23 +129,20 @@ function createPositions() {
         );
     }
 
-
     // =========================
-    // SORT BY CONNECTIONS
+    // SORT BY MOST CONNECTIONS
     // =========================
 
-    const sortedSites =
-        [...sites].sort((a, b) => {
+    const sortedSites = [...sites].sort((a, b) => {
 
-            const aConnections =
-                connectionCount.get(a.id) || 0;
+        const aConnections =
+            connectionCount.get(a.id) || 0;
 
-            const bConnections =
-                connectionCount.get(b.id) || 0;
+        const bConnections =
+            connectionCount.get(b.id) || 0;
 
-            return bConnections - aConnections;
-        });
-
+        return bConnections - aConnections;
+    });
 
     // =========================
     // RESET POSITIONS
@@ -164,9 +154,8 @@ function createPositions() {
         site.y = null;
     }
 
-
     // =========================
-    // NO SITES
+    // EMPTY MAP
     // =========================
 
     if (sortedSites.length === 0) {
@@ -178,29 +167,21 @@ function createPositions() {
         return;
     }
 
-
     // =========================
     // PLACE FIRST HUB
     // =========================
 
-    const first =
-        sortedSites[0];
+    const first = sortedSites[0];
 
     first.x = 0;
     first.y = 0;
-
-
-    // =========================
-    // PLACED NODES
-    // =========================
 
     const placed = new Set();
 
     placed.add(first.id);
 
-
     // =========================
-    // PLACE REMAINING NODES
+    // PLACE NODES
     // =========================
 
     for (const site of sortedSites) {
@@ -209,17 +190,12 @@ function createPositions() {
             continue;
         }
 
-
         const connections =
             Array.isArray(site.connections)
                 ? site.connections
                 : [];
 
-
-        // =========================
-        // FIND CONNECTED PLACED NODES
-        // =========================
-
+        // Find already placed connected sites
         const connectedPlaced = [];
 
         for (const connectionId of connections) {
@@ -231,11 +207,9 @@ function createPositions() {
                 target &&
                 placed.has(target.id)
             ) {
-
                 connectedPlaced.push(target);
             }
         }
-
 
         // =========================
         // NO CONNECTION TO PLACED NODE
@@ -243,33 +217,54 @@ function createPositions() {
 
         if (connectedPlaced.length === 0) {
 
-            // Put isolated nodes far away
-            // instead of forcing them into
-            // the main cluster.
+            let nearest = null;
+            let nearestDistance = Infinity;
 
-            const angle =
-                Math.random() *
-                Math.PI * 2;
+            for (const other of sortedSites) {
 
-            const distance =
-                isolatedDistance +
-                Math.random() * 500;
+                if (!placed.has(other.id)) {
+                    continue;
+                }
 
+                const distance =
+                    Math.hypot(
+                        other.x,
+                        other.y
+                    );
 
-            site.x =
-                Math.cos(angle) *
-                distance;
+                if (distance < nearestDistance) {
 
-            site.y =
-                Math.sin(angle) *
-                distance;
+                    nearest = other;
+                    nearestDistance = distance;
+                }
+            }
 
+            if (nearest) {
+
+                const angle =
+                    Math.random() *
+                    Math.PI * 2;
+
+                site.x =
+                    nearest.x +
+                    Math.cos(angle) *
+                    hubDistance * 2;
+
+                site.y =
+                    nearest.y +
+                    Math.sin(angle) *
+                    hubDistance * 2;
+
+            } else {
+
+                site.x = 0;
+                site.y = 0;
+            }
 
             placed.add(site.id);
 
             continue;
         }
-
 
         // =========================
         // FIND AVERAGE POSITION
@@ -280,18 +275,13 @@ function createPositions() {
 
         let totalWeight = 0;
 
-
         for (const target of connectedPlaced) {
-
-            // More connected websites
-            // have slightly more influence.
 
             const weight =
                 Math.max(
                     1,
                     connectionCount.get(target.id) || 1
                 );
-
 
             averageX +=
                 target.x * weight;
@@ -302,13 +292,8 @@ function createPositions() {
             totalWeight += weight;
         }
 
-
-        averageX /=
-            totalWeight;
-
-        averageY /=
-            totalWeight;
-
+        averageX /= totalWeight;
+        averageY /= totalWeight;
 
         // =========================
         // FIND OPEN DIRECTION
@@ -316,14 +301,7 @@ function createPositions() {
 
         let bestX = 0;
         let bestY = 0;
-
-        let bestScore =
-            Infinity;
-
-
-        // Only test 16 directions.
-        // This is very cheap compared
-        // with a physics simulation.
+        let bestScore = Infinity;
 
         for (
             let attempt = 0;
@@ -335,31 +313,23 @@ function createPositions() {
                 (Math.PI * 2 / 16) *
                 attempt;
 
-
             const testX =
                 averageX +
                 Math.cos(testAngle) *
                 hubDistance;
-
 
             const testY =
                 averageY +
                 Math.sin(testAngle) *
                 hubDistance;
 
-
             let score = 0;
 
+            for (const other of sites) {
 
-            // Check already placed nodes
-            for (const other of sortedSites) {
-
-                if (
-                    !placed.has(other.id)
-                ) {
+                if (!placed.has(other.id)) {
                     continue;
                 }
-
 
                 const distance =
                     Math.hypot(
@@ -367,8 +337,7 @@ function createPositions() {
                         testY - other.y
                     );
 
-
-                // Strongly avoid overlap
+                // Strongly avoid overlapping nodes
                 if (distance < spacing) {
 
                     score +=
@@ -376,81 +345,92 @@ function createPositions() {
                         10;
                 }
 
-
-                // Prefer empty space
+                // Slight preference for empty space
                 score +=
                     100 /
-                    Math.max(
-                        distance,
-                        10
-                    );
+                    Math.max(distance, 10);
             }
-
 
             if (score < bestScore) {
 
-                bestScore =
-                    score;
+                bestScore = score;
 
-                bestX =
-                    testX;
-
-                bestY =
-                    testY;
+                bestX = testX;
+                bestY = testY;
             }
         }
 
-
-        // =========================
-        // SAVE POSITION
-        // =========================
-
-        site.x =
-            bestX;
-
-        site.y =
-            bestY;
-
+        site.x = bestX;
+        site.y = bestY;
 
         placed.add(site.id);
     }
 
-
     // =========================
-    // EXTRA SPACING FOR ISOLATED
-    // NODES
+    // STATIC CLEANUP
     // =========================
 
-    for (const site of sites) {
+    // Push overlapping nodes apart.
+    // This only happens when creating the map,
+    // NOT every frame.
 
-        const amount =
-            connectionCount.get(site.id) || 0;
+    for (
+        let iteration = 0;
+        iteration < 40;
+        iteration++
+    ) {
 
+        for (let i = 0; i < sites.length; i++) {
 
-        // Sites with zero connections
-        // get pushed even farther away.
+            const a = sites[i];
 
-        if (amount === 0) {
+            for (
+                let j = i + 1;
+                j < sites.length;
+                j++
+            ) {
 
-            const angle =
-                Math.random() *
-                Math.PI * 2;
+                const b = sites[j];
 
-            const distance =
-                500 +
-                Math.random() * 800;
+                let dx =
+                    b.x - a.x;
 
+                let dy =
+                    b.y - a.y;
 
-            site.x +=
-                Math.cos(angle) *
-                distance;
+                let distance =
+                    Math.hypot(dx, dy);
 
-            site.y +=
-                Math.sin(angle) *
-                distance;
+                if (distance === 0) {
+
+                    dx = 1;
+                    dy = 0;
+                    distance = 1;
+                }
+
+                if (distance < spacing) {
+
+                    const push =
+                        (spacing - distance) / 2;
+
+                    dx /= distance;
+                    dy /= distance;
+
+                    a.x -=
+                        dx * push;
+
+                    a.y -=
+                        dy * push;
+
+                    b.x +=
+                        dx * push;
+
+                    b.y +=
+                        dy * push;
+                }
+            }
         }
     }
-
 
     // =========================
     // CENTER MAP
@@ -461,7 +441,6 @@ function createPositions() {
 
     let minY = Infinity;
     let maxY = -Infinity;
-
 
     for (const site of sites) {
 
@@ -490,23 +469,17 @@ function createPositions() {
             );
     }
 
-
     const centerX =
         (minX + maxX) / 2;
 
     const centerY =
         (minY + maxY) / 2;
 
-
     for (const site of sites) {
 
-        site.x -=
-            centerX;
-
-        site.y -=
-            centerY;
+        site.x -= centerX;
+        site.y -= centerY;
     }
-
 
     // =========================
     // RESET CAMERA
