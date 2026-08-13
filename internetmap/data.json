@@ -5,7 +5,42 @@
       "name": "frostcat224.github.io",
       "url": "https://frostcat224.github.io",
       "connections": [
+        "thejustinator.com",
         "github.com"
+      ]
+    },
+    {
+      "id": "thejustinator.com",
+      "name": "thejustinator.com",
+      "url": "https://thejustinator.com",
+      "connections": [
+        "colosseum.frosk.network",
+        "youtube.com",
+        "discord.gg",
+        "tiktok.com",
+        "reddit.com",
+        "twitch.tv",
+        "twitter.com",
+        "roblox.com",
+        "disqus.com",
+        "eepyrryls.thejustinator.com",
+        "billwurtz.com",
+        "youtu.be",
+        "scratch.mit.edu",
+        "francocitera.com",
+        "illformed.org",
+        "open.spotify.com",
+        "diamondcup67.com",
+        "rune.bio",
+        "vortex64.great-site.net",
+        "flooky.gq",
+        "paperdave.net",
+        "webtoons.com",
+        "typingtest.com",
+        "w3schools.com",
+        "fallguys.com",
+        "games.gdevelop-app.com",
+        "davecode.me"
       ]
     },
     {
@@ -51,7 +86,286 @@
         "slack.github.com",
         "nonprofits.github.com",
         "aka.ms",
-        "tei.forrester.com"
+        "tei.forrester.com",
+        "github.registration.goldcast.io",
+        "itch.io",
+        "github.ondemand.goldcast.io",
+        "accessibility.github.com",
+        "ghec.github.trust.page",
+        "cdn-dynmedia-1.microsoft.com",
+        "nist.gov",
+        "microsoft.com",
+        "forms.gle",
+        "tsia.com",
+        "apps.apple.com",
+        "play.google.com",
+        "security.googleblog.com",
+        "figma.com",
+        "mercedes-benz-techinnovation.com",
+        "opensource.mercedes-benz.com",
+        "pages.github.com",
+        "code.visualstudio.com",
+        "trust.gitlab.com",
+        "atlassian.com",
+        "facebook.com",
+        "github.github.io",
+        "help.github.com",
+        "lab.github.com",
+        "partner.github.com",
+        "codeql.github.com",
+        "octoverse.github.com",
+        "twitter.com",
+        "itbrief.com.au",
+        "timesofindia.indiatimes.com",
+        "economictimes.indiatimes.com",
+        "venturebeat.com",
+        "ft.com",
+        "thelettertwo.com",
+        "user-images.githubusercontent.com",
+        "opensource.guide",
+        "marketplace.visualstudio.com",
+        "visualstudio.microsoft.com",
+        "plugins.jetbrains.com",
+        "marketplace.eclipse.org",
+        "learn.microsoft.com",
+        "zed.dev",
+        "slack.com",
+        "cdn.forms-content-1.sg-form.com",
+        "pypi.org",
+        "camo.githubusercontent.com",
+        "cla.opensource.microsoft.com",
+        "opensource.microsoft.com",
+        "modelcontextprotocol.io",
+        "app.netdata.cloud",
+        "anthropic.com",
+        "raw.githubusercontent.com",
+        "cursor.com",
+        "context7.com",
+        "npmjs.com",
+        "upstash.com",
+        "youtu.be",
+        "npmjs.org",
+        "developer.chrome.com",
+        "chromiumdash.appspot.com",
+        "policies.google.com",
+        "nodejs.org",
+        "google.com",
+        "antigravity.google",
+        "bob.ibm.com",
+        "code.claude.com",
+        "developers.openai.com",
+        "commandcode.ai",
+        "vscode.dev",
+        "insiders.vscode.dev",
+        "docs.devin.ai",
+        "docs.factory.ai",
+        "cloud.google.com",
+        "docs.x.ai",
+        "docs.katalon.com",
+        "opencode.ai",
+        "docs.qoder.com",
+        "vs-open.link",
+        "docs.warp.dev",
+        "docs.windsurf.com",
+        "chromium.org",
+        "ffmpeg.org",
+        "urlpattern.spec.whatwg.org",
+        "developers.chrome.com",
+        "geminicli.com",
+        "playwright.dev",
+        "docs.cline.bot",
+        "block.github.io",
+        "junie.jetbrains.com",
+        "kiro.dev",
+        "lmstudio.ai",
+        "docs.qodo.ai",
+        "myproxy:3128",
+        "example.com%22%7d",
+        "goreportcard.com",
+        "docker.com",
+        "discord.gg",
+        "coplaydev.github.io",
+        "tryaura.dev",
+        "docs.astral.sh",
+        "star-history.com",
+        "agentaudit.dev",
+        "archestra.ai",
+        "smithery.ai",
+        "buymeacoffee.com",
+        "glama.ai",
+        "desktopcommander.app",
+        "mcp.desktopcommander.app",
+        "cursor.directory",
+        "docs.cursor.com",
+        "docs.roocode.com",
+        "docs.anthropic.com",
+        "docs.trae.ai",
+        "jetbrains.com",
+        "docs.augmentcode.com",
+        "qwenlm.github.io",
+        "discord.com",
+        "hub.docker.com",
+        "patreon.com",
+        "wonderwhy-er.medium.com",
+        "analyticsindiamag.com",
+        "medium.com",
+        "mseep.ai",
+        "knacklabs.ai",
+        "mcp.so",
+        "klavis.ai",
+        "docs.firecrawl.dev",
+        "firecrawl.dev",
+        "localhost:3000",
+        "example.com",
+        "caw.tech",
+        "developers.notion.com",
+        "spec.modelcontextprotocol.io",
+        "notion.so",
+        "mcptoplist.com",
+        "gnu.org",
+        "badge.fury.io",
+        "python.org",
+        "deepwiki.com",
+        "basicmemory.com",
+        "docs.basicmemory.com",
+        "umami.is",
+        "basicmachines.co",
+        "eclipse.org",
+        "dotnet.microsoft.com",
+        "nuget.org",
+        "docs.aws.amazon.com",
+        "support.claude.com",
+        "mcr.microsoft.com",
+        "claude.com",
+        "help.kusto.windows.net",
+        "scottspence.com",
+        "mcp.apify.com",
+        "apify.com",
+        "claude.ai",
+        "docs.apify.com",
+        "modelcontextprotocol.org",
+        "agi.apify.com",
+        "base.org",
+        "x402.org",
+        "skyfire.xyz",
+        "blog.apify.com",
+        "sentry.io",
+        "pkg.pr.new",
+        "json-schema.org",
+        "bytebase.com",
+        "dbhub.ai",
+        "registry.modelcontextprotocol.io",
+        "supabase.com",
+        "ai-sdk.dev",
+        "brightdata.com",
+        "docs.brightdata.com",
+        "tavily.com",
+        "app.tavily.com",
+        "cursor.sh",
+        "git-scm.com",
+        "contrib.rocks",
+        "zereight.github.io",
+        "ngrok.com",
+        "help.figma.com",
+        "developers.figma.com",
+        "platform.openai.com",
+        "agentskills.io",
+        "npm.im",
+        "docs.stripe.com",
+        "patrickchugh.github.io",
+        "graphviz.org",
+        "terraform.io",
+        "terragrunt.gruntwork.io",
+        "developer.hashicorp.com",
+        "docs.claude.com",
+        "learn.chatgpt.com",
+        "hashicorp.com",
+        "docs.vybenetwork.com",
+        "open-plugins.com",
+        "scorecard.dev",
+        "bestpractices.dev",
+        "docs.searxng.org",
+        "cloud.mongodb.com",
+        "mongodb.com",
+        "assets.ctfassets.net"
+      ]
+    },
+    {
+      "id": "colosseum.frosk.network",
+      "name": "colosseum.frosk.network",
+      "url": "https://colosseum.frosk.network",
+      "connections": []
+    },
+    {
+      "id": "youtube.com",
+      "name": "youtube.com",
+      "url": "https://youtube.com",
+      "connections": [
+        "accounts.google.com",
+        "policies.google.com",
+        "consent.youtube.com",
+        "developers.google.com"
+      ]
+    },
+    {
+      "id": "discord.gg",
+      "name": "discord.gg",
+      "url": "https://discord.gg",
+      "connections": []
+    },
+    {
+      "id": "tiktok.com",
+      "name": "tiktok.com",
+      "url": "https://tiktok.com",
+      "connections": []
+    },
+    {
+      "id": "reddit.com",
+      "name": "reddit.com",
+      "url": "https://reddit.com",
+      "connections": []
+    },
+    {
+      "id": "twitch.tv",
+      "name": "twitch.tv",
+      "url": "https://twitch.tv",
+      "connections": []
+    },
+    {
+      "id": "twitter.com",
+      "name": "twitter.com",
+      "url": "https://twitter.com",
+      "connections": [
+        "x.com",
+        "support.x.com",
+        "help.x.com",
+        "business.x.com",
+        "about.x.com",
+        "grok.com",
+        "careers.x.com",
+        "developer.x.com",
+        "legal.twitter.com",
+        "business.twitter.com"
+      ]
+    },
+    {
+      "id": "roblox.com",
+      "name": "roblox.com",
+      "url": "https://roblox.com",
+      "connections": []
+    },
+    {
+      "id": "disqus.com",
+      "name": "disqus.com",
+      "url": "https://disqus.com",
+      "connections": []
+    },
+    {
+      "id": "eepyrryls.thejustinator.com",
+      "name": "eepyrryls.thejustinator.com",
+      "url": "https://eepyrryls.thejustinator.com",
+      "connections": [
+        "old.thejustinator.com"
       ]
     },
     {
@@ -67,7 +381,37 @@
         "support.github.com",
         "githubstatus.com",
         "services.github.com",
-        "github.blog"
+        "github.blog",
+        "education.github.com",
+        "pages.github.com",
+        "githubuniverse.com",
+        "treasury.gov",
+        "creativecommons.org",
+        "code.visualstudio.com",
+        "eur-lex.europa.eu",
+        "commission.europa.eu",
+        "dataprivacyframework.gov",
+        "go.adr.org",
+        "en.wikipedia.org",
+        "globalprivacycontrol.org",
+        "optout.networkadvertising.org",
+        "optout.aboutads.info",
+        "youradchoices.ca",
+        "youronlinechoices.com",
+        "containers.dev",
+        "docs.docker.com",
+        "marketplace.visualstudio.com",
+        "git-scm.com",
+        "cli.github.com",
+        "pytorch.org",
+        "dotfiles.github.io",
+        "learn.microsoft.com",
+        "resources.github.com",
+        "microsoft.com",
+        "cdn-dynmedia-1.microsoft.com",
+        "docs.microsoft.com",
+        "api.github.com",
+        "developer.apple.com"
       ]
     },
     {
@@ -95,14 +439,24 @@
         "twitter.com",
         "tiktok.com",
         "twitch.tv",
-        "x.com"
+        "x.com",
+        "facebook.com",
+        "github.co",
+        "arxiv.org",
+        "nngroup.com",
+        "verizon.com",
+        "code.visualstudio.com",
+        "marketplace.visualstudio.com",
+        "swebench.com"
       ]
     },
     {
       "id": "skills.github.com",
       "name": "skills.github.com",
       "url": "https://skills.github.com",
-      "connections": []
+      "connections": [
+        "learn.github.com"
+      ]
     },
     {
       "id": "support.github.com",
@@ -114,7 +468,35 @@
       "id": "securitylab.github.com",
       "name": "securitylab.github.com",
       "url": "https://securitylab.github.com",
-      "connections": []
+      "connections": [
+        "github.com",
+        "github.blog",
+        "nvd.nist.gov",
+        "bsky.app",
+        "infosec.exchange",
+        "linkedin.com",
+        "resources.github.com",
+        "developer.github.com",
+        "partner.github.com",
+        "atom.io",
+        "electron.atom.io",
+        "desktop.github.com",
+        "docs.github.com",
+        "github.community",
+        "services.github.com",
+        "skills.github.com",
+        "githubstatus.com",
+        "support.github.com",
+        "shop.github.com",
+        "twitter.com",
+        "facebook.com",
+        "youtube.com",
+        "codeql.com",
+        "intrigus.org",
+        "sentinelone.com",
+        "medium.com",
+        "pwning.systems"
+      ]
     },
     {
       "id": "maintainers.github.com",
@@ -126,13 +508,19 @@
       "id": "stars.github.com",
       "name": "stars.github.com",
       "url": "https://stars.github.com",
-      "connections": []
+      "connections": [
+        "help.github.com",
+        "github.com"
+      ]
     },
     {
       "id": "archiveprogram.github.com",
       "name": "archiveprogram.github.com",
       "url": "https://archiveprogram.github.com",
-      "connections": []
+      "connections": [
+        "github.com",
+        "partner.github.com"
+      ]
     },
     {
       "id": "avatars.githubusercontent.com",
@@ -144,12 +532,324 @@
       "id": "githubstatus.com",
       "name": "githubstatus.com",
       "url": "https://githubstatus.com",
-      "connections": []
+      "connections": [
+        "help.github.com",
+        "github.community",
+        "github.com",
+        "policies.google.com",
+        "atlassian.com",
+        "subscriptions.statuspage.io",
+        "au.githubstatus.com",
+        "eu.githubstatus.com",
+        "jp.githubstatus.com",
+        "us.githubstatus.com",
+        "resources.github.com",
+        "docs.github.com",
+        "partner.github.com",
+        "cli.github.com",
+        "desktop.github.com",
+        "services.github.com",
+        "skills.github.com",
+        "support.github.com",
+        "github.blog",
+        "github.careers",
+        "socialimpact.github.com",
+        "shop.github.com",
+        "x.com",
+        "facebook.com",
+        "linkedin.com",
+        "youtube.com",
+        "twitch.tv",
+        "tiktok.com"
+      ]
     },
     {
       "id": "github.community",
       "name": "github.community",
       "url": "https://github.community",
+      "connections": [
+        "github.com",
+        "docs.github.com",
+        "github.blog",
+        "skills.github.com",
+        "support.github.com",
+        "securitylab.github.com",
+        "maintainers.github.com",
+        "stars.github.com",
+        "archiveprogram.github.com",
+        "githubstatus.com"
+      ]
+    },
+    {
+      "id": "billwurtz.com",
+      "name": "billwurtz.com",
+      "url": "https://billwurtz.com",
+      "connections": [
+        "mastodon.social",
+        "bsky.app"
+      ]
+    },
+    {
+      "id": "youtu.be",
+      "name": "youtu.be",
+      "url": "https://youtu.be",
+      "connections": [
+        "youtube.com",
+        "developers.google.com"
+      ]
+    },
+    {
+      "id": "scratch.mit.edu",
+      "name": "scratch.mit.edu",
+      "url": "https://scratch.mit.edu",
+      "connections": []
+    },
+    {
+      "id": "francocitera.com",
+      "name": "francocitera.com",
+      "url": "https://francocitera.com",
+      "connections": [
+        "music.apple.com",
+        "open.spotify.com",
+        "youtube.com",
+        "instagram.com",
+        "tiktok.com",
+        "x.com"
+      ]
+    },
+    {
+      "id": "illformed.org",
+      "name": "illformed.org",
+      "url": "https://illformed.org",
+      "connections": [
+        "illformed.bandcamp.com",
+        "youtube.com",
+        "illformed.com"
+      ]
+    },
+    {
+      "id": "open.spotify.com",
+      "name": "open.spotify.com",
+      "url": "https://open.spotify.com",
+      "connections": []
+    },
+    {
+      "id": "diamondcup67.com",
+      "name": "diamondcup67.com",
+      "url": "https://diamondcup67.com",
+      "connections": [
+        "youtu.be",
+        "xkcd.com",
+        "youtube.com"
+      ]
+    },
+    {
+      "id": "rune.bio",
+      "name": "rune.bio",
+      "url": "https://rune.bio",
+      "connections": []
+    },
+    {
+      "id": "vortex64.great-site.net",
+      "name": "vortex64.great-site.net",
+      "url": "https://vortex64.great-site.net",
+      "connections": []
+    },
+    {
+      "id": "flooky.gq",
+      "name": "flooky.gq",
+      "url": "https://flooky.gq",
+      "connections": []
+    },
+    {
+      "id": "paperdave.net",
+      "name": "paperdave.net",
+      "url": "https://paperdave.net",
+      "connections": []
+    },
+    {
+      "id": "webtoons.com",
+      "name": "webtoons.com",
+      "url": "https://webtoons.com",
+      "connections": [
+        "shop.webtoon.com",
+        "facebook.com",
+        "twitter.com",
+        "owlturd.com",
+        "play.google.com",
+        "itunes.apple.com",
+        "instagram.com",
+        "x.com",
+        "youtube.com",
+        "about.webtoon.com",
+        "webtoon.zendesk.com",
+        "advertising.webtoon.com"
+      ]
+    },
+    {
+      "id": "typingtest.com",
+      "name": "typingtest.com",
+      "url": "https://typingtest.com",
+      "connections": [
+        "sporcle.com"
+      ]
+    },
+    {
+      "id": "w3schools.com",
+      "name": "w3schools.com",
+      "url": "https://w3schools.com",
+      "connections": [
+        "profile.w3schools.com",
+        "campus.w3schools.com",
+        "order.w3schools.com",
+        "spaces.w3schools.com",
+        "pathfinder.w3schools.com",
+        "youtube.com",
+        "linkedin.com",
+        "discord.com",
+        "facebook.com",
+        "instagram.com",
+        "tiktok.com"
+      ]
+    },
+    {
+      "id": "fallguys.com",
+      "name": "fallguys.com",
+      "url": "https://fallguys.com",
+      "connections": [
+        "store.epicgames.com",
+        "store.playstation.com",
+        "nintendo.com",
+        "xbox.com"
+      ]
+    },
+    {
+      "id": "accounts.google.com",
+      "name": "accounts.google.com",
+      "url": "https://accounts.google.com",
+      "connections": [
+        "support.google.com"
+      ]
+    },
+    {
+      "id": "policies.google.com",
+      "name": "policies.google.com",
+      "url": "https://policies.google.com",
+      "connections": [
+        "google.nl",
+        "accounts.google.com",
+        "google.com",
+        "myaccount.google.com",
+        "g.co",
+        "analytics.google.com",
+        "myadcenter.google.com",
+        "adssettings.google.com",
+        "cloud.google.com",
+        "business.safety.google",
+        "about.google",
+        "transparency.google",
+        "gstatic.com",
+        "support.google.com",
+        "myactivity.google.com",
+        "youtube.com",
+        "takeout.google.com",
+        "transparencyreport.google.com",
+        "safebrowsing.google.com",
+        "payments.google.com",
+        "fiber.google.com",
+        "fi.google.com",
+        "workspace.google.com",
+        "ssl.gstatic.com",
+        "kids.youtube.com",
+        "families.google.com",
+        "assistant.google.com",
+        "privacy.google.com",
+        "protectingchildren.google",
+        "contacts.google.com",
+        "safety.google",
+        "bughunters.google.com",
+        "eur-lex.europa.eu"
+      ]
+    },
+    {
+      "id": "consent.youtube.com",
+      "name": "consent.youtube.com",
+      "url": "https://consent.youtube.com",
+      "connections": [
+        "accounts.google.com",
+        "policies.google.com",
+        "tools.google.com",
+        "support.google.com"
+      ]
+    },
+    {
+      "id": "x.com",
+      "name": "x.com",
+      "url": "https://x.com",
+      "connections": [
+        "support.x.com",
+        "about.x.com",
+        "help.x.com",
+        "grok.com",
+        "careers.x.com",
+        "business.x.com",
+        "developer.x.com",
+        "legal.twitter.com",
+        "business.twitter.com",
+        "legal.x.com",
+        "docs.x.com",
+        "hackerone.com",
+        "ads.x.com",
+        "publish.x.com",
+        "privacy.x.com",
+        "transparency.x.com",
+        "blog.x.com",
+        "investor.twitterinc.com",
+        "create.x.com",
+        "preferencecenter.x.com",
+        "twittercommunity.com",
+        "marketing.x.com",
+        "xadsacademy.com",
+        "help.twitter.com",
+        "twitter.com",
+        "commission.europa.eu",
+        "dataprivacyframework.gov",
+        "jamsadr.com",
+        "dataprotection.ie",
+        "t.co",
+        "gh.io"
+      ]
+    },
+    {
+      "id": "support.x.com",
+      "name": "support.x.com",
+      "url": "https://support.x.com",
+      "connections": []
+    },
+    {
+      "id": "help.x.com",
+      "name": "help.x.com",
+      "url": "https://help.x.com",
+      "connections": []
+    },
+    {
+      "id": "business.x.com",
+      "name": "business.x.com",
+      "url": "https://business.x.com",
+      "connections": [
+        "support.twitter.com",
+        "optout.aboutads.info",
+        "help.twitter.com",
+        "networkadvertising.org",
+        "tools.google.com",
+        "google.com",
+        "ads.twitter.com"
+      ]
+    },
+    {
+      "id": "old.thejustinator.com",
+      "name": "old.thejustinator.com",
+      "url": "https://old.thejustinator.com",
       "connections": []
     },
     {
@@ -162,60 +862,98 @@
       "id": "cli.github.com",
       "name": "cli.github.com",
       "url": "https://cli.github.com",
-      "connections": []
+      "connections": [
+        "github.com",
+        "resources.github.com",
+        "developer.github.com",
+        "partner.github.com",
+        "desktop.github.com",
+        "help.github.com",
+        "github.community",
+        "githubstatus.com",
+        "github.blog",
+        "shop.github.com",
+        "docs.github.com",
+        "twitter.com",
+        "facebook.com",
+        "youtube.com",
+        "linkedin.com"
+      ]
     },
     {
       "id": "github.careers",
       "name": "github.careers",
       "url": "https://github.careers",
-      "connections": []
+      "connections": [
+        "github.com",
+        "docs.github.com",
+        "skills.github.com",
+        "github.blog",
+        "education.github.com",
+        "resources.github.com",
+        "partner.github.com",
+        "careers-githubinc.icims.com",
+        "globalcareers-githubinc.icims.com",
+        "employees-githubinc.icims.com",
+        "globalemployees-githubinc.icims.com",
+        "githubtalentcommunity.careers",
+        "electronjs.org",
+        "desktop.github.com",
+        "githubstatus.com",
+        "support.github.com",
+        "socialimpact.github.com",
+        "thegithubshop.com",
+        "twitter.com",
+        "facebook.com",
+        "linkedin.com",
+        "youtube.com",
+        "twitch.tv",
+        "tiktok.com"
+      ]
     },
     {
       "id": "socialimpact.github.com",
       "name": "socialimpact.github.com",
       "url": "https://socialimpact.github.com",
-      "connections": []
+      "connections": [
+        "github.com"
+      ]
     },
     {
       "id": "thegithubshop.com",
       "name": "thegithubshop.com",
       "url": "https://thegithubshop.com",
-      "connections": []
+      "connections": [
+        "githubuniverse.com",
+        "linkedin.com",
+        "instagram.com",
+        "youtube.com",
+        "x.com",
+        "tiktok.com",
+        "twitch.tv",
+        "github.com"
+      ]
     },
     {
       "id": "linkedin.com",
       "name": "linkedin.com",
       "url": "https://linkedin.com",
-      "connections": []
+      "connections": [
+        "bing.com",
+        "lnkd.in",
+        "gh.io",
+        "ch.linkedin.com",
+        "mx.linkedin.com",
+        "node.js",
+        "in.linkedin.com",
+        "about.linkedin.com",
+        "brand.linkedin.com"
+      ]
     },
     {
       "id": "instagram.com",
       "name": "instagram.com",
       "url": "https://instagram.com",
-      "connections": []
-    },
-    {
-      "id": "youtube.com",
-      "name": "youtube.com",
-      "url": "https://youtube.com",
-      "connections": []
-    },
-    {
-      "id": "x.com",
-      "name": "x.com",
-      "url": "https://x.com",
-      "connections": []
-    },
-    {
-      "id": "tiktok.com",
-      "name": "tiktok.com",
-      "url": "https://tiktok.com",
-      "connections": []
-    },
-    {
-      "id": "twitch.tv",
-      "name": "twitch.tv",
-      "url": "https://twitch.tv",
       "connections": []
     },
     {
@@ -228,31 +966,165 @@
       "id": "cwe.mitre.org",
       "name": "cwe.mitre.org",
       "url": "https://cwe.mitre.org",
-      "connections": []
+      "connections": [
+        "github.com",
+        "medium.com",
+        "cve.org",
+        "capec.mitre.org",
+        "microsoftpressstore.com",
+        "sans.org",
+        "veracode.com",
+        "omg.org",
+        "forescout.com",
+        "kth.diva-portal.org",
+        "cisa.gov",
+        "ida.org",
+        "mitre.org",
+        "x.com",
+        "linkedin.com",
+        "bsky.app",
+        "mastodon.social",
+        "youtube.com",
+        "dhs.gov",
+        "phrack.org",
+        "cheatsheetseries.owasp.org",
+        "unixwiz.net",
+        "web.archive.org",
+        "learn.microsoft.com",
+        "msrc.microsoft.com",
+        "d3fend.mitre.org",
+        "owasp.org"
+      ]
     },
     {
       "id": "blogs.microsoft.com",
       "name": "blogs.microsoft.com",
       "url": "https://blogs.microsoft.com",
-      "connections": []
+      "connections": [
+        "microsoft.com",
+        "news.microsoft.com",
+        "educationblog.microsoft.com",
+        "azure.microsoft.com",
+        "blogs.windows.com",
+        "news.xbox.com",
+        "aka.ms",
+        "twitter.com",
+        "copilot.microsoft.com",
+        "xbox.com",
+        "support.microsoft.com",
+        "apps.microsoft.com",
+        "developer.microsoft.com",
+        "learn.microsoft.com",
+        "techcommunity.microsoft.com",
+        "marketplace.microsoft.com",
+        "visualstudio.microsoft.com",
+        "unlocked.microsoft.com",
+        "facebook.com",
+        "linkedin.com",
+        "threads.net",
+        "account.microsoft.com",
+        "go.microsoft.com",
+        "education.microsoft.com",
+        "careers.microsoft.com",
+        "choice.microsoft.com"
+      ]
     },
     {
       "id": "gh.io",
       "name": "gh.io",
       "url": "https://gh.io",
-      "connections": []
+      "connections": [
+        "github.com",
+        "support.github.com",
+        "githubstatus.com",
+        "services.github.com",
+        "github.blog",
+        "docs.github.com",
+        "skills.github.com",
+        "securitylab.github.com",
+        "maintainers.github.com",
+        "stars.github.com",
+        "archiveprogram.github.com",
+        "copilot.github.trust.page",
+        "github.community"
+      ]
     },
     {
       "id": "learning.linkedin.com",
       "name": "learning.linkedin.com",
       "url": "https://learning.linkedin.com",
-      "connections": []
+      "connections": [
+        "linkedin.com",
+        "economicgraph.linkedin.com",
+        "business.linkedin.com",
+        "about.linkedin.com"
+      ]
     },
     {
       "id": "education.github.com",
       "name": "education.github.com",
       "url": "https://education.github.com",
-      "connections": []
+      "connections": [
+        "github.com",
+        "classroom.github.com",
+        "twitter.com",
+        "namecheap.com",
+        "azure.microsoft.com",
+        "name.com",
+        "notion.so",
+        "support.microsoft.com",
+        "boot.dev",
+        "help.heroku.com",
+        "support.datacamp.com",
+        "codedex.notion.site",
+        "intellij-support.jetbrains.com",
+        "mongodb.com",
+        "cambercloudcommunity.slack.com",
+        "clerk.com",
+        "support.github.com",
+        "docs.termius.com",
+        "support.stripe.com",
+        "appwrite.io",
+        "visualstudio.microsoft.com",
+        "icons8.com",
+        "localstack.cloud",
+        "bootstrapstudio.io",
+        "forum.sentry.io",
+        "arduino.cc",
+        "polypane.app",
+        "help.gitkraken.com",
+        "browserstack.com",
+        "adafruit.com",
+        "hazeover.com",
+        "help.github.com",
+        "support.visme.co",
+        "algoexpert.io",
+        "docs.travis-ci.com",
+        "simpleanalytics.com",
+        "carto.com",
+        "slidecoach.ai",
+        "configcat.com",
+        "support.sqlgate.com",
+        "deepscan.io",
+        "themeisle.com",
+        "appfigures.com",
+        "poeditor.com",
+        "blockchair.com",
+        "symfonycasts.com",
+        "support.dashlane.com",
+        "resources.github.com",
+        "docs.github.com",
+        "partner.github.com",
+        "desktop.github.com",
+        "services.github.com",
+        "githubstatus.com",
+        "github.blog",
+        "socialimpact.github.com",
+        "shop.github.com",
+        "facebook.com",
+        "youtube.com",
+        "linkedin.com"
+      ]
     },
     {
       "id": "learn.github.com",
@@ -264,31 +1136,122 @@
       "id": "githubuniverse.com",
       "name": "githubuniverse.com",
       "url": "https://githubuniverse.com",
-      "connections": []
+      "connections": [
+        "reg.githubuniverse.com",
+        "github.com",
+        "linkedin.com",
+        "instagram.com",
+        "youtube.com",
+        "x.com",
+        "tiktok.com",
+        "twitch.tv",
+        "bug-bash.github.com"
+      ]
     },
     {
       "id": "azure.microsoft.com",
       "name": "azure.microsoft.com",
       "url": "https://azure.microsoft.com",
-      "connections": []
+      "connections": [
+        "microsoft.com",
+        "marketplace.microsoft.com",
+        "learn.microsoft.com",
+        "go.microsoft.com",
+        "developer.microsoft.com",
+        "partner.microsoft.com",
+        "portal.azure.com",
+        "copilot.microsoft.com",
+        "xbox.com",
+        "support.microsoft.com",
+        "apps.microsoft.com",
+        "techcommunity.microsoft.com",
+        "visualstudio.microsoft.com",
+        "unlocked.microsoft.com",
+        "aka.ms",
+        "choice.microsoft.com"
+      ]
     },
     {
       "id": "resources.github.com",
       "name": "resources.github.com",
       "url": "https://resources.github.com",
-      "connections": []
+      "connections": [
+        "github.com",
+        "docs.github.com",
+        "github.blog",
+        "skills.github.com",
+        "support.github.com",
+        "securitylab.github.com",
+        "maintainers.github.com",
+        "stars.github.com",
+        "archiveprogram.github.com",
+        "cli.github.com",
+        "github.community",
+        "githubstatus.com",
+        "github.careers",
+        "socialimpact.github.com",
+        "thegithubshop.com",
+        "linkedin.com",
+        "instagram.com",
+        "youtube.com",
+        "x.com",
+        "tiktok.com",
+        "twitch.tv"
+      ]
     },
     {
       "id": "codeql.github.com",
       "name": "codeql.github.com",
       "url": "https://codeql.github.com",
-      "connections": []
+      "connections": [
+        "github.com",
+        "marketplace.visualstudio.com",
+        "resources.github.com",
+        "docs.github.com",
+        "partner.github.com",
+        "cli.github.com",
+        "desktop.github.com",
+        "github.community",
+        "services.github.com",
+        "githubstatus.com",
+        "support.github.com",
+        "github.blog",
+        "github.careers",
+        "shop.github.com",
+        "twitter.com",
+        "facebook.com",
+        "youtube.com",
+        "linkedin.com"
+      ]
     },
     {
       "id": "electronjs.org",
       "name": "electronjs.org",
       "url": "https://electronjs.org",
-      "connections": []
+      "connections": [
+        "electronforge.io",
+        "releases.electronjs.org",
+        "github.com",
+        "chromium.org",
+        "nodejs.org",
+        "fiddle.electronjs.org",
+        "discord.gg",
+        "discordapp.com",
+        "bsky.app",
+        "x.com",
+        "social.lfx.dev",
+        "stackoverflow.com",
+        "opencollective.com",
+        "p.datadoghq.com",
+        "openjsf.org",
+        "trademark-policy.openjsf.org",
+        "trademark-list.openjsf.org",
+        "terms-of-use.openjsf.org",
+        "privacy-policy.openjsf.org",
+        "bylaws.openjsf.org",
+        "code-of-conduct.openjsf.org",
+        "linuxfoundation.org"
+      ]
     },
     {
       "id": "docs.npmjs.com",
@@ -339,12 +1302,6 @@
       "connections": []
     },
     {
-      "id": "twitter.com",
-      "name": "twitter.com",
-      "url": "https://twitter.com",
-      "connections": []
-    },
-    {
       "id": "forrester.com",
       "name": "forrester.com",
       "url": "https://forrester.com",
@@ -372,6 +1329,2532 @@
       "id": "tei.forrester.com",
       "name": "tei.forrester.com",
       "url": "https://tei.forrester.com",
+      "connections": []
+    },
+    {
+      "id": "github.registration.goldcast.io",
+      "name": "github.registration.goldcast.io",
+      "url": "https://github.registration.goldcast.io",
+      "connections": []
+    },
+    {
+      "id": "itch.io",
+      "name": "itch.io",
+      "url": "https://itch.io",
+      "connections": []
+    },
+    {
+      "id": "github.ondemand.goldcast.io",
+      "name": "github.ondemand.goldcast.io",
+      "url": "https://github.ondemand.goldcast.io",
+      "connections": []
+    },
+    {
+      "id": "accessibility.github.com",
+      "name": "accessibility.github.com",
+      "url": "https://accessibility.github.com",
+      "connections": []
+    },
+    {
+      "id": "ghec.github.trust.page",
+      "name": "ghec.github.trust.page",
+      "url": "https://ghec.github.trust.page",
+      "connections": []
+    },
+    {
+      "id": "cdn-dynmedia-1.microsoft.com",
+      "name": "cdn-dynmedia-1.microsoft.com",
+      "url": "https://cdn-dynmedia-1.microsoft.com",
+      "connections": []
+    },
+    {
+      "id": "nist.gov",
+      "name": "nist.gov",
+      "url": "https://nist.gov",
+      "connections": []
+    },
+    {
+      "id": "microsoft.com",
+      "name": "microsoft.com",
+      "url": "https://microsoft.com",
+      "connections": []
+    },
+    {
+      "id": "nvd.nist.gov",
+      "name": "nvd.nist.gov",
+      "url": "https://nvd.nist.gov",
+      "connections": []
+    },
+    {
+      "id": "bsky.app",
+      "name": "bsky.app",
+      "url": "https://bsky.app",
+      "connections": []
+    },
+    {
+      "id": "infosec.exchange",
+      "name": "infosec.exchange",
+      "url": "https://infosec.exchange",
+      "connections": []
+    },
+    {
+      "id": "electron.atom.io",
+      "name": "electron.atom.io",
+      "url": "https://electron.atom.io",
+      "connections": []
+    },
+    {
+      "id": "facebook.com",
+      "name": "facebook.com",
+      "url": "https://facebook.com",
+      "connections": []
+    },
+    {
+      "id": "forms.gle",
+      "name": "forms.gle",
+      "url": "https://forms.gle",
+      "connections": []
+    },
+    {
+      "id": "help.github.com",
+      "name": "help.github.com",
+      "url": "https://help.github.com",
+      "connections": []
+    },
+    {
+      "id": "tsia.com",
+      "name": "tsia.com",
+      "url": "https://tsia.com",
+      "connections": []
+    },
+    {
+      "id": "atlassian.com",
+      "name": "atlassian.com",
+      "url": "https://atlassian.com",
+      "connections": []
+    },
+    {
+      "id": "subscriptions.statuspage.io",
+      "name": "subscriptions.statuspage.io",
+      "url": "https://subscriptions.statuspage.io",
+      "connections": []
+    },
+    {
+      "id": "au.githubstatus.com",
+      "name": "au.githubstatus.com",
+      "url": "https://au.githubstatus.com",
+      "connections": []
+    },
+    {
+      "id": "eu.githubstatus.com",
+      "name": "eu.githubstatus.com",
+      "url": "https://eu.githubstatus.com",
+      "connections": []
+    },
+    {
+      "id": "jp.githubstatus.com",
+      "name": "jp.githubstatus.com",
+      "url": "https://jp.githubstatus.com",
+      "connections": []
+    },
+    {
+      "id": "us.githubstatus.com",
+      "name": "us.githubstatus.com",
+      "url": "https://us.githubstatus.com",
+      "connections": []
+    },
+    {
+      "id": "pages.github.com",
+      "name": "pages.github.com",
+      "url": "https://pages.github.com",
+      "connections": []
+    },
+    {
+      "id": "treasury.gov",
+      "name": "treasury.gov",
+      "url": "https://treasury.gov",
+      "connections": []
+    },
+    {
+      "id": "creativecommons.org",
+      "name": "creativecommons.org",
+      "url": "https://creativecommons.org",
+      "connections": []
+    },
+    {
+      "id": "code.visualstudio.com",
+      "name": "code.visualstudio.com",
+      "url": "https://code.visualstudio.com",
+      "connections": []
+    },
+    {
+      "id": "eur-lex.europa.eu",
+      "name": "eur-lex.europa.eu",
+      "url": "https://eur-lex.europa.eu",
+      "connections": []
+    },
+    {
+      "id": "commission.europa.eu",
+      "name": "commission.europa.eu",
+      "url": "https://commission.europa.eu",
+      "connections": []
+    },
+    {
+      "id": "dataprivacyframework.gov",
+      "name": "dataprivacyframework.gov",
+      "url": "https://dataprivacyframework.gov",
+      "connections": []
+    },
+    {
+      "id": "go.adr.org",
+      "name": "go.adr.org",
+      "url": "https://go.adr.org",
+      "connections": []
+    },
+    {
+      "id": "en.wikipedia.org",
+      "name": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org",
+      "connections": []
+    },
+    {
+      "id": "globalprivacycontrol.org",
+      "name": "globalprivacycontrol.org",
+      "url": "https://globalprivacycontrol.org",
+      "connections": []
+    },
+    {
+      "id": "optout.networkadvertising.org",
+      "name": "optout.networkadvertising.org",
+      "url": "https://optout.networkadvertising.org",
+      "connections": []
+    },
+    {
+      "id": "optout.aboutads.info",
+      "name": "optout.aboutads.info",
+      "url": "https://optout.aboutads.info",
+      "connections": []
+    },
+    {
+      "id": "youradchoices.ca",
+      "name": "youradchoices.ca",
+      "url": "https://youradchoices.ca",
+      "connections": []
+    },
+    {
+      "id": "youronlinechoices.com",
+      "name": "youronlinechoices.com",
+      "url": "https://youronlinechoices.com",
+      "connections": []
+    },
+    {
+      "id": "games.gdevelop-app.com",
+      "name": "games.gdevelop-app.com",
+      "url": "https://games.gdevelop-app.com",
+      "connections": []
+    },
+    {
+      "id": "davecode.me",
+      "name": "davecode.me",
+      "url": "https://davecode.me",
+      "connections": []
+    },
+    {
+      "id": "developers.google.com",
+      "name": "developers.google.com",
+      "url": "https://developers.google.com",
+      "connections": []
+    },
+    {
+      "id": "music.apple.com",
+      "name": "music.apple.com",
+      "url": "https://music.apple.com",
+      "connections": []
+    },
+    {
+      "id": "illformed.bandcamp.com",
+      "name": "illformed.bandcamp.com",
+      "url": "https://illformed.bandcamp.com",
+      "connections": []
+    },
+    {
+      "id": "illformed.com",
+      "name": "illformed.com",
+      "url": "https://illformed.com",
+      "connections": []
+    },
+    {
+      "id": "xkcd.com",
+      "name": "xkcd.com",
+      "url": "https://xkcd.com",
+      "connections": []
+    },
+    {
+      "id": "shop.webtoon.com",
+      "name": "shop.webtoon.com",
+      "url": "https://shop.webtoon.com",
+      "connections": []
+    },
+    {
+      "id": "owlturd.com",
+      "name": "owlturd.com",
+      "url": "https://owlturd.com",
+      "connections": []
+    },
+    {
+      "id": "play.google.com",
+      "name": "play.google.com",
+      "url": "https://play.google.com",
+      "connections": []
+    },
+    {
+      "id": "itunes.apple.com",
+      "name": "itunes.apple.com",
+      "url": "https://itunes.apple.com",
+      "connections": []
+    },
+    {
+      "id": "about.webtoon.com",
+      "name": "about.webtoon.com",
+      "url": "https://about.webtoon.com",
+      "connections": []
+    },
+    {
+      "id": "webtoon.zendesk.com",
+      "name": "webtoon.zendesk.com",
+      "url": "https://webtoon.zendesk.com",
+      "connections": []
+    },
+    {
+      "id": "advertising.webtoon.com",
+      "name": "advertising.webtoon.com",
+      "url": "https://advertising.webtoon.com",
+      "connections": []
+    },
+    {
+      "id": "sporcle.com",
+      "name": "sporcle.com",
+      "url": "https://sporcle.com",
+      "connections": []
+    },
+    {
+      "id": "profile.w3schools.com",
+      "name": "profile.w3schools.com",
+      "url": "https://profile.w3schools.com",
+      "connections": []
+    },
+    {
+      "id": "campus.w3schools.com",
+      "name": "campus.w3schools.com",
+      "url": "https://campus.w3schools.com",
+      "connections": []
+    },
+    {
+      "id": "order.w3schools.com",
+      "name": "order.w3schools.com",
+      "url": "https://order.w3schools.com",
+      "connections": []
+    },
+    {
+      "id": "spaces.w3schools.com",
+      "name": "spaces.w3schools.com",
+      "url": "https://spaces.w3schools.com",
+      "connections": []
+    },
+    {
+      "id": "pathfinder.w3schools.com",
+      "name": "pathfinder.w3schools.com",
+      "url": "https://pathfinder.w3schools.com",
+      "connections": []
+    },
+    {
+      "id": "discord.com",
+      "name": "discord.com",
+      "url": "https://discord.com",
+      "connections": []
+    },
+    {
+      "id": "store.epicgames.com",
+      "name": "store.epicgames.com",
+      "url": "https://store.epicgames.com",
+      "connections": []
+    },
+    {
+      "id": "store.playstation.com",
+      "name": "store.playstation.com",
+      "url": "https://store.playstation.com",
+      "connections": []
+    },
+    {
+      "id": "nintendo.com",
+      "name": "nintendo.com",
+      "url": "https://nintendo.com",
+      "connections": []
+    },
+    {
+      "id": "xbox.com",
+      "name": "xbox.com",
+      "url": "https://xbox.com",
+      "connections": []
+    },
+    {
+      "id": "mastodon.social",
+      "name": "mastodon.social",
+      "url": "https://mastodon.social",
+      "connections": []
+    },
+    {
+      "id": "support.google.com",
+      "name": "support.google.com",
+      "url": "https://support.google.com",
+      "connections": []
+    },
+    {
+      "id": "google.nl",
+      "name": "google.nl",
+      "url": "https://google.nl",
+      "connections": []
+    },
+    {
+      "id": "google.com",
+      "name": "google.com",
+      "url": "https://google.com",
+      "connections": []
+    },
+    {
+      "id": "myaccount.google.com",
+      "name": "myaccount.google.com",
+      "url": "https://myaccount.google.com",
+      "connections": []
+    },
+    {
+      "id": "g.co",
+      "name": "g.co",
+      "url": "https://g.co",
+      "connections": []
+    },
+    {
+      "id": "analytics.google.com",
+      "name": "analytics.google.com",
+      "url": "https://analytics.google.com",
+      "connections": []
+    },
+    {
+      "id": "myadcenter.google.com",
+      "name": "myadcenter.google.com",
+      "url": "https://myadcenter.google.com",
+      "connections": []
+    },
+    {
+      "id": "adssettings.google.com",
+      "name": "adssettings.google.com",
+      "url": "https://adssettings.google.com",
+      "connections": []
+    },
+    {
+      "id": "cloud.google.com",
+      "name": "cloud.google.com",
+      "url": "https://cloud.google.com",
+      "connections": []
+    },
+    {
+      "id": "business.safety.google",
+      "name": "business.safety.google",
+      "url": "https://business.safety.google",
+      "connections": []
+    },
+    {
+      "id": "about.google",
+      "name": "about.google",
+      "url": "https://about.google",
+      "connections": []
+    },
+    {
+      "id": "transparency.google",
+      "name": "transparency.google",
+      "url": "https://transparency.google",
+      "connections": []
+    },
+    {
+      "id": "tools.google.com",
+      "name": "tools.google.com",
+      "url": "https://tools.google.com",
+      "connections": []
+    },
+    {
+      "id": "gstatic.com",
+      "name": "gstatic.com",
+      "url": "https://gstatic.com",
+      "connections": []
+    },
+    {
+      "id": "myactivity.google.com",
+      "name": "myactivity.google.com",
+      "url": "https://myactivity.google.com",
+      "connections": []
+    },
+    {
+      "id": "takeout.google.com",
+      "name": "takeout.google.com",
+      "url": "https://takeout.google.com",
+      "connections": []
+    },
+    {
+      "id": "transparencyreport.google.com",
+      "name": "transparencyreport.google.com",
+      "url": "https://transparencyreport.google.com",
+      "connections": []
+    },
+    {
+      "id": "safebrowsing.google.com",
+      "name": "safebrowsing.google.com",
+      "url": "https://safebrowsing.google.com",
+      "connections": []
+    },
+    {
+      "id": "payments.google.com",
+      "name": "payments.google.com",
+      "url": "https://payments.google.com",
+      "connections": []
+    },
+    {
+      "id": "fiber.google.com",
+      "name": "fiber.google.com",
+      "url": "https://fiber.google.com",
+      "connections": []
+    },
+    {
+      "id": "fi.google.com",
+      "name": "fi.google.com",
+      "url": "https://fi.google.com",
+      "connections": []
+    },
+    {
+      "id": "workspace.google.com",
+      "name": "workspace.google.com",
+      "url": "https://workspace.google.com",
+      "connections": []
+    },
+    {
+      "id": "ssl.gstatic.com",
+      "name": "ssl.gstatic.com",
+      "url": "https://ssl.gstatic.com",
+      "connections": []
+    },
+    {
+      "id": "kids.youtube.com",
+      "name": "kids.youtube.com",
+      "url": "https://kids.youtube.com",
+      "connections": []
+    },
+    {
+      "id": "families.google.com",
+      "name": "families.google.com",
+      "url": "https://families.google.com",
+      "connections": []
+    },
+    {
+      "id": "assistant.google.com",
+      "name": "assistant.google.com",
+      "url": "https://assistant.google.com",
+      "connections": []
+    },
+    {
+      "id": "privacy.google.com",
+      "name": "privacy.google.com",
+      "url": "https://privacy.google.com",
+      "connections": []
+    },
+    {
+      "id": "protectingchildren.google",
+      "name": "protectingchildren.google",
+      "url": "https://protectingchildren.google",
+      "connections": []
+    },
+    {
+      "id": "contacts.google.com",
+      "name": "contacts.google.com",
+      "url": "https://contacts.google.com",
+      "connections": []
+    },
+    {
+      "id": "safety.google",
+      "name": "safety.google",
+      "url": "https://safety.google",
+      "connections": []
+    },
+    {
+      "id": "bughunters.google.com",
+      "name": "bughunters.google.com",
+      "url": "https://bughunters.google.com",
+      "connections": []
+    },
+    {
+      "id": "about.x.com",
+      "name": "about.x.com",
+      "url": "https://about.x.com",
+      "connections": []
+    },
+    {
+      "id": "grok.com",
+      "name": "grok.com",
+      "url": "https://grok.com",
+      "connections": []
+    },
+    {
+      "id": "careers.x.com",
+      "name": "careers.x.com",
+      "url": "https://careers.x.com",
+      "connections": []
+    },
+    {
+      "id": "developer.x.com",
+      "name": "developer.x.com",
+      "url": "https://developer.x.com",
+      "connections": []
+    },
+    {
+      "id": "legal.twitter.com",
+      "name": "legal.twitter.com",
+      "url": "https://legal.twitter.com",
+      "connections": []
+    },
+    {
+      "id": "business.twitter.com",
+      "name": "business.twitter.com",
+      "url": "https://business.twitter.com",
+      "connections": []
+    },
+    {
+      "id": "legal.x.com",
+      "name": "legal.x.com",
+      "url": "https://legal.x.com",
+      "connections": []
+    },
+    {
+      "id": "docs.x.com",
+      "name": "docs.x.com",
+      "url": "https://docs.x.com",
+      "connections": []
+    },
+    {
+      "id": "hackerone.com",
+      "name": "hackerone.com",
+      "url": "https://hackerone.com",
+      "connections": []
+    },
+    {
+      "id": "ads.x.com",
+      "name": "ads.x.com",
+      "url": "https://ads.x.com",
+      "connections": []
+    },
+    {
+      "id": "publish.x.com",
+      "name": "publish.x.com",
+      "url": "https://publish.x.com",
+      "connections": []
+    },
+    {
+      "id": "privacy.x.com",
+      "name": "privacy.x.com",
+      "url": "https://privacy.x.com",
+      "connections": []
+    },
+    {
+      "id": "transparency.x.com",
+      "name": "transparency.x.com",
+      "url": "https://transparency.x.com",
+      "connections": []
+    },
+    {
+      "id": "blog.x.com",
+      "name": "blog.x.com",
+      "url": "https://blog.x.com",
+      "connections": []
+    },
+    {
+      "id": "investor.twitterinc.com",
+      "name": "investor.twitterinc.com",
+      "url": "https://investor.twitterinc.com",
+      "connections": []
+    },
+    {
+      "id": "create.x.com",
+      "name": "create.x.com",
+      "url": "https://create.x.com",
+      "connections": []
+    },
+    {
+      "id": "preferencecenter.x.com",
+      "name": "preferencecenter.x.com",
+      "url": "https://preferencecenter.x.com",
+      "connections": []
+    },
+    {
+      "id": "twittercommunity.com",
+      "name": "twittercommunity.com",
+      "url": "https://twittercommunity.com",
+      "connections": []
+    },
+    {
+      "id": "marketing.x.com",
+      "name": "marketing.x.com",
+      "url": "https://marketing.x.com",
+      "connections": []
+    },
+    {
+      "id": "xadsacademy.com",
+      "name": "xadsacademy.com",
+      "url": "https://xadsacademy.com",
+      "connections": []
+    },
+    {
+      "id": "help.twitter.com",
+      "name": "help.twitter.com",
+      "url": "https://help.twitter.com",
+      "connections": []
+    },
+    {
+      "id": "jamsadr.com",
+      "name": "jamsadr.com",
+      "url": "https://jamsadr.com",
+      "connections": []
+    },
+    {
+      "id": "dataprotection.ie",
+      "name": "dataprotection.ie",
+      "url": "https://dataprotection.ie",
+      "connections": []
+    },
+    {
+      "id": "support.twitter.com",
+      "name": "support.twitter.com",
+      "url": "https://support.twitter.com",
+      "connections": []
+    },
+    {
+      "id": "networkadvertising.org",
+      "name": "networkadvertising.org",
+      "url": "https://networkadvertising.org",
+      "connections": []
+    },
+    {
+      "id": "ads.twitter.com",
+      "name": "ads.twitter.com",
+      "url": "https://ads.twitter.com",
+      "connections": []
+    },
+    {
+      "id": "apps.apple.com",
+      "name": "apps.apple.com",
+      "url": "https://apps.apple.com",
+      "connections": []
+    },
+    {
+      "id": "security.googleblog.com",
+      "name": "security.googleblog.com",
+      "url": "https://security.googleblog.com",
+      "connections": []
+    },
+    {
+      "id": "figma.com",
+      "name": "figma.com",
+      "url": "https://figma.com",
+      "connections": []
+    },
+    {
+      "id": "mercedes-benz-techinnovation.com",
+      "name": "mercedes-benz-techinnovation.com",
+      "url": "https://mercedes-benz-techinnovation.com",
+      "connections": []
+    },
+    {
+      "id": "opensource.mercedes-benz.com",
+      "name": "opensource.mercedes-benz.com",
+      "url": "https://opensource.mercedes-benz.com",
+      "connections": []
+    },
+    {
+      "id": "trust.gitlab.com",
+      "name": "trust.gitlab.com",
+      "url": "https://trust.gitlab.com",
+      "connections": []
+    },
+    {
+      "id": "github.github.io",
+      "name": "github.github.io",
+      "url": "https://github.github.io",
+      "connections": []
+    },
+    {
+      "id": "lab.github.com",
+      "name": "lab.github.com",
+      "url": "https://lab.github.com",
+      "connections": []
+    },
+    {
+      "id": "octoverse.github.com",
+      "name": "octoverse.github.com",
+      "url": "https://octoverse.github.com",
+      "connections": []
+    },
+    {
+      "id": "careers-githubinc.icims.com",
+      "name": "careers-githubinc.icims.com",
+      "url": "https://careers-githubinc.icims.com",
+      "connections": []
+    },
+    {
+      "id": "globalcareers-githubinc.icims.com",
+      "name": "globalcareers-githubinc.icims.com",
+      "url": "https://globalcareers-githubinc.icims.com",
+      "connections": []
+    },
+    {
+      "id": "employees-githubinc.icims.com",
+      "name": "employees-githubinc.icims.com",
+      "url": "https://employees-githubinc.icims.com",
+      "connections": []
+    },
+    {
+      "id": "globalemployees-githubinc.icims.com",
+      "name": "globalemployees-githubinc.icims.com",
+      "url": "https://globalemployees-githubinc.icims.com",
+      "connections": []
+    },
+    {
+      "id": "githubtalentcommunity.careers",
+      "name": "githubtalentcommunity.careers",
+      "url": "https://githubtalentcommunity.careers",
+      "connections": []
+    },
+    {
+      "id": "itbrief.com.au",
+      "name": "itbrief.com.au",
+      "url": "https://itbrief.com.au",
+      "connections": []
+    },
+    {
+      "id": "timesofindia.indiatimes.com",
+      "name": "timesofindia.indiatimes.com",
+      "url": "https://timesofindia.indiatimes.com",
+      "connections": []
+    },
+    {
+      "id": "economictimes.indiatimes.com",
+      "name": "economictimes.indiatimes.com",
+      "url": "https://economictimes.indiatimes.com",
+      "connections": []
+    },
+    {
+      "id": "venturebeat.com",
+      "name": "venturebeat.com",
+      "url": "https://venturebeat.com",
+      "connections": []
+    },
+    {
+      "id": "ft.com",
+      "name": "ft.com",
+      "url": "https://ft.com",
+      "connections": []
+    },
+    {
+      "id": "thelettertwo.com",
+      "name": "thelettertwo.com",
+      "url": "https://thelettertwo.com",
+      "connections": []
+    },
+    {
+      "id": "bing.com",
+      "name": "bing.com",
+      "url": "https://bing.com",
+      "connections": []
+    },
+    {
+      "id": "lnkd.in",
+      "name": "lnkd.in",
+      "url": "https://lnkd.in",
+      "connections": []
+    },
+    {
+      "id": "ch.linkedin.com",
+      "name": "ch.linkedin.com",
+      "url": "https://ch.linkedin.com",
+      "connections": []
+    },
+    {
+      "id": "mx.linkedin.com",
+      "name": "mx.linkedin.com",
+      "url": "https://mx.linkedin.com",
+      "connections": []
+    },
+    {
+      "id": "node.js",
+      "name": "node.js",
+      "url": "https://node.js",
+      "connections": []
+    },
+    {
+      "id": "in.linkedin.com",
+      "name": "in.linkedin.com",
+      "url": "https://in.linkedin.com",
+      "connections": []
+    },
+    {
+      "id": "about.linkedin.com",
+      "name": "about.linkedin.com",
+      "url": "https://about.linkedin.com",
+      "connections": []
+    },
+    {
+      "id": "brand.linkedin.com",
+      "name": "brand.linkedin.com",
+      "url": "https://brand.linkedin.com",
+      "connections": []
+    },
+    {
+      "id": "t.co",
+      "name": "t.co",
+      "url": "https://t.co",
+      "connections": []
+    },
+    {
+      "id": "user-images.githubusercontent.com",
+      "name": "user-images.githubusercontent.com",
+      "url": "https://user-images.githubusercontent.com",
+      "connections": []
+    },
+    {
+      "id": "opensource.guide",
+      "name": "opensource.guide",
+      "url": "https://opensource.guide",
+      "connections": []
+    },
+    {
+      "id": "marketplace.visualstudio.com",
+      "name": "marketplace.visualstudio.com",
+      "url": "https://marketplace.visualstudio.com",
+      "connections": []
+    },
+    {
+      "id": "visualstudio.microsoft.com",
+      "name": "visualstudio.microsoft.com",
+      "url": "https://visualstudio.microsoft.com",
+      "connections": []
+    },
+    {
+      "id": "plugins.jetbrains.com",
+      "name": "plugins.jetbrains.com",
+      "url": "https://plugins.jetbrains.com",
+      "connections": []
+    },
+    {
+      "id": "marketplace.eclipse.org",
+      "name": "marketplace.eclipse.org",
+      "url": "https://marketplace.eclipse.org",
+      "connections": []
+    },
+    {
+      "id": "learn.microsoft.com",
+      "name": "learn.microsoft.com",
+      "url": "https://learn.microsoft.com",
+      "connections": []
+    },
+    {
+      "id": "zed.dev",
+      "name": "zed.dev",
+      "url": "https://zed.dev",
+      "connections": []
+    },
+    {
+      "id": "slack.com",
+      "name": "slack.com",
+      "url": "https://slack.com",
+      "connections": []
+    },
+    {
+      "id": "cdn.forms-content-1.sg-form.com",
+      "name": "cdn.forms-content-1.sg-form.com",
+      "url": "https://cdn.forms-content-1.sg-form.com",
+      "connections": []
+    },
+    {
+      "id": "github.co",
+      "name": "github.co",
+      "url": "https://github.co",
+      "connections": []
+    },
+    {
+      "id": "arxiv.org",
+      "name": "arxiv.org",
+      "url": "https://arxiv.org",
+      "connections": []
+    },
+    {
+      "id": "medium.com",
+      "name": "medium.com",
+      "url": "https://medium.com",
+      "connections": []
+    },
+    {
+      "id": "cve.org",
+      "name": "cve.org",
+      "url": "https://cve.org",
+      "connections": []
+    },
+    {
+      "id": "capec.mitre.org",
+      "name": "capec.mitre.org",
+      "url": "https://capec.mitre.org",
+      "connections": []
+    },
+    {
+      "id": "microsoftpressstore.com",
+      "name": "microsoftpressstore.com",
+      "url": "https://microsoftpressstore.com",
+      "connections": []
+    },
+    {
+      "id": "sans.org",
+      "name": "sans.org",
+      "url": "https://sans.org",
+      "connections": []
+    },
+    {
+      "id": "veracode.com",
+      "name": "veracode.com",
+      "url": "https://veracode.com",
+      "connections": []
+    },
+    {
+      "id": "omg.org",
+      "name": "omg.org",
+      "url": "https://omg.org",
+      "connections": []
+    },
+    {
+      "id": "forescout.com",
+      "name": "forescout.com",
+      "url": "https://forescout.com",
+      "connections": []
+    },
+    {
+      "id": "kth.diva-portal.org",
+      "name": "kth.diva-portal.org",
+      "url": "https://kth.diva-portal.org",
+      "connections": []
+    },
+    {
+      "id": "cisa.gov",
+      "name": "cisa.gov",
+      "url": "https://cisa.gov",
+      "connections": []
+    },
+    {
+      "id": "ida.org",
+      "name": "ida.org",
+      "url": "https://ida.org",
+      "connections": []
+    },
+    {
+      "id": "mitre.org",
+      "name": "mitre.org",
+      "url": "https://mitre.org",
+      "connections": []
+    },
+    {
+      "id": "dhs.gov",
+      "name": "dhs.gov",
+      "url": "https://dhs.gov",
+      "connections": []
+    },
+    {
+      "id": "phrack.org",
+      "name": "phrack.org",
+      "url": "https://phrack.org",
+      "connections": []
+    },
+    {
+      "id": "cheatsheetseries.owasp.org",
+      "name": "cheatsheetseries.owasp.org",
+      "url": "https://cheatsheetseries.owasp.org",
+      "connections": []
+    },
+    {
+      "id": "unixwiz.net",
+      "name": "unixwiz.net",
+      "url": "https://unixwiz.net",
+      "connections": []
+    },
+    {
+      "id": "web.archive.org",
+      "name": "web.archive.org",
+      "url": "https://web.archive.org",
+      "connections": []
+    },
+    {
+      "id": "msrc.microsoft.com",
+      "name": "msrc.microsoft.com",
+      "url": "https://msrc.microsoft.com",
+      "connections": []
+    },
+    {
+      "id": "d3fend.mitre.org",
+      "name": "d3fend.mitre.org",
+      "url": "https://d3fend.mitre.org",
+      "connections": []
+    },
+    {
+      "id": "owasp.org",
+      "name": "owasp.org",
+      "url": "https://owasp.org",
+      "connections": []
+    },
+    {
+      "id": "news.microsoft.com",
+      "name": "news.microsoft.com",
+      "url": "https://news.microsoft.com",
+      "connections": []
+    },
+    {
+      "id": "educationblog.microsoft.com",
+      "name": "educationblog.microsoft.com",
+      "url": "https://educationblog.microsoft.com",
+      "connections": []
+    },
+    {
+      "id": "blogs.windows.com",
+      "name": "blogs.windows.com",
+      "url": "https://blogs.windows.com",
+      "connections": []
+    },
+    {
+      "id": "news.xbox.com",
+      "name": "news.xbox.com",
+      "url": "https://news.xbox.com",
+      "connections": []
+    },
+    {
+      "id": "copilot.microsoft.com",
+      "name": "copilot.microsoft.com",
+      "url": "https://copilot.microsoft.com",
+      "connections": []
+    },
+    {
+      "id": "support.microsoft.com",
+      "name": "support.microsoft.com",
+      "url": "https://support.microsoft.com",
+      "connections": []
+    },
+    {
+      "id": "apps.microsoft.com",
+      "name": "apps.microsoft.com",
+      "url": "https://apps.microsoft.com",
+      "connections": []
+    },
+    {
+      "id": "developer.microsoft.com",
+      "name": "developer.microsoft.com",
+      "url": "https://developer.microsoft.com",
+      "connections": []
+    },
+    {
+      "id": "techcommunity.microsoft.com",
+      "name": "techcommunity.microsoft.com",
+      "url": "https://techcommunity.microsoft.com",
+      "connections": []
+    },
+    {
+      "id": "marketplace.microsoft.com",
+      "name": "marketplace.microsoft.com",
+      "url": "https://marketplace.microsoft.com",
+      "connections": []
+    },
+    {
+      "id": "unlocked.microsoft.com",
+      "name": "unlocked.microsoft.com",
+      "url": "https://unlocked.microsoft.com",
+      "connections": []
+    },
+    {
+      "id": "threads.net",
+      "name": "threads.net",
+      "url": "https://threads.net",
+      "connections": []
+    },
+    {
+      "id": "account.microsoft.com",
+      "name": "account.microsoft.com",
+      "url": "https://account.microsoft.com",
+      "connections": []
+    },
+    {
+      "id": "go.microsoft.com",
+      "name": "go.microsoft.com",
+      "url": "https://go.microsoft.com",
+      "connections": []
+    },
+    {
+      "id": "education.microsoft.com",
+      "name": "education.microsoft.com",
+      "url": "https://education.microsoft.com",
+      "connections": []
+    },
+    {
+      "id": "careers.microsoft.com",
+      "name": "careers.microsoft.com",
+      "url": "https://careers.microsoft.com",
+      "connections": []
+    },
+    {
+      "id": "choice.microsoft.com",
+      "name": "choice.microsoft.com",
+      "url": "https://choice.microsoft.com",
+      "connections": []
+    },
+    {
+      "id": "pypi.org",
+      "name": "pypi.org",
+      "url": "https://pypi.org",
+      "connections": []
+    },
+    {
+      "id": "camo.githubusercontent.com",
+      "name": "camo.githubusercontent.com",
+      "url": "https://camo.githubusercontent.com",
+      "connections": []
+    },
+    {
+      "id": "cla.opensource.microsoft.com",
+      "name": "cla.opensource.microsoft.com",
+      "url": "https://cla.opensource.microsoft.com",
+      "connections": []
+    },
+    {
+      "id": "opensource.microsoft.com",
+      "name": "opensource.microsoft.com",
+      "url": "https://opensource.microsoft.com",
+      "connections": []
+    },
+    {
+      "id": "modelcontextprotocol.io",
+      "name": "modelcontextprotocol.io",
+      "url": "https://modelcontextprotocol.io",
+      "connections": []
+    },
+    {
+      "id": "app.netdata.cloud",
+      "name": "app.netdata.cloud",
+      "url": "https://app.netdata.cloud",
+      "connections": []
+    },
+    {
+      "id": "anthropic.com",
+      "name": "anthropic.com",
+      "url": "https://anthropic.com",
+      "connections": []
+    },
+    {
+      "id": "raw.githubusercontent.com",
+      "name": "raw.githubusercontent.com",
+      "url": "https://raw.githubusercontent.com",
+      "connections": []
+    },
+    {
+      "id": "cursor.com",
+      "name": "cursor.com",
+      "url": "https://cursor.com",
+      "connections": []
+    },
+    {
+      "id": "context7.com",
+      "name": "context7.com",
+      "url": "https://context7.com",
+      "connections": []
+    },
+    {
+      "id": "npmjs.com",
+      "name": "npmjs.com",
+      "url": "https://npmjs.com",
+      "connections": []
+    },
+    {
+      "id": "upstash.com",
+      "name": "upstash.com",
+      "url": "https://upstash.com",
+      "connections": []
+    },
+    {
+      "id": "npmjs.org",
+      "name": "npmjs.org",
+      "url": "https://npmjs.org",
+      "connections": []
+    },
+    {
+      "id": "developer.chrome.com",
+      "name": "developer.chrome.com",
+      "url": "https://developer.chrome.com",
+      "connections": []
+    },
+    {
+      "id": "chromiumdash.appspot.com",
+      "name": "chromiumdash.appspot.com",
+      "url": "https://chromiumdash.appspot.com",
+      "connections": []
+    },
+    {
+      "id": "nodejs.org",
+      "name": "nodejs.org",
+      "url": "https://nodejs.org",
+      "connections": []
+    },
+    {
+      "id": "antigravity.google",
+      "name": "antigravity.google",
+      "url": "https://antigravity.google",
+      "connections": []
+    },
+    {
+      "id": "bob.ibm.com",
+      "name": "bob.ibm.com",
+      "url": "https://bob.ibm.com",
+      "connections": []
+    },
+    {
+      "id": "code.claude.com",
+      "name": "code.claude.com",
+      "url": "https://code.claude.com",
+      "connections": []
+    },
+    {
+      "id": "developers.openai.com",
+      "name": "developers.openai.com",
+      "url": "https://developers.openai.com",
+      "connections": []
+    },
+    {
+      "id": "commandcode.ai",
+      "name": "commandcode.ai",
+      "url": "https://commandcode.ai",
+      "connections": []
+    },
+    {
+      "id": "vscode.dev",
+      "name": "vscode.dev",
+      "url": "https://vscode.dev",
+      "connections": []
+    },
+    {
+      "id": "insiders.vscode.dev",
+      "name": "insiders.vscode.dev",
+      "url": "https://insiders.vscode.dev",
+      "connections": []
+    },
+    {
+      "id": "docs.devin.ai",
+      "name": "docs.devin.ai",
+      "url": "https://docs.devin.ai",
+      "connections": []
+    },
+    {
+      "id": "docs.factory.ai",
+      "name": "docs.factory.ai",
+      "url": "https://docs.factory.ai",
+      "connections": []
+    },
+    {
+      "id": "docs.x.ai",
+      "name": "docs.x.ai",
+      "url": "https://docs.x.ai",
+      "connections": []
+    },
+    {
+      "id": "docs.katalon.com",
+      "name": "docs.katalon.com",
+      "url": "https://docs.katalon.com",
+      "connections": []
+    },
+    {
+      "id": "opencode.ai",
+      "name": "opencode.ai",
+      "url": "https://opencode.ai",
+      "connections": []
+    },
+    {
+      "id": "docs.qoder.com",
+      "name": "docs.qoder.com",
+      "url": "https://docs.qoder.com",
+      "connections": []
+    },
+    {
+      "id": "vs-open.link",
+      "name": "vs-open.link",
+      "url": "https://vs-open.link",
+      "connections": []
+    },
+    {
+      "id": "docs.warp.dev",
+      "name": "docs.warp.dev",
+      "url": "https://docs.warp.dev",
+      "connections": []
+    },
+    {
+      "id": "docs.windsurf.com",
+      "name": "docs.windsurf.com",
+      "url": "https://docs.windsurf.com",
+      "connections": []
+    },
+    {
+      "id": "chromium.org",
+      "name": "chromium.org",
+      "url": "https://chromium.org",
+      "connections": []
+    },
+    {
+      "id": "ffmpeg.org",
+      "name": "ffmpeg.org",
+      "url": "https://ffmpeg.org",
+      "connections": []
+    },
+    {
+      "id": "urlpattern.spec.whatwg.org",
+      "name": "urlpattern.spec.whatwg.org",
+      "url": "https://urlpattern.spec.whatwg.org",
+      "connections": []
+    },
+    {
+      "id": "developers.chrome.com",
+      "name": "developers.chrome.com",
+      "url": "https://developers.chrome.com",
+      "connections": []
+    },
+    {
+      "id": "geminicli.com",
+      "name": "geminicli.com",
+      "url": "https://geminicli.com",
+      "connections": []
+    },
+    {
+      "id": "playwright.dev",
+      "name": "playwright.dev",
+      "url": "https://playwright.dev",
+      "connections": []
+    },
+    {
+      "id": "docs.cline.bot",
+      "name": "docs.cline.bot",
+      "url": "https://docs.cline.bot",
+      "connections": []
+    },
+    {
+      "id": "block.github.io",
+      "name": "block.github.io",
+      "url": "https://block.github.io",
+      "connections": []
+    },
+    {
+      "id": "junie.jetbrains.com",
+      "name": "junie.jetbrains.com",
+      "url": "https://junie.jetbrains.com",
+      "connections": []
+    },
+    {
+      "id": "kiro.dev",
+      "name": "kiro.dev",
+      "url": "https://kiro.dev",
+      "connections": []
+    },
+    {
+      "id": "lmstudio.ai",
+      "name": "lmstudio.ai",
+      "url": "https://lmstudio.ai",
+      "connections": []
+    },
+    {
+      "id": "docs.qodo.ai",
+      "name": "docs.qodo.ai",
+      "url": "https://docs.qodo.ai",
+      "connections": []
+    },
+    {
+      "id": "myproxy:3128",
+      "name": "myproxy:3128",
+      "url": "https://myproxy:3128",
+      "connections": []
+    },
+    {
+      "id": "example.com%22%7d",
+      "name": "example.com%22%7d",
+      "url": "https://example.com%22%7d",
+      "connections": []
+    },
+    {
+      "id": "goreportcard.com",
+      "name": "goreportcard.com",
+      "url": "https://goreportcard.com",
+      "connections": []
+    },
+    {
+      "id": "docker.com",
+      "name": "docker.com",
+      "url": "https://docker.com",
+      "connections": []
+    },
+    {
+      "id": "coplaydev.github.io",
+      "name": "coplaydev.github.io",
+      "url": "https://coplaydev.github.io",
+      "connections": []
+    },
+    {
+      "id": "tryaura.dev",
+      "name": "tryaura.dev",
+      "url": "https://tryaura.dev",
+      "connections": []
+    },
+    {
+      "id": "docs.astral.sh",
+      "name": "docs.astral.sh",
+      "url": "https://docs.astral.sh",
+      "connections": []
+    },
+    {
+      "id": "star-history.com",
+      "name": "star-history.com",
+      "url": "https://star-history.com",
+      "connections": []
+    },
+    {
+      "id": "agentaudit.dev",
+      "name": "agentaudit.dev",
+      "url": "https://agentaudit.dev",
+      "connections": []
+    },
+    {
+      "id": "archestra.ai",
+      "name": "archestra.ai",
+      "url": "https://archestra.ai",
+      "connections": []
+    },
+    {
+      "id": "smithery.ai",
+      "name": "smithery.ai",
+      "url": "https://smithery.ai",
+      "connections": []
+    },
+    {
+      "id": "buymeacoffee.com",
+      "name": "buymeacoffee.com",
+      "url": "https://buymeacoffee.com",
+      "connections": []
+    },
+    {
+      "id": "glama.ai",
+      "name": "glama.ai",
+      "url": "https://glama.ai",
+      "connections": []
+    },
+    {
+      "id": "desktopcommander.app",
+      "name": "desktopcommander.app",
+      "url": "https://desktopcommander.app",
+      "connections": []
+    },
+    {
+      "id": "mcp.desktopcommander.app",
+      "name": "mcp.desktopcommander.app",
+      "url": "https://mcp.desktopcommander.app",
+      "connections": []
+    },
+    {
+      "id": "cursor.directory",
+      "name": "cursor.directory",
+      "url": "https://cursor.directory",
+      "connections": []
+    },
+    {
+      "id": "docs.cursor.com",
+      "name": "docs.cursor.com",
+      "url": "https://docs.cursor.com",
+      "connections": []
+    },
+    {
+      "id": "docs.roocode.com",
+      "name": "docs.roocode.com",
+      "url": "https://docs.roocode.com",
+      "connections": []
+    },
+    {
+      "id": "docs.anthropic.com",
+      "name": "docs.anthropic.com",
+      "url": "https://docs.anthropic.com",
+      "connections": []
+    },
+    {
+      "id": "docs.trae.ai",
+      "name": "docs.trae.ai",
+      "url": "https://docs.trae.ai",
+      "connections": []
+    },
+    {
+      "id": "jetbrains.com",
+      "name": "jetbrains.com",
+      "url": "https://jetbrains.com",
+      "connections": []
+    },
+    {
+      "id": "docs.augmentcode.com",
+      "name": "docs.augmentcode.com",
+      "url": "https://docs.augmentcode.com",
+      "connections": []
+    },
+    {
+      "id": "qwenlm.github.io",
+      "name": "qwenlm.github.io",
+      "url": "https://qwenlm.github.io",
+      "connections": []
+    },
+    {
+      "id": "hub.docker.com",
+      "name": "hub.docker.com",
+      "url": "https://hub.docker.com",
+      "connections": []
+    },
+    {
+      "id": "patreon.com",
+      "name": "patreon.com",
+      "url": "https://patreon.com",
+      "connections": []
+    },
+    {
+      "id": "wonderwhy-er.medium.com",
+      "name": "wonderwhy-er.medium.com",
+      "url": "https://wonderwhy-er.medium.com",
+      "connections": []
+    },
+    {
+      "id": "analyticsindiamag.com",
+      "name": "analyticsindiamag.com",
+      "url": "https://analyticsindiamag.com",
+      "connections": []
+    },
+    {
+      "id": "mseep.ai",
+      "name": "mseep.ai",
+      "url": "https://mseep.ai",
+      "connections": []
+    },
+    {
+      "id": "knacklabs.ai",
+      "name": "knacklabs.ai",
+      "url": "https://knacklabs.ai",
+      "connections": []
+    },
+    {
+      "id": "mcp.so",
+      "name": "mcp.so",
+      "url": "https://mcp.so",
+      "connections": []
+    },
+    {
+      "id": "klavis.ai",
+      "name": "klavis.ai",
+      "url": "https://klavis.ai",
+      "connections": []
+    },
+    {
+      "id": "docs.firecrawl.dev",
+      "name": "docs.firecrawl.dev",
+      "url": "https://docs.firecrawl.dev",
+      "connections": []
+    },
+    {
+      "id": "firecrawl.dev",
+      "name": "firecrawl.dev",
+      "url": "https://firecrawl.dev",
+      "connections": []
+    },
+    {
+      "id": "localhost:3000",
+      "name": "localhost:3000",
+      "url": "https://localhost:3000",
+      "connections": []
+    },
+    {
+      "id": "example.com",
+      "name": "example.com",
+      "url": "https://example.com",
+      "connections": []
+    },
+    {
+      "id": "caw.tech",
+      "name": "caw.tech",
+      "url": "https://caw.tech",
+      "connections": []
+    },
+    {
+      "id": "developers.notion.com",
+      "name": "developers.notion.com",
+      "url": "https://developers.notion.com",
+      "connections": []
+    },
+    {
+      "id": "spec.modelcontextprotocol.io",
+      "name": "spec.modelcontextprotocol.io",
+      "url": "https://spec.modelcontextprotocol.io",
+      "connections": []
+    },
+    {
+      "id": "notion.so",
+      "name": "notion.so",
+      "url": "https://notion.so",
+      "connections": []
+    },
+    {
+      "id": "mcptoplist.com",
+      "name": "mcptoplist.com",
+      "url": "https://mcptoplist.com",
+      "connections": []
+    },
+    {
+      "id": "gnu.org",
+      "name": "gnu.org",
+      "url": "https://gnu.org",
+      "connections": []
+    },
+    {
+      "id": "badge.fury.io",
+      "name": "badge.fury.io",
+      "url": "https://badge.fury.io",
+      "connections": []
+    },
+    {
+      "id": "python.org",
+      "name": "python.org",
+      "url": "https://python.org",
+      "connections": []
+    },
+    {
+      "id": "deepwiki.com",
+      "name": "deepwiki.com",
+      "url": "https://deepwiki.com",
+      "connections": []
+    },
+    {
+      "id": "basicmemory.com",
+      "name": "basicmemory.com",
+      "url": "https://basicmemory.com",
+      "connections": []
+    },
+    {
+      "id": "docs.basicmemory.com",
+      "name": "docs.basicmemory.com",
+      "url": "https://docs.basicmemory.com",
+      "connections": []
+    },
+    {
+      "id": "umami.is",
+      "name": "umami.is",
+      "url": "https://umami.is",
+      "connections": []
+    },
+    {
+      "id": "basicmachines.co",
+      "name": "basicmachines.co",
+      "url": "https://basicmachines.co",
+      "connections": []
+    },
+    {
+      "id": "eclipse.org",
+      "name": "eclipse.org",
+      "url": "https://eclipse.org",
+      "connections": []
+    },
+    {
+      "id": "dotnet.microsoft.com",
+      "name": "dotnet.microsoft.com",
+      "url": "https://dotnet.microsoft.com",
+      "connections": []
+    },
+    {
+      "id": "nuget.org",
+      "name": "nuget.org",
+      "url": "https://nuget.org",
+      "connections": []
+    },
+    {
+      "id": "docs.aws.amazon.com",
+      "name": "docs.aws.amazon.com",
+      "url": "https://docs.aws.amazon.com",
+      "connections": []
+    },
+    {
+      "id": "support.claude.com",
+      "name": "support.claude.com",
+      "url": "https://support.claude.com",
+      "connections": []
+    },
+    {
+      "id": "mcr.microsoft.com",
+      "name": "mcr.microsoft.com",
+      "url": "https://mcr.microsoft.com",
+      "connections": []
+    },
+    {
+      "id": "claude.com",
+      "name": "claude.com",
+      "url": "https://claude.com",
+      "connections": []
+    },
+    {
+      "id": "help.kusto.windows.net",
+      "name": "help.kusto.windows.net",
+      "url": "https://help.kusto.windows.net",
+      "connections": []
+    },
+    {
+      "id": "scottspence.com",
+      "name": "scottspence.com",
+      "url": "https://scottspence.com",
+      "connections": []
+    },
+    {
+      "id": "mcp.apify.com",
+      "name": "mcp.apify.com",
+      "url": "https://mcp.apify.com",
+      "connections": []
+    },
+    {
+      "id": "apify.com",
+      "name": "apify.com",
+      "url": "https://apify.com",
+      "connections": []
+    },
+    {
+      "id": "claude.ai",
+      "name": "claude.ai",
+      "url": "https://claude.ai",
+      "connections": []
+    },
+    {
+      "id": "docs.apify.com",
+      "name": "docs.apify.com",
+      "url": "https://docs.apify.com",
+      "connections": []
+    },
+    {
+      "id": "modelcontextprotocol.org",
+      "name": "modelcontextprotocol.org",
+      "url": "https://modelcontextprotocol.org",
+      "connections": []
+    },
+    {
+      "id": "agi.apify.com",
+      "name": "agi.apify.com",
+      "url": "https://agi.apify.com",
+      "connections": []
+    },
+    {
+      "id": "base.org",
+      "name": "base.org",
+      "url": "https://base.org",
+      "connections": []
+    },
+    {
+      "id": "x402.org",
+      "name": "x402.org",
+      "url": "https://x402.org",
+      "connections": []
+    },
+    {
+      "id": "skyfire.xyz",
+      "name": "skyfire.xyz",
+      "url": "https://skyfire.xyz",
+      "connections": []
+    },
+    {
+      "id": "blog.apify.com",
+      "name": "blog.apify.com",
+      "url": "https://blog.apify.com",
+      "connections": []
+    },
+    {
+      "id": "sentry.io",
+      "name": "sentry.io",
+      "url": "https://sentry.io",
+      "connections": []
+    },
+    {
+      "id": "pkg.pr.new",
+      "name": "pkg.pr.new",
+      "url": "https://pkg.pr.new",
+      "connections": []
+    },
+    {
+      "id": "json-schema.org",
+      "name": "json-schema.org",
+      "url": "https://json-schema.org",
+      "connections": []
+    },
+    {
+      "id": "bytebase.com",
+      "name": "bytebase.com",
+      "url": "https://bytebase.com",
+      "connections": []
+    },
+    {
+      "id": "dbhub.ai",
+      "name": "dbhub.ai",
+      "url": "https://dbhub.ai",
+      "connections": []
+    },
+    {
+      "id": "registry.modelcontextprotocol.io",
+      "name": "registry.modelcontextprotocol.io",
+      "url": "https://registry.modelcontextprotocol.io",
+      "connections": []
+    },
+    {
+      "id": "supabase.com",
+      "name": "supabase.com",
+      "url": "https://supabase.com",
+      "connections": []
+    },
+    {
+      "id": "ai-sdk.dev",
+      "name": "ai-sdk.dev",
+      "url": "https://ai-sdk.dev",
+      "connections": []
+    },
+    {
+      "id": "brightdata.com",
+      "name": "brightdata.com",
+      "url": "https://brightdata.com",
+      "connections": []
+    },
+    {
+      "id": "docs.brightdata.com",
+      "name": "docs.brightdata.com",
+      "url": "https://docs.brightdata.com",
+      "connections": []
+    },
+    {
+      "id": "tavily.com",
+      "name": "tavily.com",
+      "url": "https://tavily.com",
+      "connections": []
+    },
+    {
+      "id": "app.tavily.com",
+      "name": "app.tavily.com",
+      "url": "https://app.tavily.com",
+      "connections": []
+    },
+    {
+      "id": "cursor.sh",
+      "name": "cursor.sh",
+      "url": "https://cursor.sh",
+      "connections": []
+    },
+    {
+      "id": "git-scm.com",
+      "name": "git-scm.com",
+      "url": "https://git-scm.com",
+      "connections": []
+    },
+    {
+      "id": "contrib.rocks",
+      "name": "contrib.rocks",
+      "url": "https://contrib.rocks",
+      "connections": []
+    },
+    {
+      "id": "zereight.github.io",
+      "name": "zereight.github.io",
+      "url": "https://zereight.github.io",
+      "connections": []
+    },
+    {
+      "id": "ngrok.com",
+      "name": "ngrok.com",
+      "url": "https://ngrok.com",
+      "connections": []
+    },
+    {
+      "id": "help.figma.com",
+      "name": "help.figma.com",
+      "url": "https://help.figma.com",
+      "connections": []
+    },
+    {
+      "id": "developers.figma.com",
+      "name": "developers.figma.com",
+      "url": "https://developers.figma.com",
+      "connections": []
+    },
+    {
+      "id": "platform.openai.com",
+      "name": "platform.openai.com",
+      "url": "https://platform.openai.com",
+      "connections": []
+    },
+    {
+      "id": "agentskills.io",
+      "name": "agentskills.io",
+      "url": "https://agentskills.io",
+      "connections": []
+    },
+    {
+      "id": "npm.im",
+      "name": "npm.im",
+      "url": "https://npm.im",
+      "connections": []
+    },
+    {
+      "id": "docs.stripe.com",
+      "name": "docs.stripe.com",
+      "url": "https://docs.stripe.com",
+      "connections": []
+    },
+    {
+      "id": "patrickchugh.github.io",
+      "name": "patrickchugh.github.io",
+      "url": "https://patrickchugh.github.io",
+      "connections": []
+    },
+    {
+      "id": "graphviz.org",
+      "name": "graphviz.org",
+      "url": "https://graphviz.org",
+      "connections": []
+    },
+    {
+      "id": "terraform.io",
+      "name": "terraform.io",
+      "url": "https://terraform.io",
+      "connections": []
+    },
+    {
+      "id": "terragrunt.gruntwork.io",
+      "name": "terragrunt.gruntwork.io",
+      "url": "https://terragrunt.gruntwork.io",
+      "connections": []
+    },
+    {
+      "id": "developer.hashicorp.com",
+      "name": "developer.hashicorp.com",
+      "url": "https://developer.hashicorp.com",
+      "connections": []
+    },
+    {
+      "id": "docs.claude.com",
+      "name": "docs.claude.com",
+      "url": "https://docs.claude.com",
+      "connections": []
+    },
+    {
+      "id": "learn.chatgpt.com",
+      "name": "learn.chatgpt.com",
+      "url": "https://learn.chatgpt.com",
+      "connections": []
+    },
+    {
+      "id": "hashicorp.com",
+      "name": "hashicorp.com",
+      "url": "https://hashicorp.com",
+      "connections": []
+    },
+    {
+      "id": "docs.vybenetwork.com",
+      "name": "docs.vybenetwork.com",
+      "url": "https://docs.vybenetwork.com",
+      "connections": []
+    },
+    {
+      "id": "open-plugins.com",
+      "name": "open-plugins.com",
+      "url": "https://open-plugins.com",
+      "connections": []
+    },
+    {
+      "id": "scorecard.dev",
+      "name": "scorecard.dev",
+      "url": "https://scorecard.dev",
+      "connections": []
+    },
+    {
+      "id": "bestpractices.dev",
+      "name": "bestpractices.dev",
+      "url": "https://bestpractices.dev",
+      "connections": []
+    },
+    {
+      "id": "docs.searxng.org",
+      "name": "docs.searxng.org",
+      "url": "https://docs.searxng.org",
+      "connections": []
+    },
+    {
+      "id": "cloud.mongodb.com",
+      "name": "cloud.mongodb.com",
+      "url": "https://cloud.mongodb.com",
+      "connections": []
+    },
+    {
+      "id": "mongodb.com",
+      "name": "mongodb.com",
+      "url": "https://mongodb.com",
+      "connections": []
+    },
+    {
+      "id": "nngroup.com",
+      "name": "nngroup.com",
+      "url": "https://nngroup.com",
+      "connections": []
+    },
+    {
+      "id": "containers.dev",
+      "name": "containers.dev",
+      "url": "https://containers.dev",
+      "connections": []
+    },
+    {
+      "id": "docs.docker.com",
+      "name": "docs.docker.com",
+      "url": "https://docs.docker.com",
+      "connections": []
+    },
+    {
+      "id": "pytorch.org",
+      "name": "pytorch.org",
+      "url": "https://pytorch.org",
+      "connections": []
+    },
+    {
+      "id": "dotfiles.github.io",
+      "name": "dotfiles.github.io",
+      "url": "https://dotfiles.github.io",
+      "connections": []
+    },
+    {
+      "id": "economicgraph.linkedin.com",
+      "name": "economicgraph.linkedin.com",
+      "url": "https://economicgraph.linkedin.com",
+      "connections": []
+    },
+    {
+      "id": "business.linkedin.com",
+      "name": "business.linkedin.com",
+      "url": "https://business.linkedin.com",
+      "connections": []
+    },
+    {
+      "id": "classroom.github.com",
+      "name": "classroom.github.com",
+      "url": "https://classroom.github.com",
+      "connections": []
+    },
+    {
+      "id": "namecheap.com",
+      "name": "namecheap.com",
+      "url": "https://namecheap.com",
+      "connections": []
+    },
+    {
+      "id": "name.com",
+      "name": "name.com",
+      "url": "https://name.com",
+      "connections": []
+    },
+    {
+      "id": "boot.dev",
+      "name": "boot.dev",
+      "url": "https://boot.dev",
+      "connections": []
+    },
+    {
+      "id": "help.heroku.com",
+      "name": "help.heroku.com",
+      "url": "https://help.heroku.com",
+      "connections": []
+    },
+    {
+      "id": "support.datacamp.com",
+      "name": "support.datacamp.com",
+      "url": "https://support.datacamp.com",
+      "connections": []
+    },
+    {
+      "id": "codedex.notion.site",
+      "name": "codedex.notion.site",
+      "url": "https://codedex.notion.site",
+      "connections": []
+    },
+    {
+      "id": "intellij-support.jetbrains.com",
+      "name": "intellij-support.jetbrains.com",
+      "url": "https://intellij-support.jetbrains.com",
+      "connections": []
+    },
+    {
+      "id": "cambercloudcommunity.slack.com",
+      "name": "cambercloudcommunity.slack.com",
+      "url": "https://cambercloudcommunity.slack.com",
+      "connections": []
+    },
+    {
+      "id": "clerk.com",
+      "name": "clerk.com",
+      "url": "https://clerk.com",
+      "connections": []
+    },
+    {
+      "id": "docs.termius.com",
+      "name": "docs.termius.com",
+      "url": "https://docs.termius.com",
+      "connections": []
+    },
+    {
+      "id": "support.stripe.com",
+      "name": "support.stripe.com",
+      "url": "https://support.stripe.com",
+      "connections": []
+    },
+    {
+      "id": "appwrite.io",
+      "name": "appwrite.io",
+      "url": "https://appwrite.io",
+      "connections": []
+    },
+    {
+      "id": "icons8.com",
+      "name": "icons8.com",
+      "url": "https://icons8.com",
+      "connections": []
+    },
+    {
+      "id": "localstack.cloud",
+      "name": "localstack.cloud",
+      "url": "https://localstack.cloud",
+      "connections": []
+    },
+    {
+      "id": "bootstrapstudio.io",
+      "name": "bootstrapstudio.io",
+      "url": "https://bootstrapstudio.io",
+      "connections": []
+    },
+    {
+      "id": "forum.sentry.io",
+      "name": "forum.sentry.io",
+      "url": "https://forum.sentry.io",
+      "connections": []
+    },
+    {
+      "id": "arduino.cc",
+      "name": "arduino.cc",
+      "url": "https://arduino.cc",
+      "connections": []
+    },
+    {
+      "id": "polypane.app",
+      "name": "polypane.app",
+      "url": "https://polypane.app",
+      "connections": []
+    },
+    {
+      "id": "help.gitkraken.com",
+      "name": "help.gitkraken.com",
+      "url": "https://help.gitkraken.com",
+      "connections": []
+    },
+    {
+      "id": "browserstack.com",
+      "name": "browserstack.com",
+      "url": "https://browserstack.com",
+      "connections": []
+    },
+    {
+      "id": "adafruit.com",
+      "name": "adafruit.com",
+      "url": "https://adafruit.com",
+      "connections": []
+    },
+    {
+      "id": "hazeover.com",
+      "name": "hazeover.com",
+      "url": "https://hazeover.com",
+      "connections": []
+    },
+    {
+      "id": "support.visme.co",
+      "name": "support.visme.co",
+      "url": "https://support.visme.co",
+      "connections": []
+    },
+    {
+      "id": "algoexpert.io",
+      "name": "algoexpert.io",
+      "url": "https://algoexpert.io",
+      "connections": []
+    },
+    {
+      "id": "docs.travis-ci.com",
+      "name": "docs.travis-ci.com",
+      "url": "https://docs.travis-ci.com",
+      "connections": []
+    },
+    {
+      "id": "simpleanalytics.com",
+      "name": "simpleanalytics.com",
+      "url": "https://simpleanalytics.com",
+      "connections": []
+    },
+    {
+      "id": "carto.com",
+      "name": "carto.com",
+      "url": "https://carto.com",
+      "connections": []
+    },
+    {
+      "id": "slidecoach.ai",
+      "name": "slidecoach.ai",
+      "url": "https://slidecoach.ai",
+      "connections": []
+    },
+    {
+      "id": "configcat.com",
+      "name": "configcat.com",
+      "url": "https://configcat.com",
+      "connections": []
+    },
+    {
+      "id": "support.sqlgate.com",
+      "name": "support.sqlgate.com",
+      "url": "https://support.sqlgate.com",
+      "connections": []
+    },
+    {
+      "id": "deepscan.io",
+      "name": "deepscan.io",
+      "url": "https://deepscan.io",
+      "connections": []
+    },
+    {
+      "id": "themeisle.com",
+      "name": "themeisle.com",
+      "url": "https://themeisle.com",
+      "connections": []
+    },
+    {
+      "id": "appfigures.com",
+      "name": "appfigures.com",
+      "url": "https://appfigures.com",
+      "connections": []
+    },
+    {
+      "id": "poeditor.com",
+      "name": "poeditor.com",
+      "url": "https://poeditor.com",
+      "connections": []
+    },
+    {
+      "id": "blockchair.com",
+      "name": "blockchair.com",
+      "url": "https://blockchair.com",
+      "connections": []
+    },
+    {
+      "id": "symfonycasts.com",
+      "name": "symfonycasts.com",
+      "url": "https://symfonycasts.com",
+      "connections": []
+    },
+    {
+      "id": "support.dashlane.com",
+      "name": "support.dashlane.com",
+      "url": "https://support.dashlane.com",
+      "connections": []
+    },
+    {
+      "id": "reg.githubuniverse.com",
+      "name": "reg.githubuniverse.com",
+      "url": "https://reg.githubuniverse.com",
+      "connections": []
+    },
+    {
+      "id": "bug-bash.github.com",
+      "name": "bug-bash.github.com",
+      "url": "https://bug-bash.github.com",
+      "connections": []
+    },
+    {
+      "id": "partner.microsoft.com",
+      "name": "partner.microsoft.com",
+      "url": "https://partner.microsoft.com",
+      "connections": []
+    },
+    {
+      "id": "portal.azure.com",
+      "name": "portal.azure.com",
+      "url": "https://portal.azure.com",
+      "connections": []
+    },
+    {
+      "id": "docs.microsoft.com",
+      "name": "docs.microsoft.com",
+      "url": "https://docs.microsoft.com",
+      "connections": []
+    },
+    {
+      "id": "codeql.com",
+      "name": "codeql.com",
+      "url": "https://codeql.com",
+      "connections": []
+    },
+    {
+      "id": "intrigus.org",
+      "name": "intrigus.org",
+      "url": "https://intrigus.org",
+      "connections": []
+    },
+    {
+      "id": "sentinelone.com",
+      "name": "sentinelone.com",
+      "url": "https://sentinelone.com",
+      "connections": []
+    },
+    {
+      "id": "pwning.systems",
+      "name": "pwning.systems",
+      "url": "https://pwning.systems",
+      "connections": []
+    },
+    {
+      "id": "verizon.com",
+      "name": "verizon.com",
+      "url": "https://verizon.com",
+      "connections": []
+    },
+    {
+      "id": "api.github.com",
+      "name": "api.github.com",
+      "url": "https://api.github.com",
+      "connections": []
+    },
+    {
+      "id": "assets.ctfassets.net",
+      "name": "assets.ctfassets.net",
+      "url": "https://assets.ctfassets.net",
+      "connections": []
+    },
+    {
+      "id": "swebench.com",
+      "name": "swebench.com",
+      "url": "https://swebench.com",
+      "connections": []
+    },
+    {
+      "id": "developer.apple.com",
+      "name": "developer.apple.com",
+      "url": "https://developer.apple.com",
+      "connections": []
+    },
+    {
+      "id": "electronforge.io",
+      "name": "electronforge.io",
+      "url": "https://electronforge.io",
+      "connections": []
+    },
+    {
+      "id": "releases.electronjs.org",
+      "name": "releases.electronjs.org",
+      "url": "https://releases.electronjs.org",
+      "connections": []
+    },
+    {
+      "id": "fiddle.electronjs.org",
+      "name": "fiddle.electronjs.org",
+      "url": "https://fiddle.electronjs.org",
+      "connections": []
+    },
+    {
+      "id": "discordapp.com",
+      "name": "discordapp.com",
+      "url": "https://discordapp.com",
+      "connections": []
+    },
+    {
+      "id": "social.lfx.dev",
+      "name": "social.lfx.dev",
+      "url": "https://social.lfx.dev",
+      "connections": []
+    },
+    {
+      "id": "stackoverflow.com",
+      "name": "stackoverflow.com",
+      "url": "https://stackoverflow.com",
+      "connections": []
+    },
+    {
+      "id": "opencollective.com",
+      "name": "opencollective.com",
+      "url": "https://opencollective.com",
+      "connections": []
+    },
+    {
+      "id": "p.datadoghq.com",
+      "name": "p.datadoghq.com",
+      "url": "https://p.datadoghq.com",
+      "connections": []
+    },
+    {
+      "id": "openjsf.org",
+      "name": "openjsf.org",
+      "url": "https://openjsf.org",
+      "connections": []
+    },
+    {
+      "id": "trademark-policy.openjsf.org",
+      "name": "trademark-policy.openjsf.org",
+      "url": "https://trademark-policy.openjsf.org",
+      "connections": []
+    },
+    {
+      "id": "trademark-list.openjsf.org",
+      "name": "trademark-list.openjsf.org",
+      "url": "https://trademark-list.openjsf.org",
+      "connections": []
+    },
+    {
+      "id": "terms-of-use.openjsf.org",
+      "name": "terms-of-use.openjsf.org",
+      "url": "https://terms-of-use.openjsf.org",
+      "connections": []
+    },
+    {
+      "id": "privacy-policy.openjsf.org",
+      "name": "privacy-policy.openjsf.org",
+      "url": "https://privacy-policy.openjsf.org",
+      "connections": []
+    },
+    {
+      "id": "bylaws.openjsf.org",
+      "name": "bylaws.openjsf.org",
+      "url": "https://bylaws.openjsf.org",
+      "connections": []
+    },
+    {
+      "id": "code-of-conduct.openjsf.org",
+      "name": "code-of-conduct.openjsf.org",
+      "url": "https://code-of-conduct.openjsf.org",
+      "connections": []
+    },
+    {
+      "id": "linuxfoundation.org",
+      "name": "linuxfoundation.org",
+      "url": "https://linuxfoundation.org",
       "connections": []
     }
   ]
