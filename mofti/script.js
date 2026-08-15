@@ -357,7 +357,7 @@ function createPositions() {
         // These become satellites.
         //
 
-        if (count <= 1) {
+        if (count <= 0) {
             continue;
         }
 
@@ -858,7 +858,6 @@ function drawSites() {
 // =========================
 // SELECT SITE
 // =========================
-
 function selectSite(site) {
 
     selectedSite = site;
@@ -872,10 +871,34 @@ function selectSite(site) {
     siteUrl.href =
         site.url || "#";
 
-    const amount =
-        Array.isArray(site.connections)
-            ? site.connections.length
-            : 0;
+    let connectionCount = new Set();
+
+    // Connections this site points to
+    if (Array.isArray(site.connections)) {
+        for (const id of site.connections) {
+            if (siteMap.has(id)) {
+                connectionCount.add(id);
+            }
+        }
+    }
+
+    // Sites that point TO this site
+    for (const otherSite of sites) {
+
+        if (
+            !Array.isArray(otherSite.connections)
+        ) {
+            continue;
+        }
+
+        if (
+            otherSite.connections.includes(site.id)
+        ) {
+            connectionCount.add(otherSite.id);
+        }
+    }
+
+    const amount = connectionCount.size;
 
     connectionsText.textContent =
         `${amount} connection${amount === 1 ? "" : "s"}`;
