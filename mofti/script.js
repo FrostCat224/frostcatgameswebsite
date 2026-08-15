@@ -721,66 +721,62 @@ function draw() {
 
 function drawConnections() {
 
-    ctx.strokeStyle = "#333";
     ctx.lineWidth = 1;
-
-    ctx.beginPath();
 
     for (const site of sites) {
 
-        if (!site.connections) continue;
-
-        const ax =
-            site.x * camera.zoom +
-            window.innerWidth / 2 +
-            camera.x;
-
-        const ay =
-            site.y * camera.zoom +
-            window.innerHeight / 2 +
-            camera.y;
-
-        // Skip nodes outside screen
         if (
-            ax < -500 ||
-            ax > window.innerWidth + 500 ||
-            ay < -500 ||
-            ay > window.innerHeight + 500
+            !site.connections ||
+            !Array.isArray(site.connections)
+        ) {
+            continue;
+        }
+
+        const a =
+            worldToScreen(site.x, site.y);
+
+        // Don't process nodes far outside screen
+        if (
+            a.x < -500 ||
+            a.x > window.innerWidth + 500 ||
+            a.y < -500 ||
+            a.y > window.innerHeight + 500
         ) {
             continue;
         }
 
         for (const connectionId of site.connections) {
 
-            const target = siteMap.get(connectionId);
+            const target =
+                siteMap.get(connectionId);
 
             if (!target) continue;
 
-            const bx =
-                target.x * camera.zoom +
-                window.innerWidth / 2 +
-                camera.x;
-
-            const by =
-                target.y * camera.zoom +
-                window.innerHeight / 2 +
-                camera.y;
+            const b =
+                worldToScreen(
+                    target.x,
+                    target.y
+                );
 
             if (
-                bx < -500 ||
-                bx > window.innerWidth + 500 ||
-                by < -500 ||
-                by > window.innerHeight + 500
+                b.x < -500 ||
+                b.x > window.innerWidth + 500 ||
+                b.y < -500 ||
+                b.y > window.innerHeight + 500
             ) {
                 continue;
             }
 
-            ctx.moveTo(ax, ay);
-            ctx.lineTo(bx, by);
+            ctx.strokeStyle = "#333";
+
+            ctx.beginPath();
+
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+
+            ctx.stroke();
         }
     }
-
-    ctx.stroke();
 }
 
 
