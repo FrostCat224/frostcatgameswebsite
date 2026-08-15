@@ -1348,7 +1348,6 @@ canvas.addEventListener(
     { passive: false }
 );
 
-
 // =========================
 // SEARCH
 // =========================
@@ -1364,25 +1363,48 @@ search.addEventListener(
 
         if (!query) return;
 
-        const result =
-            sites.find(site =>
-                (
-                    site.name ||
-                    site.id
-                )
-                .toLowerCase()
-                .includes(query)
+        const normalizedSites = sites.map(site => ({
+            site,
+            name: (
+                site.name ||
+                site.id
+            ).toLowerCase()
+        }));
+
+        // 1. EXACT MATCH
+        let result =
+            normalizedSites.find(item =>
+                item.name === query
             );
 
+        // 2. STARTS WITH
+        if (!result) {
+            result =
+                normalizedSites.find(item =>
+                    item.name.startsWith(query)
+                );
+        }
+
+        // 3. CONTAINS
+        if (!result) {
+            result =
+                normalizedSites.find(item =>
+                    item.name.includes(query)
+                );
+        }
+
+        // Nothing found
         if (!result) return;
 
-        selectSite(result);
+        const site = result.site;
+
+        selectSite(site);
 
         // Move camera so result is centered
         camera.x =
-            -result.x * camera.zoom;
+            -site.x * camera.zoom;
 
         camera.y =
-            -result.y * camera.zoom;
+            -site.y * camera.zoom;
     }
 );
