@@ -796,25 +796,101 @@ function drawSites() {
 
         // Skip invisible nodes
         if (
-            position.x < -50 ||
-            position.x > window.innerWidth + 50 ||
-            position.y < -50 ||
-            position.y > window.innerHeight + 50
+            position.x < -100 ||
+            position.x > window.innerWidth + 100 ||
+            position.y < -100 ||
+            position.y > window.innerHeight + 100
         ) {
             continue;
         }
 
-        let size =
-            site === selectedSite
-                ? 9
-                : 5;
+        // =========================
+        // CONNECTION COUNT
+        // =========================
+        //
+        // Count both outgoing and incoming
+        // connections, just like selectSite().
+        //
 
-        // Make nodes easier to tap when zoomed out
-        if (camera.zoom < 0.5) {
-            size = site === selectedSite
-                ? 8
-                : 4;
+        const connectionIds = new Set();
+
+        // Outgoing
+        if (Array.isArray(site.connections)) {
+
+            for (const id of site.connections) {
+
+                if (siteMap.has(id)) {
+                    connectionIds.add(id);
+                }
+            }
         }
+
+        // Incoming
+        for (const otherSite of sites) {
+
+            if (
+                !Array.isArray(otherSite.connections)
+            ) {
+                continue;
+            }
+
+            if (
+                otherSite.connections.includes(site.id)
+            ) {
+                connectionIds.add(otherSite.id);
+            }
+        }
+
+        const connectionCount =
+            connectionIds.size;
+
+
+        // =========================
+        // NODE SIZE
+        // =========================
+        //
+        // More connections = bigger node.
+        //
+        // sqrt() prevents highly connected
+        // nodes from becoming ridiculously huge.
+        //
+
+        let size =
+            4 +
+            Math.sqrt(connectionCount) * 1.5;
+
+        // Keep nodes within sensible limits
+        size =
+            Math.max(4, Math.min(size, 18));
+
+
+        // Selected node is slightly bigger
+        if (site === selectedSite) {
+            size += 3;
+        }
+
+
+        // =========================
+        // ZOOM SCALING
+        // =========================
+        //
+        // Keep nodes visible when zoomed out,
+        // but let them grow normally when zoomed in.
+        //
+
+        if (camera.zoom < 0.5) {
+
+            size *=
+                Math.max(
+                    0.7,
+                    camera.zoom * 1.4
+                );
+        }
+
+
+        // =========================
+        // DRAW NODE
+        // =========================
 
         ctx.beginPath();
 
@@ -834,7 +910,10 @@ function drawSites() {
         ctx.fill();
 
 
-        // Don't show thousands of labels when zoomed out
+        // =========================
+        // LABEL
+        // =========================
+
         if (
             camera.zoom > 0.7 ||
             site === selectedSite
@@ -847,7 +926,7 @@ function drawSites() {
 
             ctx.fillText(
                 site.name || site.id,
-                position.x + 9,
+                position.x + size + 4,
                 position.y + 4
             );
         }
