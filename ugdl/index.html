@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>UGDL - Ultimate Geometry Dash List</title>
+
+    <link
+        href="https://frostcat224.github.io/frostcatgameswebsite/style.css"
+        rel="stylesheet"
+        type="text/css"
+        media="all"
+    >
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .intro {
+            margin-bottom: 25px;
+        }
+
+        /* =========================
+           ADD LEVEL
+        ========================= */
+
+        #addLevelBox {
+            background: rgba(0, 0, 0, 0.25);
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        #addLevelBox h2 {
+            margin-top: 0;
+        }
+
+        .inputRow {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .inputRow input {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        input,
+        button {
+            font-family: inherit;
+            font-size: 16px;
+            padding: 10px;
+            border-radius: 7px;
+            border: 1px solid #777;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        #addButton {
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        #addMessage {
+            margin-top: 10px;
+        }
+
+        /* =========================
+           SORT
+        ========================= */
+
+        #sortBox {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        #sortSelect {
+            padding: 8px;
+            border-radius: 7px;
+        }
+
+        /* =========================
+           LEVEL LIST
+        ========================= */
+
+        #levels {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .level {
+            display: flex;
+            gap: 18px;
+
+            background: rgba(0, 0, 0, 0.25);
+            border: 2px solid rgba(255,255,255,0.15);
+            border-radius: 12px;
+
+            padding: 15px;
+
+            transition: transform 0.15s;
+        }
+
+        .level:hover {
+            transform: translateY(-2px);
+        }
+
+        .thumbnail {
+            width: 220px;
+            height: 125px;
+            flex-shrink: 0;
+
+            border-radius: 8px;
+            overflow: hidden;
+            background: #111;
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .levelInfo {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .levelName {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .levelId {
+            opacity: 0.7;
+            margin-bottom: 12px;
+        }
+
+        .difficulty {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .votes {
+            opacity: 0.7;
+            font-size: 14px;
+            margin-top: 3px;
+        }
+
+        .voteArea {
+            margin-top: 12px;
+
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .voteInput {
+            width: 130px;
+        }
+
+        .voteButton {
+            padding: 9px 15px;
+        }
+
+        .alreadyVoted {
+            opacity: 0.7;
+        }
+
+        .videoButton {
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 650px) {
+            .level {
+                flex-direction: column;
+            }
+
+            .thumbnail {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 16 / 9;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <img
+        src="https://frostcat224.github.io/frostcatgameswebsite/img/textlogo.png"
+        alt="FrostCatGames"
+    >
+
+    <nav>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/">Home</a>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/stuff">Stuff</a>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/archive">Archive</a>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/info">Info</a>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/search">Search</a>
+    </nav>
+</header>
+
+
+<main>
+
+    <h1>UGDL</h1>
+
+    <div class="intro">
+        <p>
+            Welcome to the Ultimate Geometry Dash List (UGDL)!
+            Every level is allowed, verified or not, ugly or beautiful, etc.
+        </p>
+
+        <p>
+            Every level must include a non-noclip gameplay video.
+            Vote from <b>0</b> (easiest) to <b>10000</b> (hardest).
+        </p>
+    </div>
+
+
+    <div id="addLevelBox">
+
+        <h2>Add a level</h2>
+
+        <div class="inputRow">
+            <input
+                id="levelIdInput"
+                type="text"
+                placeholder="Level ID"
+            >
+
+            <input
+                id="levelNameInput"
+                type="text"
+                placeholder="Level name"
+            >
+
+            <input
+                id="videoInput"
+                type="url"
+                placeholder="Gameplay video link"
+            >
+        </div>
+
+        <button id="addButton">
+            Add Level
+        </button>
+
+        <div id="addMessage"></div>
+
+    </div>
+
+
+
+
+    <div id="sortBox">
+
+        <strong>Sort by:</strong>
+
+        <select id="sortSelect">
+            <option value="hardest">Hardest to Easiest</option>
+            <option value="easiest">Easiest to Hardest</option>
+            <option value="newest">Newest Added</option>
+            <option value="name">Name</option>
+        </select>
+
+    </div>
+
+
+
+    <div id="levels">
+        <p>Loading levels...</p>
+    </div>
+
+</main>
+
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+
+<script>
+
+
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBdJLLcBObnFbvb_zE4wq81tmMUl7SoTdk",
+      authDomain: "ugdlugdl.firebaseapp.com",
+      projectId: "ugdlugdl",
+      storageBucket: "ugdlugdl.firebasestorage.app",
+      messagingSenderId: "750204731547",
+      appId: "1:750204731547:web:d09ae2e016fd146d05c63e"
+  };
+
+
+    firebase.initializeApp(firebaseConfig);
+
+    const auth = firebase.auth();
+    const db = firebase.database();
+
+
+
+    let currentUser = null;
+    let allLevels = [];
+
+
+
+    auth.signInAnonymously()
+        .then((result) => {
+
+            currentUser = result.user;
+
+            console.log("Logged in anonymously:", currentUser.uid);
+
+            loadLevels();
+
+        })
+        .catch((error) => {
+
+            console.error(error);
+
+            document.getElementById("levels").innerHTML =
+                "<p>Could not connect to Firebase.</p>";
+
+        });
+
+
+    function loadLevels() {
+
+        db.ref("levels").on("value", (snapshot) => {
+
+            allLevels = [];
+
+            snapshot.forEach((child) => {
+
+                const data = child.val();
+
+                const votes = data.votes || {};
+
+                const voteValues = Object.values(votes)
+                    .map(Number)
+                    .filter(value =>
+                        Number.isFinite(value) &&
+                        value >= 0 &&
+                        value <= 10000
+                    );
+
+
+                // Calculate average
+
+                let average = 0;
+
+                if (voteValues.length > 0) {
+
+                    const total = voteValues.reduce(
+                        (sum, value) => sum + value,
+                        0
+                    );
+
+                    average = total / voteValues.length;
+
+                }
+
+
+                allLevels.push({
+
+                    key: child.key,
+
+                    id: data.levelId || child.key,
+
+                    name: data.name || "Unnamed Level",
+
+                    video: data.video || "",
+
+                    votes: votes,
+
+                    average: average,
+
+                    voteCount: voteValues.length,
+
+                    createdAt: data.createdAt || 0
+
+                });
+
+            });
+
+
+            renderLevels();
+
+        });
+
+    }
+
+
+
+
+    function renderLevels() {
+
+        const container = document.getElementById("levels");
+
+        const sortType =
+            document.getElementById("sortSelect").value;
+
+
+        let levels = [...allLevels];
+
+
+        // Sort
+
+        if (sortType === "hardest") {
+
+            levels.sort((a, b) =>
+                b.average - a.average
+            );
+
+        }
+
+        else if (sortType === "easiest") {
+
+            levels.sort((a, b) =>
+                a.average - b.average
+            );
+
+        }
+
+        else if (sortType === "newest") {
+
+            levels.sort((a, b) =>
+                b.createdAt - a.createdAt
+            );
+
+        }
+
+        else if (sortType === "name") {
+
+            levels.sort((a, b) =>
+                a.name.localeCompare(b.name)
+            );
+
+        }
+
+
+        if (levels.length === 0) {
+
+            container.innerHTML =
+                "<p>No levels have been added yet!</p>";
+
+            return;
+
+        }
+
+
+        container.innerHTML = "";
+
+
+
+
+        levels.forEach((level) => {
+
+            const element = createLevelElement(level);
+
+            container.appendChild(element);
+
+        });
+
+    }
+
+
+    function createLevelElement(level) {
+
+        const div = document.createElement("div");
+
+        div.className = "level";
+
+
+
+        const thumbnail = document.createElement("div");
+
+        thumbnail.className = "thumbnail";
+
+
+        const image = document.createElement("img");
+
+        image.src = getVideoThumbnail(level.video);
+
+        image.alt = level.name;
+
+        image.onerror = function() {
+
+            this.src =
+                "https://via.placeholder.com/400x225?text=No+Thumbnail";
+
+        };
+
+
+        thumbnail.appendChild(image);
+
+
+
+        const info = document.createElement("div");
+
+        info.className = "levelInfo";
+
+
+        const name = document.createElement("div");
+
+        name.className = "levelName";
+
+        name.textContent = level.name;
+
+
+        const id = document.createElement("div");
+
+        id.className = "levelId";
+
+        id.textContent = "Level ID: " + level.id;
+
+
+        const difficulty = document.createElement("div");
+
+        difficulty.className = "difficulty";
+
+        difficulty.textContent =
+            formatDifficulty(level.average);
+
+
+        const votes = document.createElement("div");
+
+        votes.className = "votes";
+
+        votes.textContent =
+            level.voteCount +
+            (level.voteCount === 1 ? " vote" : " votes");
+
+
+        const voteArea = document.createElement("div");
+
+        voteArea.className = "voteArea";
+
+
+        const existingVote =
+            currentUser &&
+            level.votes &&
+            level.votes[currentUser.uid];
+
+
+        if (existingVote !== undefined) {
+
+            const votedText = document.createElement("span");
+
+            votedText.className = "alreadyVoted";
+
+            votedText.textContent =
+                "You voted " + existingVote + "/10000";
+
+            voteArea.appendChild(votedText);
+
+        }
+
+        else {
+
+            const input = document.createElement("input");
+
+            input.className = "voteInput";
+
+            input.type = "number";
+
+            input.min = "0";
+
+            input.max = "10000";
+
+            input.step = "1";
+
+            input.placeholder = "0 - 10000";
+
+
+            const button = document.createElement("button");
+
+            button.className = "voteButton";
+
+            button.textContent = "Vote";
+
+
+            button.onclick = function() {
+
+                submitVote(
+                    level.key,
+                    input
+                );
+
+            };
+
+
+            voteArea.appendChild(input);
+
+            voteArea.appendChild(button);
+
+        }
+
+
+        const videoButton = document.createElement("a");
+
+        videoButton.className = "videoButton";
+
+        videoButton.href = level.video;
+
+        videoButton.target = "_blank";
+
+        videoButton.rel = "noopener noreferrer";
+
+        videoButton.textContent =
+            "Watch gameplay";
+
+
+        info.appendChild(name);
+
+        info.appendChild(id);
+
+        info.appendChild(difficulty);
+
+        info.appendChild(votes);
+
+        info.appendChild(voteArea);
+
+        info.appendChild(videoButton);
+
+
+        div.appendChild(thumbnail);
+
+        div.appendChild(info);
+
+
+        return div;
+
+    }
+
+
+    function formatDifficulty(value) {
+
+        if (!value) {
+
+            return "Difficulty: Not voted yet";
+
+        }
+
+        return "Difficulty: " +
+            Math.round(value).toLocaleString() +
+            " / 10,000";
+
+    }
+
+
+
+    function getVideoThumbnail(url) {
+
+
+
+        const youtubeMatch =
+            url.match(
+                /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&?/]+)/
+            );
+
+
+        if (youtubeMatch) {
+
+            return (
+                "https://img.youtube.com/vi/" +
+                youtubeMatch[1] +
+                "/hqdefault.jpg"
+            );
+
+        }
+
+
+        const shortsMatch =
+            url.match(
+                /youtube\.com\/shorts\/([^&?/]+)/
+            );
+
+
+        if (shortsMatch) {
+
+            return (
+                "https://img.youtube.com/vi/" +
+                shortsMatch[1] +
+                "/hqdefault.jpg"
+            );
+
+        }
+
+
+        return (
+            "https://via.placeholder.com/400x225?text=Video"
+        );
+
+    }
+
+
+
+    function submitVote(levelKey, input) {
+
+        if (!currentUser) {
+
+            alert("You are not connected to Firebase.");
+
+            return;
+
+        }
+
+
+        const value =
+            Number(input.value);
+
+
+
+        if (
+            !Number.isInteger(value) ||
+            value < 0 ||
+            value > 10000
+        ) {
+
+            alert(
+                "Your vote must be a whole number from 0 to 10000."
+            );
+
+            return;
+
+        }
+
+
+        const voteRef =
+            db.ref(
+                "levels/" +
+                levelKey +
+                "/votes/" +
+                currentUser.uid
+            );
+
+
+
+        voteRef.transaction((currentValue) => {
+
+            // Already voted
+
+            if (currentValue !== null) {
+
+                return;
+
+            }
+
+            return value;
+
+        }, (error, committed) => {
+
+            if (error) {
+
+                console.error(error);
+
+                alert("Could not submit your vote.");
+
+                return;
+
+            }
+
+
+            if (!committed) {
+
+                alert("You have already voted on this level.");
+
+                return;
+
+            }
+
+
+            console.log("Vote submitted!");
+
+        });
+
+    }
+
+
+
+    document
+        .getElementById("addButton")
+        .addEventListener("click", addLevel);
+
+
+    function addLevel() {
+
+        const idInput =
+            document.getElementById("levelIdInput");
+
+        const nameInput =
+            document.getElementById("levelNameInput");
+
+        const videoInput =
+            document.getElementById("videoInput");
+
+        const message =
+            document.getElementById("addMessage");
+
+
+        const levelId =
+            idInput.value.trim();
+
+        const name =
+            nameInput.value.trim();
+
+        const video =
+            videoInput.value.trim();
+
+
+        if (!levelId || !name || !video) {
+
+            message.textContent =
+                "Please fill in all three fields.";
+
+            return;
+
+        }
+
+
+
+        if (!/^\d+$/.test(levelId)) {
+
+            message.textContent =
+                "The level ID must only contain numbers.";
+
+            return;
+
+        }
+
+
+        let videoURL;
+
+        try {
+
+            videoURL = new URL(video);
+
+        }
+
+        catch {
+
+            message.textContent =
+                "Please enter a valid video URL.";
+
+            return;
+
+        }
+
+
+        if (
+            videoURL.protocol !== "https:" &&
+            videoURL.protocol !== "http:"
+        ) {
+
+            message.textContent =
+                "Please enter a valid video URL.";
+
+            return;
+
+        }
+
+
+        const levelRef =
+            db.ref("levels/" + levelId);
+
+        levelRef.once("value")
+            .then((snapshot) => {
+
+                if (snapshot.exists()) {
+
+                    message.textContent =
+                        "A level with that ID already exists.";
+
+                    return;
+
+                }
+
+
+                return levelRef.set({
+
+                    levelId: levelId,
+
+                    name: name,
+
+                    video: video,
+
+                    votes: {},
+
+                    createdAt:
+                        firebase.database.ServerValue.TIMESTAMP
+
+                });
+
+            })
+            .then((result) => {
+
+                if (result === undefined) {
+
+                    return;
+
+                }
+
+
+                message.textContent =
+                    "Level added successfully!";
+
+
+                idInput.value = "";
+
+                nameInput.value = "";
+
+                videoInput.value = "";
+
+            })
+            .catch((error) => {
+
+                console.error(error);
+
+                message.textContent =
+                    "Could not add the level.";
+
+            });
+
+    }
+
+
+    document
+        .getElementById("sortSelect")
+        .addEventListener(
+            "change",
+            renderLevels
+        );
+
+</script>
+
+</body>
+</html>
