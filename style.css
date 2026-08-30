@@ -9,7 +9,7 @@ body {
     font-family: Verdana, Tahoma, Arial, sans-serif;
 }
 
-
+/* Slightly old-school header */
 header {
     background: rgba(0, 0, 0, 0.85);
     border-bottom: 4px solid #2e2e2e;
@@ -35,7 +35,7 @@ nav a {
 
     padding: 5px 10px;
 
-    
+    /* subtle 2000s button effect */
     background: linear-gradient(#555, #222);
     border: 1px solid #777;
     border-bottom-color: #111;
@@ -47,6 +47,7 @@ nav a:hover {
     text-decoration: underline;
 }
 
+/* Keep your grid */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -59,12 +60,13 @@ nav a:hover {
     text-decoration: none;
     overflow: hidden;
 
-    /* border */
+    /* old-school border */
     border: 1px solid #555;
     border-top-color: #888;
     border-left-color: #888;
 
-   
+    /* Remove modern smooth animation */
+    transition: none;
 }
 
 .game-box:hover {
@@ -93,7 +95,7 @@ nav a:hover {
     );
 }
 
-
+/* Keep your footer, just add some old-web details */
 .footer {
     background: #111;
     color: white;
