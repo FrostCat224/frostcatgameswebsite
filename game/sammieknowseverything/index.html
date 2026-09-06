@@ -1,0 +1,1787 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Sammie Knows Everything</title>
+
+    <link
+        href="https://frostcat224.github.io/frostcatgameswebsite/style.css"
+        rel="stylesheet"
+        type="text/css"
+        media="all"
+    >
+
+    <style>
+
+        #akinator {
+            max-width: 750px;
+            margin: auto;
+            text-align: center;
+            padding: 20px;
+        }
+
+        #question {
+            font-size: 30px;
+            margin: 40px 0 25px;
+        }
+
+        button {
+            font-size: 18px;
+            padding: 12px 20px;
+            margin: 6px;
+            cursor: pointer;
+        }
+
+        .secondaryButton {
+            font-size: 15px;
+            padding: 9px 15px;
+        }
+
+        #guessBox,
+        #addCharacter,
+        #addQuestion,
+        #result {
+            margin-top: 30px;
+            padding: 25px;
+            border: 2px solid currentColor;
+            border-radius: 12px;
+        }
+
+        #characterName {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 10px;
+        }
+
+        #description {
+            margin: 15px 0;
+        }
+
+        #progress {
+            opacity: 0.7;
+        }
+
+        input,
+        textarea {
+            width: 90%;
+            max-width: 550px;
+            padding: 10px;
+            margin: 7px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #status {
+            margin-top: 15px;
+            min-height: 25px;
+        }
+
+        .adminArea {
+            margin-top: 50px;
+            border-top: 2px solid currentColor;
+            padding-top: 25px;
+        }
+
+        #questionList {
+            text-align: left;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        .questionItem {
+            padding: 8px;
+            border-bottom: 1px solid currentColor;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<header>
+
+    <img
+        src="https://frostcat224.github.io/frostcatgameswebsite/img/textlogo.png"
+        alt="FrostCatGames"
+    >
+
+    <nav>
+
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/">
+            Home
+        </a>
+
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/stuff">
+            Stuff
+        </a>
+
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/archive">
+            Archive
+        </a>
+
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/info">
+            Info
+        </a>
+
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/search">
+            Search
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main>
+
+<div id="akinator">
+
+    <h1>Sammie Knows Everything</h1>
+
+    <p id="progress"></p>
+
+    <div id="question">
+        Loading...
+    </div>
+
+
+    <div id="answers">
+
+        <button onclick="answer('Yes')">
+            Yes
+        </button>
+
+        <button onclick="answer('No')">
+            No
+        </button>
+
+        <button onclick="answer('Partly')">
+            Partly
+        </button>
+
+        <button onclick="answer('I don’t know')">
+            I don't know
+        </button>
+
+    </div>
+
+
+    <div id="status"></div>
+
+
+    <!-- GUESS -->
+
+    <div
+        id="guessBox"
+        class="hidden"
+    >
+
+        <p>
+            I think your character is:
+        </p>
+
+        <div id="characterName"></div>
+
+        <div id="description"></div>
+
+        <p id="confidence"></p>
+
+
+        <button onclick="correctGuess()">
+            Yes, that's correct!
+        </button>
+
+        <button onclick="wrongGuess()">
+            No!
+        </button>
+
+    </div>
+
+
+    <!-- ADD CHARACTER -->
+
+    <div
+        id="addCharacter"
+        class="hidden"
+    >
+
+        <h2>Who was it?</h2>
+
+        <p>
+            I don't know that character yet!
+        </p>
+
+
+        <input
+            id="newName"
+            type="text"
+            placeholder="Character name"
+        >
+
+
+        <textarea
+            id="newDescription"
+            placeholder="Character description"
+        ></textarea>
+
+
+        <br>
+
+
+        <button onclick="saveNewCharacter()">
+            Add Character
+        </button>
+
+    </div>
+
+
+    <!-- RESULT -->
+
+    <div
+        id="result"
+        class="hidden"
+    >
+
+        <h2>Thanks!</h2>
+
+        <p id="resultText">
+            The database has been updated.
+        </p>
+
+
+        <button onclick="location.reload()">
+            Play Again
+        </button>
+
+    </div>
+
+
+    <!-- ADD QUESTION -->
+
+    <div class="adminArea">
+
+        <h2>Add a Question</h2>
+
+        <p>
+            Add a new question that Sammie can learn from.
+        </p>
+
+
+        <input
+            id="questionId"
+            type="text"
+            placeholder="Question ID, e.g. wears_hat"
+        >
+
+
+        <input
+            id="questionText"
+            type="text"
+            placeholder="Question, e.g. Does it wear a hat?"
+        >
+
+
+        <br>
+
+
+        <button
+            class="secondaryButton"
+            onclick="addQuestion()"
+        >
+            Add Question
+        </button>
+
+
+        <div id="questionList"></div>
+
+    </div>
+
+</div>
+
+</main>
+
+
+<script type="module">
+
+
+/*
+============================================================
+FIREBASE IMPORTS
+============================================================
+*/
+
+import {
+    initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+
+import {
+    getDatabase,
+    ref,
+    get,
+    push,
+    set,
+    update
+}
+from
+"https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
+
+
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDtVTzckWkjIV3BJSkuglKM7MwmVbNiTks",
+  authDomain: "sammieknows-baff4.firebaseapp.com",
+  databaseURL: "https://sammieknows-baff4-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "sammieknows-baff4",
+  storageBucket: "sammieknows-baff4.firebasestorage.app",
+  messagingSenderId: "944506463030",
+  appId: "1:944506463030:web:f1de15716cbd19db038997"
+};
+
+
+const app =
+    initializeApp(firebaseConfig);
+
+
+const db =
+    getDatabase(app);
+
+
+/*
+============================================================
+GAME DATA
+============================================================
+*/
+
+let characters = {};
+
+let questions = {};
+
+let askedQuestions = new Set();
+
+let playerAnswers = {};
+
+let currentQuestion = null;
+
+let currentGuess = null;
+
+
+/*
+============================================================
+UTILITY
+============================================================
+*/
+
+function setStatus(text) {
+
+    document.getElementById("status")
+        .textContent = text;
+
+}
+
+
+function hide(element) {
+
+    element.classList.add("hidden");
+
+}
+
+
+function show(element) {
+
+    element.classList.remove("hidden");
+
+}
+
+
+/*
+============================================================
+LOAD DATABASE
+============================================================
+*/
+
+async function loadDatabase() {
+
+    try {
+
+        setStatus("Loading database...");
+
+
+        const characterSnapshot =
+            await get(ref(db, "characters"));
+
+
+        const questionSnapshot =
+            await get(ref(db, "questions"));
+
+
+        if (characterSnapshot.exists()) {
+
+            characters =
+                characterSnapshot.val();
+
+        } else {
+
+            characters = {};
+
+        }
+
+
+        if (questionSnapshot.exists()) {
+
+            questions =
+                questionSnapshot.val();
+
+        } else {
+
+            questions = {};
+
+        }
+
+
+        displayQuestionList();
+
+
+        if (
+            Object.keys(characters).length === 0
+        ) {
+
+            document.getElementById("question")
+                .textContent =
+                "There are no characters yet!";
+
+
+            hide(
+                document.getElementById("answers")
+            );
+
+
+            show(
+                document.getElementById("addCharacter")
+            );
+
+
+            setStatus(
+                "Add the first character below."
+            );
+
+
+            return;
+
+        }
+
+
+        if (
+            Object.keys(questions).length === 0
+        ) {
+
+            document.getElementById("question")
+                .textContent =
+                "There are no questions yet!";
+
+
+            hide(
+                document.getElementById("answers")
+            );
+
+
+            setStatus(
+                "Add a question below first."
+            );
+
+
+            return;
+
+        }
+
+
+        chooseQuestion();
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        setStatus(
+            "Firebase error: " + error.message
+        );
+
+    }
+
+}
+
+
+/*
+============================================================
+COMPATIBILITY
+============================================================
+
+How well does a character answer match
+the player's answer?
+============================================================
+*/
+
+function compatibility(
+    characterAnswer,
+    playerAnswer
+) {
+
+    if (!characterAnswer) {
+
+        return 0;
+
+    }
+
+
+    if (
+        characterAnswer === playerAnswer
+    ) {
+
+        return 1;
+
+    }
+
+
+    /*
+    Partly is halfway between Yes and No.
+    */
+
+    if (
+        characterAnswer === "Partly" &&
+        (
+            playerAnswer === "Yes" ||
+            playerAnswer === "No"
+        )
+    ) {
+
+        return 0.5;
+
+    }
+
+
+    if (
+        playerAnswer === "Partly" &&
+        (
+            characterAnswer === "Yes" ||
+            characterAnswer === "No"
+        )
+    ) {
+
+        return 0.5;
+
+    }
+
+
+    /*
+    Contradiction.
+    */
+
+    return 0;
+
+}
+
+
+/*
+============================================================
+SCORE CHARACTERS
+============================================================
+*/
+
+function scoreCharacters() {
+
+    const results = [];
+
+
+    for (
+        const [id, character]
+        of Object.entries(characters)
+    ) {
+
+        let score = 0;
+
+        let possibleQuestions = 0;
+
+        let answeredQuestions = 0;
+
+
+        /*
+        Go through every answer the player gave.
+        */
+
+        for (
+            const [questionId, playerAnswer]
+            of Object.entries(playerAnswers)
+        ) {
+
+            /*
+            Don't know gives us no information.
+            */
+
+            if (
+                playerAnswer === "I don’t know"
+            ) {
+
+                continue;
+
+            }
+
+
+            possibleQuestions++;
+
+
+            const characterQuestion =
+                character.questions?.[questionId];
+
+
+            /*
+            Character doesn't have an answer yet.
+
+            This should NOT count against them.
+            */
+
+            if (!characterQuestion) {
+
+                continue;
+
+            }
+
+
+            answeredQuestions++;
+
+
+            /*
+            New format:
+
+            {
+                answer: "Yes",
+                confidence: 5
+            }
+
+            Old format:
+
+            "Yes"
+
+            is also supported.
+            */
+
+            let characterAnswer;
+
+
+            if (
+                typeof characterQuestion === "string"
+            ) {
+
+                characterAnswer =
+                    characterQuestion;
+
+            } else {
+
+                characterAnswer =
+                    characterQuestion.answer;
+
+            }
+
+
+            score +=
+                compatibility(
+                    characterAnswer,
+                    playerAnswer
+                );
+
+        }
+
+
+        /*
+        Normalize score.
+        */
+
+        let normalizedScore = 0;
+
+
+        if (
+            answeredQuestions > 0
+        ) {
+
+            normalizedScore =
+                score / answeredQuestions;
+
+        }
+
+
+        results.push({
+
+            id: id,
+
+            character: character,
+
+            score: normalizedScore,
+
+            answeredQuestions:
+                answeredQuestions
+
+        });
+
+    }
+
+
+    results.sort(
+        (a, b) =>
+            b.score - a.score
+    );
+
+
+    return results;
+
+}
+
+
+/*
+============================================================
+CHOOSE BEST QUESTION
+============================================================
+*/
+
+function chooseQuestion() {
+
+    const scored =
+        scoreCharacters();
+
+
+    /*
+    Try to make a guess.
+
+    We require at least 3 matching pieces
+    of information so that it doesn't guess
+    after only one question.
+    */
+
+    if (
+        scored.length > 0
+    ) {
+
+        const best =
+            scored[0];
+
+
+        if (
+            best.score >= 0.92 &&
+            best.answeredQuestions >= 3
+        ) {
+
+            makeGuess(best);
+
+            return;
+
+        }
+
+    }
+
+
+    /*
+    Find the question with the highest
+    information value.
+    */
+
+    let bestQuestion = null;
+
+    let bestInformation = -Infinity;
+
+
+    for (
+        const questionId
+        of Object.keys(questions)
+    ) {
+
+        if (
+            askedQuestions.has(questionId)
+        ) {
+
+            continue;
+
+        }
+
+
+        let yes = 0;
+
+        let no = 0;
+
+        let partly = 0;
+
+        let unknown = 0;
+
+
+        for (
+            const character
+            of Object.values(characters)
+        ) {
+
+            const data =
+                character.questions?.[questionId];
+
+
+            if (!data) {
+
+                unknown++;
+
+                continue;
+
+            }
+
+
+            const answer =
+                typeof data === "string"
+                    ? data
+                    : data.answer;
+
+
+            if (
+                answer === "Yes"
+            ) {
+
+                yes++;
+
+            }
+
+            else if (
+                answer === "No"
+            ) {
+
+                no++;
+
+            }
+
+            else if (
+                answer === "Partly"
+            ) {
+
+                partly++;
+
+            }
+
+            else {
+
+                unknown++;
+
+            }
+
+        }
+
+
+        const total =
+            yes + no + partly + unknown;
+
+
+        if (
+            total === 0
+        ) {
+
+            continue;
+
+        }
+
+
+        /*
+        Entropy / information gain.
+
+        A question is valuable when it
+        splits the database into different groups.
+        */
+
+        const groups = [
+            yes,
+            no,
+            partly,
+            unknown
+        ];
+
+
+        let information = 0;
+
+
+        for (
+            const group
+            of groups
+        ) {
+
+            if (
+                group <= 0
+            ) {
+
+                continue;
+
+            }
+
+
+            const probability =
+                group / total;
+
+
+            information -=
+                probability *
+                Math.log2(probability);
+
+        }
+
+
+        /*
+        Slightly prefer questions where
+        many characters actually have answers.
+        */
+
+        const known =
+            yes + no + partly;
+
+
+        const knownRatio =
+            known / total;
+
+
+        information *=
+            (0.5 + knownRatio);
+
+
+        if (
+            information >
+            bestInformation
+        ) {
+
+            bestInformation =
+                information;
+
+            bestQuestion =
+                questionId;
+
+        }
+
+    }
+
+
+    /*
+    If we can't find anything else,
+    guess the best remaining character.
+    */
+
+    if (
+        !bestQuestion
+    ) {
+
+        if (
+            scored.length > 0
+        ) {
+
+            makeGuess(
+                scored[0]
+            );
+
+        }
+
+        else {
+
+            showNoCharacter();
+
+        }
+
+        return;
+
+    }
+
+
+    currentQuestion =
+        bestQuestion;
+
+
+    askedQuestions.add(
+        bestQuestion
+    );
+
+
+    document.getElementById("question")
+        .textContent =
+        questions[bestQuestion];
+
+
+    document.getElementById("progress")
+        .textContent =
+        "Question " +
+        askedQuestions.size;
+
+
+    setStatus("");
+
+}
+
+
+/*
+============================================================
+PLAYER ANSWER
+============================================================
+*/
+
+window.answer = function(answerValue) {
+
+    if (
+        !currentQuestion
+    ) {
+
+        return;
+
+    }
+
+
+    playerAnswers[
+        currentQuestion
+    ] = answerValue;
+
+
+    chooseQuestion();
+
+};
+
+
+/*
+============================================================
+MAKE GUESS
+============================================================
+*/
+
+function makeGuess(result) {
+
+    currentGuess =
+        result;
+
+
+    hide(
+        document.getElementById("question")
+    );
+
+
+    hide(
+        document.getElementById("answers")
+    );
+
+
+    show(
+        document.getElementById("guessBox")
+    );
+
+
+    document.getElementById("characterName")
+        .textContent =
+        result.character.name;
+
+
+    document.getElementById("description")
+        .textContent =
+        result.character.description ||
+        "No description available.";
+
+
+    const percentage =
+        Math.round(
+            result.score * 100
+        );
+
+
+    document.getElementById("confidence")
+        .textContent =
+        "Confidence: " +
+        percentage +
+        "%";
+
+}
+
+
+/*
+============================================================
+CORRECT GUESS
+============================================================
+*/
+
+window.correctGuess = async function() {
+
+    if (
+        !currentGuess
+    ) {
+
+        return;
+
+    }
+
+
+    hide(
+        document.getElementById("guessBox")
+    );
+
+
+    setStatus(
+        "Learning from this game..."
+    );
+
+
+    try {
+
+        await updateExistingCharacter(
+            currentGuess.id
+        );
+
+
+        document.getElementById("resultText")
+            .textContent =
+            "The character has been updated using what was learned during this game.";
+
+
+        show(
+            document.getElementById("result")
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        setStatus(
+            "Failed to update character: " +
+            error.message
+        );
+
+    }
+
+};
+
+
+/*
+============================================================
+UPDATE EXISTING CHARACTER
+============================================================
+
+This is the self-learning part.
+
+Every known answer from this game can
+strengthen the existing character.
+
+"I don't know" is ignored.
+============================================================
+*/
+
+async function updateExistingCharacter(
+    characterId
+) {
+
+    const character =
+        characters[characterId];
+
+
+    if (
+        !character
+    ) {
+
+        return;
+
+    }
+
+
+    const changes = {};
+
+
+    for (
+        const [questionId, playerAnswer]
+        of Object.entries(playerAnswers)
+    ) {
+
+        /*
+        Never store I don't know.
+        */
+
+        if (
+            playerAnswer === "I don’t know"
+        ) {
+
+            continue;
+
+        }
+
+
+        /*
+        Existing answer.
+        */
+
+        const existing =
+            character.questions?.[questionId];
+
+
+        if (!existing) {
+
+            /*
+            This character has never
+            learned this question.
+
+            Start with confidence 1.
+            */
+
+            changes[
+                `characters/${characterId}/questions/${questionId}`
+            ] = {
+
+                answer: playerAnswer,
+
+                confidence: 1
+
+            };
+
+
+            continue;
+
+        }
+
+
+        let existingAnswer;
+
+        let confidence;
+
+
+        if (
+            typeof existing === "string"
+        ) {
+
+            existingAnswer =
+                existing;
+
+            confidence = 1;
+
+        }
+
+        else {
+
+            existingAnswer =
+                existing.answer;
+
+            confidence =
+                existing.confidence || 1;
+
+        }
+
+
+        /*
+        Same answer:
+
+        Increase confidence.
+        */
+
+        if (
+            existingAnswer ===
+            playerAnswer
+        ) {
+
+            confidence++;
+
+
+            /*
+            Cap confidence so it doesn't
+            grow infinitely.
+            */
+
+            confidence =
+                Math.min(
+                    confidence,
+                    100
+                );
+
+
+            changes[
+                `characters/${characterId}/questions/${questionId}`
+            ] = {
+
+                answer:
+                    existingAnswer,
+
+                confidence:
+                    confidence
+
+            };
+
+        }
+
+        else {
+
+            /*
+            Contradictory answer.
+
+            Instead of immediately changing
+            the database, reduce confidence.
+
+            If confidence reaches zero,
+            the new answer wins.
+            */
+
+            confidence--;
+
+
+            if (
+                confidence <= 0
+            ) {
+
+                changes[
+                    `characters/${characterId}/questions/${questionId}`
+                ] = {
+
+                    answer:
+                        playerAnswer,
+
+                    confidence:
+                        1
+
+                };
+
+            }
+
+            else {
+
+                changes[
+                    `characters/${characterId}/questions/${questionId}`
+                ] = {
+
+                    answer:
+                        existingAnswer,
+
+                    confidence:
+                        confidence
+
+                };
+
+            }
+
+        }
+
+    }
+
+
+    if (
+        Object.keys(changes).length > 0
+    ) {
+
+        await update(
+            ref(db),
+            changes
+        );
+
+    }
+
+
+    /*
+    Update local copy too.
+    */
+
+    for (
+        const path in changes
+    ) {
+
+        /*
+        We already updated Firebase.
+        Reloading the page isn't necessary,
+        so the local database is left alone.
+        */
+
+    }
+
+}
+
+
+/*
+============================================================
+WRONG GUESS
+============================================================
+*/
+
+window.wrongGuess = function() {
+
+    hide(
+        document.getElementById("guessBox")
+    );
+
+
+    show(
+        document.getElementById("addCharacter")
+    );
+
+
+    document.getElementById("newName")
+        .focus();
+
+};
+
+
+/*
+============================================================
+ADD NEW CHARACTER
+============================================================
+*/
+
+window.saveNewCharacter = async function() {
+
+    const name =
+        document.getElementById("newName")
+            .value
+            .trim();
+
+
+    const description =
+        document.getElementById("newDescription")
+            .value
+            .trim();
+
+
+    if (
+        !name
+    ) {
+
+        alert(
+            "Please enter a character name."
+        );
+
+        return;
+
+    }
+
+
+    setStatus(
+        "Adding character..."
+    );
+
+
+    /*
+    Only save real answers.
+
+    I don't know is ignored.
+    */
+
+    const learnedAnswers = {};
+
+
+    for (
+        const [questionId, answer]
+        of Object.entries(playerAnswers)
+    ) {
+
+        if (
+            answer === "Yes" ||
+            answer === "No" ||
+            answer === "Partly"
+        ) {
+
+            learnedAnswers[
+                questionId
+            ] = {
+
+                answer: answer,
+
+                confidence: 1
+
+            };
+
+        }
+
+    }
+
+
+    try {
+
+        const characterRef =
+            push(
+                ref(db, "characters")
+            );
+
+
+        await set(
+            characterRef,
+            {
+
+                name:
+                    name,
+
+                description:
+                    description,
+
+                questions:
+                    learnedAnswers
+
+            }
+        );
+
+
+        hide(
+            document.getElementById("addCharacter")
+        );
+
+
+        document.getElementById("resultText")
+            .textContent =
+            name +
+            " has been added to the database!";
+
+
+        show(
+            document.getElementById("result")
+        );
+
+
+        /*
+        Add it to local memory too.
+        */
+
+        characters[
+            characterRef.key
+        ] = {
+
+            name:
+                name,
+
+            description:
+                description,
+
+            questions:
+                learnedAnswers
+
+        };
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        setStatus(
+            "Failed to add character: " +
+            error.message
+        );
+
+    }
+
+};
+
+
+/*
+============================================================
+ADD QUESTION
+============================================================
+*/
+
+window.addQuestion = async function() {
+
+    let id =
+        document.getElementById("questionId")
+            .value
+            .trim()
+            .toLowerCase();
+
+
+    const text =
+        document.getElementById("questionText")
+            .value
+            .trim();
+
+
+    if (
+        !id ||
+        !text
+    ) {
+
+        alert(
+            "Enter both a question ID and question."
+        );
+
+        return;
+
+    }
+
+
+    /*
+    Clean the ID.
+
+    Example:
+
+    "Wears Hat!"
+
+    becomes:
+
+    "wears_hat"
+    */
+
+    id =
+        id
+            .replace(/[^a-z0-9_]+/g, "_")
+            .replace(/^_+|_+$/g, "");
+
+
+    if (
+        questions[id]
+    ) {
+
+        alert(
+            "That question already exists."
+        );
+
+        return;
+
+    }
+
+
+    try {
+
+        await set(
+            ref(db, "questions/" + id),
+            text
+        );
+
+
+        questions[id] =
+            text;
+
+
+        document.getElementById("questionId")
+            .value = "";
+
+
+        document.getElementById("questionText")
+            .value = "";
+
+
+        displayQuestionList();
+
+
+        setStatus(
+            "Question added!"
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        setStatus(
+            "Failed to add question: " +
+            error.message
+        );
+
+    }
+
+};
+
+
+/*
+============================================================
+DISPLAY QUESTION LIST
+============================================================
+*/
+
+function displayQuestionList() {
+
+    const list =
+        document.getElementById("questionList");
+
+
+    list.innerHTML =
+        "<h3>Current Questions</h3>";
+
+
+    for (
+        const [id, text]
+        of Object.entries(questions)
+    ) {
+
+        const item =
+            document.createElement("div");
+
+
+        item.className =
+            "questionItem";
+
+
+        item.textContent =
+            text +
+            " (" +
+            id +
+            ")";
+
+
+        list.appendChild(item);
+
+    }
+
+}
+
+
+/*
+============================================================
+NO CHARACTER
+============================================================
+*/
+
+function showNoCharacter() {
+
+    hide(
+        document.getElementById("question")
+    );
+
+
+    hide(
+        document.getElementById("answers")
+    );
+
+
+    document.getElementById("progress")
+        .textContent =
+        "";
+
+
+    show(
+        document.getElementById("addCharacter")
+    );
+
+
+    setStatus(
+        "I couldn't find a character that fits!"
+    );
+
+}
+
+
+/*
+============================================================
+START
+============================================================
+*/
+
+loadDatabase();
+
+</script>
+
+</body>
+
+</html>
+```
