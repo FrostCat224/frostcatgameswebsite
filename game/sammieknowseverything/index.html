@@ -218,41 +218,61 @@
     </div>
 
 
-    <!-- ADD CHARACTER -->
+<!-- CHARACTER SELECTION AFTER WRONG GUESS -->
 
-    <div
-        id="addCharacter"
-        class="hidden"
+<div
+    id="characterSelection"
+    class="hidden"
+>
+
+    <h2>Okay! Which character was it?</h2>
+
+    <p>
+        Here are the characters I think it might have been:
+    </p>
+
+    <div id="possibleCharacters"></div>
+
+    <br>
+
+    <button onclick="showNewCharacterForm()">
+        None of these — Add a new character
+    </button>
+
+</div>
+
+
+<!-- ADD CHARACTER -->
+
+<div
+    id="addCharacter"
+    class="hidden"
+>
+
+    <h2>Add Character</h2>
+
+    <p>
+        I don't know this character yet!
+    </p>
+
+    <input
+        id="newName"
+        type="text"
+        placeholder="Character name"
     >
 
-        <h2>Who was it?</h2>
+    <textarea
+        id="newDescription"
+        placeholder="Character description"
+    ></textarea>
 
-        <p>
-            I don't know that character yet!
-        </p>
+    <br>
 
+    <button onclick="saveNewCharacter()">
+        Add Character
+    </button>
 
-        <input
-            id="newName"
-            type="text"
-            placeholder="Character name"
-        >
-
-
-        <textarea
-            id="newDescription"
-            placeholder="Character description"
-        ></textarea>
-
-
-        <br>
-
-
-        <button onclick="saveNewCharacter()">
-            Add Character
-        </button>
-
-    </div>
+</div>
 
 
     <!-- RESULT -->
@@ -1411,11 +1431,8 @@ async function updateExistingCharacter(
 }
 
 
-/*
-============================================================
-WRONG GUESS
-============================================================
-*/
+
+
 
 window.wrongGuess = function() {
 
@@ -1423,16 +1440,250 @@ window.wrongGuess = function() {
         document.getElementById("guessBox")
     );
 
-
-    show(
-        document.getElementById("addCharacter")
-    );
-
-
-    document.getElementById("newName")
-        .focus();
+    showPossibleCharacters();
 
 };
+
+
+/*
+============================================================
+SHOW POSSIBLE CHARACTERS
+============================================================
+*/
+
+function showPossibleCharacters() {
+
+    const container =
+        document.getElementById(
+            "possibleCharacters"
+        );
+
+    container.innerHTML = "";
+
+
+    /*
+    Score every character using the answers
+    from the current game.
+    */
+
+    const scored =
+        scoreCharacters();
+
+
+    /*
+    Show the best candidates.
+
+    We show up to 15 so the list doesn't
+    become enormous.
+    */
+
+    const candidates =
+        scored
+            .filter(character =>
+                character.answeredQuestions > 0
+            )
+            .slice(0, 15);
+
+
+    if (
+        candidates.length === 0
+    ) {
+
+        container.innerHTML =
+            "<p>No existing characters look like a good match.</p>";
+
+    }
+
+
+    for (
+        const candidate
+        of candidates
+    ) {
+
+        const character =
+            candidate.character;
+
+
+        const button =
+            document.createElement("button");
+
+
+        button.style.display =
+            "block";
+
+
+        button.style.width =
+            "100%";
+
+
+        button.style.margin =
+            "10px 0";
+
+
+        button.style.textAlign =
+            "left";
+
+
+        /*
+        Show the character's name,
+        description and estimated match.
+        */
+
+        const percentage =
+            Math.round(
+                candidate.score * 100
+            );
+
+
+        button.innerHTML =
+
+            "<strong>" +
+            escapeHTML(character.name) +
+            "</strong>" +
+
+            "<br>" +
+
+            "<small>" +
+            escapeHTML(
+                character.description ||
+                "No description available."
+            ) +
+
+            "</small>" +
+
+            "<br>" +
+
+            "<small>" +
+            "Match: " +
+            percentage +
+            "%" +
+            "</small>";
+
+
+        button.onclick = function() {
+
+            selectExistingCharacter(
+                candidate.id
+            );
+
+        };
+
+
+        container.appendChild(button);
+
+    }
+
+
+    show(
+        document.getElementById(
+            "characterSelection"
+        )
+    );
+
+}
+
+
+
+
+async function selectExistingCharacter(
+    characterId
+) {
+
+    const character =
+        characters[characterId];
+
+
+    if (
+        !character
+    ) {
+
+        return;
+
+    }
+
+
+    try {
+
+        hide(
+            document.getElementById(
+                "characterSelection"
+            )
+        );
+
+
+        setStatus(
+            "Updating " +
+            character.name +
+            "..."
+        );
+
+
+        await updateExistingCharacter(
+            characterId
+        );
+
+
+        document.getElementById(
+            "resultText"
+        ).textContent =
+
+            character.name +
+            " has been updated using what was learned from this game!";
+
+
+        show(
+            document.getElementById(
+                "result"
+            )
+        );
+
+
+        setStatus("");
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        setStatus(
+            "Failed to update character: " +
+            error.message
+        );
+
+    }
+
+}
+
+
+/*
+============================================================
+SHOW NEW CHARACTER FORM
+============================================================
+*/
+
+window.showNewCharacterForm =
+    function() {
+
+        hide(
+            document.getElementById(
+                "characterSelection"
+            )
+        );
+
+
+        show(
+            document.getElementById(
+                "addCharacter"
+            )
+        );
+
+
+        document.getElementById(
+            "newName"
+        ).focus();
+
+    };
 
 
 /*
@@ -1441,84 +1692,114 @@ ADD NEW CHARACTER
 ============================================================
 */
 
-window.saveNewCharacter = async function() {
+window.saveNewCharacter =
+    async function() {
 
-    const name =
-        document.getElementById("newName")
-            .value
-            .trim();
-
-
-    const description =
-        document.getElementById("newDescription")
-            .value
-            .trim();
+        const name =
+            document.getElementById(
+                "newName"
+            ).value.trim();
 
 
-    if (
-        !name
-    ) {
-
-        alert(
-            "Please enter a character name."
-        );
-
-        return;
-
-    }
+        const description =
+            document.getElementById(
+                "newDescription"
+            ).value.trim();
 
 
-    setStatus(
-        "Adding character..."
-    );
+        if (!name) {
 
+            alert(
+                "Please enter a character name."
+            );
 
-    /*
-    Only save real answers.
-
-    I don't know is ignored.
-    */
-
-    const learnedAnswers = {};
-
-
-    for (
-        const [questionId, answer]
-        of Object.entries(playerAnswers)
-    ) {
-
-        if (
-            answer === "Yes" ||
-            answer === "No" ||
-            answer === "Partly"
-        ) {
-
-            learnedAnswers[
-                questionId
-            ] = {
-
-                answer: answer,
-
-                confidence: 1
-
-            };
+            return;
 
         }
 
-    }
+
+        setStatus(
+            "Adding character..."
+        );
 
 
-    try {
+        /*
+        Only save known answers.
 
-        const characterRef =
-            push(
-                ref(db, "characters")
+        I don't know is NEVER saved.
+        */
+
+        const learnedAnswers = {};
+
+
+        for (
+            const [
+                questionId,
+                answer
+            ]
+            of Object.entries(
+                playerAnswers
+            )
+        ) {
+
+            if (
+                answer === "Yes" ||
+                answer === "No" ||
+                answer === "Partly"
+            ) {
+
+                learnedAnswers[
+                    questionId
+                ] = {
+
+                    answer:
+                        answer,
+
+                    confidence:
+                        1
+
+                };
+
+            }
+
+        }
+
+
+        try {
+
+            const characterRef =
+                push(
+                    ref(
+                        db,
+                        "characters"
+                    )
+                );
+
+
+            await set(
+                characterRef,
+                {
+
+                    name:
+                        name,
+
+                    description:
+                        description,
+
+                    questions:
+                        learnedAnswers
+
+                }
             );
 
 
-        await set(
-            characterRef,
-            {
+            /*
+            Add it to local memory.
+            */
+
+            characters[
+                characterRef.key
+            ] = {
 
                 name:
                     name,
@@ -1529,59 +1810,90 @@ window.saveNewCharacter = async function() {
                 questions:
                     learnedAnswers
 
-            }
+            };
+
+
+            hide(
+                document.getElementById(
+                    "addCharacter"
+                )
+            );
+
+
+            document.getElementById(
+                "resultText"
+            ).textContent =
+
+                name +
+                " has been added to the database!";
+
+
+            show(
+                document.getElementById(
+                    "result"
+                )
+            );
+
+
+            setStatus("");
+
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+            setStatus(
+                "Failed to add character: " +
+                error.message
+            );
+
+        }
+
+    };
+
+
+/*
+============================================================
+ESCAPE HTML
+============================================================
+
+Prevents character descriptions/names from
+being interpreted as HTML.
+============================================================
+*/
+
+function escapeHTML(value) {
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
         );
 
+}
 
-        hide(
-            document.getElementById("addCharacter")
-        );
-
-
-        document.getElementById("resultText")
-            .textContent =
-            name +
-            " has been added to the database!";
-
-
-        show(
-            document.getElementById("result")
-        );
-
-
-        /*
-        Add it to local memory too.
-        */
-
-        characters[
-            characterRef.key
-        ] = {
-
-            name:
-                name,
-
-            description:
-                description,
-
-            questions:
-                learnedAnswers
-
-        };
-
-    }
-
-    catch (error) {
-
-        console.error(error);
-
-        setStatus(
-            "Failed to add character: " +
-            error.message
-        );
-
-    }
-
-};
 
 
 /*
