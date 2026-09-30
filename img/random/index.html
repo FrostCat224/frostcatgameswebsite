@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrostCatGames</title>
+
+    <link href="https://frostcat224.github.io/frostcatgameswebsite/style.css"
+          rel="stylesheet"
+          type="text/css"
+          media="all">
+
+    <style>
+        #randomImage {
+            max-width: 100%;
+            max-height: 600px;
+            margin-top: 20px;
+        }
+
+        #imageLink {
+            display: block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <img src="https://frostcat224.github.io/frostcatgameswebsite/img/textlogo.png"
+         alt="FrostCatGames">
+
+    <nav>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/">Home</a>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/stuff">Stuff</a>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/archive">Archive</a>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/info">Info</a>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/search">Search</a>
+    </nav>
+</header>
+
+<main>
+    <h1>FrostCatGames</h1>
+
+    <p>This button will show you a random image on the entire internet... What will you find? (USE AT YOUR OWN RISK)</p>
+
+    <button onclick="randomImage()">Random Image</button>
+
+    <div id="status"></div>
+
+    <img id="randomImage" style="display:none;" alt="Random image">
+
+</main>
+
+<script>
+async function randomImage() {
+    const status = document.getElementById("status");
+    const image = document.getElementById("randomImage");
+    const link = document.getElementById("imageLink");
+
+    status.textContent = "Finding a random image...";
+    image.style.display = "none";
+    link.style.display = "none";
+
+    try {
+        // Search Internet Archive for image files
+        const searchURL =
+            "https://archive.org/advancedsearch.php" +
+            "?q=mediatype%3Aimage" +
+            "&fl%5B%5D=identifier" +
+            "&rows=50" +
+            "&page=1" +
+            "&output=json";
+
+        const response = await fetch(searchURL);
+        const data = await response.json();
+
+        const docs = data.response.docs;
+
+        if (!docs.length) {
+            status.textContent = "No images found.";
+            return;
+        }
+
+        // Pick a random Internet Archive item
+        const item = docs[Math.floor(Math.random() * docs.length)];
+        const identifier = item.identifier;
+
+        // Get the item's metadata/files
+        const metadataURL =
+            "https://archive.org/metadata/" + identifier;
+
+        const metadataResponse = await fetch(metadataURL);
+        const metadata = await metadataResponse.json();
+
+        // Find an image file
+        const imageFile = metadata.files.find(file => {
+            if (!file.name) return false;
+
+            const name = file.name.toLowerCase();
+
+            return (
+                name.endsWith(".jpg") ||
+                name.endsWith(".jpeg") ||
+                name.endsWith(".png") ||
+                name.endsWith(".gif") ||
+                name.endsWith(".webp")
+            );
+        });
+
+        if (!imageFile) {
+            // Try again if this item doesn't contain a usable image
+            randomImage();
+            return;
+        }
+
+        const imageURL =
+            "https://archive.org/download/" +
+            encodeURIComponent(identifier) +
+            "/" +
+            imageFile.name.split("/").map(encodeURIComponent).join("/");
+
+        image.src = imageURL;
+        image.style.display = "block";
+
+        link.href = "https://archive.org/details/" + identifier;
+        link.style.display = "block";
+
+        status.textContent = "Random image:";
+
+    } catch (error) {
+        console.error(error);
+        status.textContent = "Something went wrong while getting the image.";
+    }
+}
+</script>
+
+</body>
+</html>
