@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,6 +21,10 @@
             display: block;
             margin-top: 10px;
         }
+
+        #status {
+            margin-top: 10px;
+        }
     </style>
 </head>
 
@@ -41,20 +44,35 @@
 </header>
 
 <main>
+
     <h1>FrostCatGames</h1>
 
-    <p>This button will show you a random image on the entire internet... What will you find? (USE AT YOUR OWN RISK)</p>
+    <p>
+        This button will show you a random image on the entire internet...
+        What will you find? (USE AT YOUR OWN RISK)
+    </p>
 
     <button onclick="randomImage()">Random Image</button>
 
     <div id="status"></div>
 
-    <img id="randomImage" style="display:none;" alt="Random image">
+    <img id="randomImage"
+         style="display:none;"
+         alt="Random Internet Archive image">
+
+    <a id="imageLink"
+       href="#"
+       target="_blank"
+       style="display:none;">
+        Open on Internet Archive
+    </a>
 
 </main>
 
 <script>
+
 async function randomImage() {
+
     const status = document.getElementById("status");
     const image = document.getElementById("randomImage");
     const link = document.getElementById("imageLink");
@@ -64,76 +82,151 @@ async function randomImage() {
     link.style.display = "none";
 
     try {
-        // Search Internet Archive for image files
-        const searchURL =
-            "https://archive.org/advancedsearch.php" +
-            "?q=mediatype%3Aimage" +
-            "&fl%5B%5D=identifier" +
-            "&rows=50" +
-            "&page=1" +
-            "&output=json";
 
-        const response = await fetch(searchURL);
-        const data = await response.json();
 
-        const docs = data.response.docs;
+        for (let attempt = 0; attempt < 10; attempt++) {
 
-        if (!docs.length) {
-            status.textContent = "No images found.";
+            const randomPage = Math.floor(Math.random() * 100) + 1;
+
+            const searchURL =
+                "https://archive.org/advancedsearch.php" +
+                "?q=mediatype%3Aimage" +
+                "&fl%5B%5D=identifier" +
+                "&rows=50" +
+                "&page=" + randomPage +
+                "&output=json";
+
+            const response = await fetch(searchURL);
+
+            if (!response.ok) {
+                throw new Error("Internet Archive search failed");
+            }
+
+            const data = await response.json();
+
+            const docs = data.response.docs;
+
+            if (!docs || docs.length === 0) {
+                continue;
+            }
+
+            /*
+             * Pick a random item from the search results.
+             */
+
+            const item =
+                docs[Math.floor(Math.random() * docs.length)];
+
+            const identifier = item.identifier;
+
+            /*
+             * Get the files belonging to that Internet Archive item.
+             */
+
+            const metadataURL =
+                "https://archive.org/metadata/" +
+                encodeURIComponent(identifier);
+
+            const metadataResponse =
+                await fetch(metadataURL);
+
+            if (!metadataResponse.ok) {
+                continue;
+            }
+
+            const metadata =
+                await metadataResponse.json();
+
+            if (!metadata.files) {
+                continue;
+            }
+
+            /*
+             * Find an image file.
+             */
+
+            const imageFile = metadata.files.find(file => {
+
+                if (!file.name) {
+                    return false;
+                }
+
+                const name =
+                    file.name.toLowerCase();
+
+                return (
+                    name.endsWith(".jpg") ||
+                    name.endsWith(".jpeg") ||
+                    name.endsWith(".png") ||
+                    name.endsWith(".gif") ||
+                    name.endsWith(".webp")
+                );
+
+            });
+
+            /*
+             * If this item doesn't contain an image,
+             * try another random item.
+             */
+
+            if (!imageFile) {
+                continue;
+            }
+
+            /*
+             * Create the direct image URL.
+             */
+
+            const imageURL =
+                "https://archive.org/download/" +
+                encodeURIComponent(identifier) +
+                "/" +
+                imageFile.name
+                    .split("/")
+                    .map(encodeURIComponent)
+                    .join("/");
+
+            /*
+             * Show the image.
+             */
+
+            image.src = imageURL;
+            image.style.display = "block";
+
+            /*
+             * Link to the Internet Archive item.
+             */
+
+            link.href =
+                "https://archive.org/details/" +
+                encodeURIComponent(identifier);
+
+            link.style.display = "block";
+
+            status.textContent =
+                "Random image found!";
+
             return;
         }
 
-        // Pick a random Internet Archive item
-        const item = docs[Math.floor(Math.random() * docs.length)];
-        const identifier = item.identifier;
+        /*
+         * If all attempts failed.
+         */
 
-        // Get the item's metadata/files
-        const metadataURL =
-            "https://archive.org/metadata/" + identifier;
-
-        const metadataResponse = await fetch(metadataURL);
-        const metadata = await metadataResponse.json();
-
-        // Find an image file
-        const imageFile = metadata.files.find(file => {
-            if (!file.name) return false;
-
-            const name = file.name.toLowerCase();
-
-            return (
-                name.endsWith(".jpg") ||
-                name.endsWith(".jpeg") ||
-                name.endsWith(".png") ||
-                name.endsWith(".gif") ||
-                name.endsWith(".webp")
-            );
-        });
-
-        if (!imageFile) {
-            // Try again if this item doesn't contain a usable image
-            randomImage();
-            return;
-        }
-
-        const imageURL =
-            "https://archive.org/download/" +
-            encodeURIComponent(identifier) +
-            "/" +
-            imageFile.name.split("/").map(encodeURIComponent).join("/");
-
-        image.src = imageURL;
-        image.style.display = "block";
-
-        link.href = "https://archive.org/details/" + identifier;
-        link.style.display = "block";
-
-        status.textContent = "Random image:";
+        status.textContent =
+            "Couldn't find an image. Try again!";
 
     } catch (error) {
+
         console.error(error);
-        status.textContent = "Something went wrong while getting the image.";
+
+        status.textContent =
+            "Something went wrong while getting the image.";
+
     }
+
 }
+
 </script>
 
 </body>
