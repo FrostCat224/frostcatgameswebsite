@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invisible Characters</title>
+    <link href="https://frostcat224.github.io/frostcatgameswebsite/style.css" rel="stylesheet" type="text/css" media="all">
+
+<style>
+    .invisible-character {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 10px 0;
+    }
+
+    .copy-button {
+        padding: 8px 14px;
+        cursor: pointer;
+    }
+</style>
+
+</head>
+
+<body>
+    <header>
+        <img src="https://frostcat224.github.io/frostcatgameswebsite/img/textlogo.png" alt="FrostCatGames">
+
+
+    <nav>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/">Home</a>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/stuff">Stuff</a>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/archive">Archive</a>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/info">Info</a>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/search">Search</a>
+    </nav>
+</header>
+
+<main>
+    <h1>Invisible Characters</h1>
+
+    <p>You can use these invisible characters for example for sending empty messages, making a YouTube video without title or having an empty username.</p>
+  <p>If one character doesn't work, use another! There are 6 of them.</p>
+
+    <div class="invisible-character">
+        <span>Zero Width Space</span>
+        <button class="copy-button" onclick="copyText(this, '\u200B')">Copy</button>
+    </div>
+
+    <div class="invisible-character">
+        <span>Zero Width Non-Joiner</span>
+        <button class="copy-button" onclick="copyText(this, '\u200C')">Copy</button>
+    </div>
+
+    <div class="invisible-character">
+        <span>Zero Width Joiner</span>
+        <button class="copy-button" onclick="copyText(this, '\u200D')">Copy</button>
+    </div>
+
+    <div class="invisible-character">
+        <span>Hangul Filler</span>
+        <button class="copy-button" onclick="copyText(this, '\u3164')">Copy</button>
+    </div>
+
+
+
+  <div class="invisible-character">
+    <span>Blank Braille Pattern</span>
+    <button class="copy-button" onclick="copyText(this, '\u2800')">Copy</button>
+</div>
+
+<div class="invisible-character">
+    <span>Hangul Jungseong Filler</span>
+    <button class="copy-button" onclick="copyText(this, '\u1160')">Copy</button>
+</div>
+
+</main>
+
+<script>
+    function copyText(button, text) {
+        navigator.clipboard.writeText(text);
+
+        const originalText = button.textContent;
+        button.textContent = "Copied!";
+
+        setTimeout(() => {
+            button.textContent = originalText;
+        }, 1000);
+    }
+</script>
+
+
+</body>
+</html>
