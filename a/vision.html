@@ -35,7 +35,7 @@ body {
         background: #555;
     }
 
-    /* SVG color transformation filters */
+    
     .vision-protanopia {
         filter: url(#protanopia);
     }
@@ -51,6 +51,10 @@ body {
     .vision-achromatopsia {
         filter: grayscale(100%);
     }
+
+.vision-dog {
+    filter: url(#dog-vision);
+}
 </style>
 
 <svg xmlns="http://www.w3.org/2000/svg"
@@ -78,6 +82,13 @@ body {
                 0.95  0.05  0     0 0
                 0     0.433 0.567 0 0
                 0     0.475 0.525 0 0
+                0     0     0     1 0"/>
+        </filter>
+<filter id="dog-vision" color-interpolation-filters="sRGB">
+            <feColorMatrix type="matrix" values="
+                0.567 0.433 0     0 0
+                0.558 0.442 0     0 0
+                0     0.242 0.758 0 0
                 0     0     0     1 0"/>
         </filter>
     </defs>
@@ -112,6 +123,7 @@ body {
     <button onclick="setVision('deuteranopia')">Deuteranopia</button>
     <button onclick="setVision('tritanopia')">Tritanopia</button>
     <button onclick="setVision('achromatopsia')">Achromatopsia</button>
+<button onclick="setVision('dog')">Dog Vision</button>
 </div>
 
 <script>
@@ -122,7 +134,8 @@ body {
             'vision-protanopia',
             'vision-deuteranopia',
             'vision-tritanopia',
-            'vision-achromatopsia'
+            'vision-achromatopsia',
+            'vision-dog'
         );
 
         if (type !== 'normal') {
