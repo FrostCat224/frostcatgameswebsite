@@ -1,1 +1,128 @@
-a
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrostCatGames</title>
+    <link href="https://frostcat224.github.io/frostcatgameswebsite/style.css" rel="stylesheet" type="text/css" media="all">
+
+    
+
+
+<style>
+    .vision-buttons {
+        margin: 15px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .vision-buttons button {
+        background: #222;
+        color: white;
+        border: 2px solid #888;
+        padding: 8px 12px;
+        border-radius: 0;
+        cursor: pointer;
+        font-family: Verdana, Tahoma, Arial, sans-serif;
+    }
+
+    .vision-buttons button:hover {
+        background: #555;
+    }
+
+    /* SVG color transformation filters */
+    .vision-protanopia {
+        filter: url(#protanopia);
+    }
+
+    .vision-deuteranopia {
+        filter: url(#deuteranopia);
+    }
+
+    .vision-tritanopia {
+        filter: url(#tritanopia);
+    }
+
+    .vision-achromatopsia {
+        filter: grayscale(100%);
+    }
+</style>
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     style="position:absolute;width:0;height:0"
+     aria-hidden="true">
+    <defs>
+        <filter id="protanopia" color-interpolation-filters="sRGB">
+            <feColorMatrix type="matrix" values="
+                0.567 0.433 0     0 0
+                0.558 0.442 0     0 0
+                0     0.242 0.758 0 0
+                0     0     0     1 0"/>
+        </filter>
+
+        <filter id="deuteranopia" color-interpolation-filters="sRGB">
+            <feColorMatrix type="matrix" values="
+                0.625 0.375 0     0 0
+                0.7   0.3   0     0 0
+                0     0.3   0.7   0 0
+                0     0     0     1 0"/>
+        </filter>
+
+        <filter id="tritanopia" color-interpolation-filters="sRGB">
+            <feColorMatrix type="matrix" values="
+                0.95  0.05  0     0 0
+                0     0.433 0.567 0 0
+                0     0.475 0.525 0 0
+                0     0     0     1 0"/>
+        </filter>
+    </defs>
+</svg>
+
+</head>
+    
+<body>
+    <header>
+    <img src="https://frostcat224.github.io/frostcatgameswebsite/img/textlogo.png" alt="FrostCatGames">
+
+    <nav>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/">Home</a>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/stuff">Stuff</a>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/archive">Archive</a>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/info">Info</a>
+        <a href="https://frostcat224.github.io/frostcatgameswebsite/search">Search</a>
+    </nav>
+    </header>
+
+    
+<main>
+    <h1>Vision Simulator</h1>
+   <p></p>
+<div class="vision-buttons">
+    <button onclick="setVision('normal')">Normal</button>
+    <button onclick="setVision('protanopia')">Protanopia</button>
+    <button onclick="setVision('deuteranopia')">Deuteranopia</button>
+    <button onclick="setVision('tritanopia')">Tritanopia</button>
+    <button onclick="setVision('achromatopsia')">Achromatopsia</button>
+</div>
+
+<script>
+    function setVision(type) {
+        const body = document.body;
+
+        body.classList.remove(
+            'vision-protanopia',
+            'vision-deuteranopia',
+            'vision-tritanopia',
+            'vision-achromatopsia'
+        );
+
+        if (type !== 'normal') {
+            body.classList.add('vision-' + type);
+        }
+    }
+</script>
+
+
+</body>
+</html>
